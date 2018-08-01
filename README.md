@@ -1,6 +1,6 @@
 # Project Title
 
-Loan Calculator (TEST)
+Loan Calculator
 
 ## Getting Started
 
