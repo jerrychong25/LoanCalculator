@@ -81,7 +81,7 @@
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:gravity="center"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:minWidth="50dp"/>
 
             <TextView
@@ -196,6 +196,8 @@
             android:layout_weight="1"
             android:drawableTop="@mipmap/ic_calculate"
             android:gravity="center"
+            android:clickable="true"
+            android:onClick="onClick"
             android:text="@string/calculate"/>
 
         <TextView android:id="@+id/button_reset"
@@ -204,6 +206,8 @@
             android:drawableTop="@mipmap/ic_reset"
             android:layout_weight="1"
             android:gravity="center"
+            android:clickable="true"
+            android:onClick="onClick"
             android:text="@string/reset"/>
     </LinearLayout>
 </LinearLayout>
