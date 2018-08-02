@@ -2,10 +2,14 @@ package my.com.codeplay.loancalculator;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -17,6 +21,7 @@ public class CalculatorActivity extends AppCompatActivity {
     private TextView tvMonthlyPayment, tvTotalRepayment, tvTotalInterest, tvAverageMonthlyInterest;
     public static final String MyPREFERENCES = "MyPrefs" ;
     private SharedPreferences sp;
+    private Database db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +35,7 @@ public class CalculatorActivity extends AppCompatActivity {
         etTerm = (EditText) findViewById(R.id.term);
         etAnnualInterestRate = (EditText) findViewById(R.id.annual_interest_rate);
 
+        // Set Previous Data If Previous Data is Detected
         String previous_loanAmount = sp.getString("LoanAmount", "");
         String previous_downPayment = sp.getString("DownPayment", "");
         String previous_interestRate = sp.getString("AnnualInterestRate", "");
@@ -44,6 +50,17 @@ public class CalculatorActivity extends AppCompatActivity {
         tvTotalRepayment = (TextView) findViewById(R.id.total_repayment);
         tvTotalInterest = (TextView) findViewById(R.id.total_interest);
         tvAverageMonthlyInterest = (TextView) findViewById(R.id.average_monthly_interest);
+
+        // Set Previous Data If Previous Data is Detected
+        String previous_monthlyRepayment = sp.getString("MonthlyRepayment", "");
+        String previous_totalRepayment = sp.getString("TotalRepayment", "");
+        String previous_totalInterest = sp.getString("TotalInterest", "");
+        String previous_monthlyInterest = sp.getString("MonthlyInterest", "");
+
+        tvMonthlyPayment.setText(previous_monthlyRepayment);
+        tvTotalRepayment.setText(previous_totalRepayment);
+        tvTotalInterest.setText(previous_totalInterest);
+        tvAverageMonthlyInterest.setText(previous_monthlyInterest);
     }
 
     public void onClick(View v){
@@ -59,6 +76,20 @@ public class CalculatorActivity extends AppCompatActivity {
         }
     }
 
+    public void onResume(View v){
+        super.onResume();
+
+        if(db==null)
+            db = new Database(this);
+    }
+
+    public void onRestart(View v){
+        super.onRestart();
+
+        if(db==null)
+            db = new Database(this);
+    }
+
     private void calculate () {
         String amount = etLoanAmount.getText().toString();
         String downPayment = etDownPayment.getText().toString();
@@ -69,12 +100,12 @@ public class CalculatorActivity extends AppCompatActivity {
         double interest = Double.parseDouble(interestRate)/12/100;
         double noOfMonth = (Integer.parseInt(term) * 12);
 
-        if(noOfMonth > 0) {
-            double monthlyRepayment = loanAmount * (interest + (interest/(pow((1+interest), noOfMonth) - 1)));
-            double totalRepayment = monthlyRepayment * noOfMonth;
-            double totalInterest = totalRepayment - loanAmount;
-            double monthlyInterest = totalInterest / noOfMonth;
+        double monthlyRepayment = loanAmount * (interest + (interest/(pow((1+interest), noOfMonth) - 1)));
+        double totalRepayment = monthlyRepayment * noOfMonth;
+        double totalInterest = totalRepayment - loanAmount;
+        double monthlyInterest = totalInterest / noOfMonth;
 
+        if(noOfMonth > 0) {
             tvMonthlyPayment.setText(String.valueOf(monthlyRepayment));
             tvTotalRepayment.setText(String.valueOf(totalRepayment));
             tvTotalInterest.setText(String.valueOf(totalInterest));
@@ -87,6 +118,10 @@ public class CalculatorActivity extends AppCompatActivity {
         editor.putString("DownPayment", downPayment);
         editor.putString("AnnualInterestRate", interestRate);
         editor.putString("Term", term);
+        editor.putString("MonthlyRepayment", String.valueOf(monthlyRepayment));
+        editor.putString("TotalRepayment", String.valueOf(totalRepayment));
+        editor.putString("TotalInterest", String.valueOf(totalInterest));
+        editor.putString("MonthlyInterest", String.valueOf(monthlyInterest));
 
         editor.apply();
         editor.commit();

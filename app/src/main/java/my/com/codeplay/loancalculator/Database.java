@@ -2,6 +2,7 @@ package my.com.codeplay.loancalculator;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
@@ -30,9 +31,19 @@ public class Database {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            try {
+            db.execSQL(SQL_CREATE_TABLE);
+        }
 
-            }
+        public void onResume(SQLiteDatabase db){
+
+        }
+
+        public void onStart(SQLiteDatabase db) {
+
+        }
+
+        public void onClose (SQLiteDatabase db) {
+            close();
         }
 
         @Override
@@ -43,12 +54,30 @@ public class Database {
         }
     }
 
+    public Database(Context context) {
+        dbHelper = new MySQLiteOpenHelper(context);
+    }
+
     public void insert(ContentValues contentValues) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         db.insert(TABLENAME, null, contentValues);
     }
 
-    public Database(Context context) {
-        dbHelper = new MySQLiteOpenHelper(context);
+    public Cursor query() {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        return db.query(
+                TABLENAME,  // The table to query
+                null,       // The columns to return (null to return all columns)
+                null,       // The columns for the WHERE clause
+                null,       // The values for the WHERE clause
+                null,       // the row groups
+                null,       // filter by row groups
+                null        // The sort order
+        );
+    }
+
+    public void close() {
+        if(dbHelper != null)
+            dbHelper.close();
     }
 }
