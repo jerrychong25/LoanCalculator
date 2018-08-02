@@ -1,5 +1,7 @@
 package my.com.codeplay.loancalculator;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,16 +15,30 @@ public class CalculatorActivity extends AppCompatActivity {
 
     private EditText etLoanAmount, etDownPayment, etTerm, etAnnualInterestRate;
     private TextView tvMonthlyPayment, tvTotalRepayment, tvTotalInterest, tvAverageMonthlyInterest;
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    private SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
 
+        sp = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
         etLoanAmount = (EditText) findViewById(R.id.loan_amount);
         etDownPayment = (EditText) findViewById(R.id.down_payment);
         etTerm = (EditText) findViewById(R.id.term);
         etAnnualInterestRate = (EditText) findViewById(R.id.annual_interest_rate);
+
+        String previous_amount = sp.getString("Amount", "");
+        String previous_downPayment = sp.getString("DownPayment", "");
+        String previous_interestRate = sp.getString("InterestRate", "");
+        String previous_term = sp.getString("Term", "");
+
+        etLoanAmount.setText(previous_amount);
+        etDownPayment.setText(previous_downPayment);
+        etAnnualInterestRate.setText(previous_interestRate);
+        etTerm.setText(previous_term);
 
         tvMonthlyPayment = (TextView) findViewById(R.id.monthly_repayment);
         tvTotalRepayment = (TextView) findViewById(R.id.total_repayment);
@@ -64,6 +80,16 @@ public class CalculatorActivity extends AppCompatActivity {
             tvTotalInterest.setText(String.valueOf(totalInterest));
             tvAverageMonthlyInterest.setText(String.valueOf(monthlyInterest));
         }
+
+        SharedPreferences.Editor editor = sp.edit();
+
+        editor.putString("Amount", amount);
+        editor.putString("DownPayment", downPayment);
+        editor.putString("InterestRate", interestRate);
+        editor.putString("Term", term);
+
+        editor.apply();
+        editor.commit();
     }
 
     private void reset(){
