@@ -30,12 +30,12 @@ public class CalculatorActivity extends AppCompatActivity {
         etTerm = (EditText) findViewById(R.id.term);
         etAnnualInterestRate = (EditText) findViewById(R.id.annual_interest_rate);
 
-        String previous_amount = sp.getString("Amount", "");
+        String previous_loanAmount = sp.getString("LoanAmount", "");
         String previous_downPayment = sp.getString("DownPayment", "");
-        String previous_interestRate = sp.getString("InterestRate", "");
+        String previous_interestRate = sp.getString("AnnualInterestRate", "");
         String previous_term = sp.getString("Term", "");
 
-        etLoanAmount.setText(previous_amount);
+        etLoanAmount.setText(previous_loanAmount);
         etDownPayment.setText(previous_downPayment);
         etAnnualInterestRate.setText(previous_interestRate);
         etTerm.setText(previous_term);
@@ -83,9 +83,9 @@ public class CalculatorActivity extends AppCompatActivity {
 
         SharedPreferences.Editor editor = sp.edit();
 
-        editor.putString("Amount", amount);
+        editor.putString("LoanAmount", amount);
         editor.putString("DownPayment", downPayment);
-        editor.putString("InterestRate", interestRate);
+        editor.putString("AnnualInterestRate", interestRate);
         editor.putString("Term", term);
 
         editor.apply();
