@@ -16,6 +16,7 @@ public class ListActivityView extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_listview);
 
         ListView listView = (ListView) findViewById(android.R.id.list);
 

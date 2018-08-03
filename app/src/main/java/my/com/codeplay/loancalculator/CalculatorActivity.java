@@ -1,6 +1,7 @@
 package my.com.codeplay.loancalculator;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
@@ -73,6 +74,10 @@ public class CalculatorActivity extends AppCompatActivity {
                 Log.d("Check", "Reset Button Clicked!");
                 reset();
                 break;
+            case R.id.button_history:
+                Log.d("Check", "History Button Clicked!");
+                history();
+                break;
         }
     }
 
@@ -137,5 +142,9 @@ public class CalculatorActivity extends AppCompatActivity {
         tvTotalRepayment.setText(R.string.default_result);
         tvTotalInterest.setText(R.string.default_result);
         tvAverageMonthlyInterest.setText(R.string.default_result);
+    }
+
+    private void history() {
+        startActivity(new Intent(this, ListActivityView.class));
     }
 }

@@ -209,5 +209,15 @@
             android:clickable="true"
             android:onClick="onClick"
             android:text="@string/reset"/>
+
+        <TextView android:id="@+id/button_history"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_history"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:clickable="true"
+            android:onClick="onClick"
+            android:text="@string/history"/>
     </LinearLayout>
 </LinearLayout>

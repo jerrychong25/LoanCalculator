@@ -14,7 +14,7 @@ public class Database {
     public static final String COL_TERM = "t_term";
     public static final String COL_ANNUALINTERESTRATE = "t_annualinterestrate";
 
-    private static final String SQL_CREATE_TABLE = "CREATE TABLE" + TABLENAME + "(" + BaseColumns._ID + " integer primary key autoincrement, "
+    private static final String SQL_CREATE_TABLE = "CREATE TABLE " + TABLENAME + "(" + BaseColumns._ID + " integer primary key autoincrement, "
             + COL_LOANAMOUNT + " text not null, "
             + COL_DOWNPAYMENT + " text not null, "
             + COL_TERM + " text not null, "
@@ -48,7 +48,7 @@ public class Database {
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            db.execSQL("DROP TABLE IF EXISTS" + TABLENAME);
+            db.execSQL("DROP TABLE IF EXISTS " + TABLENAME);
 
             onCreate(db);
         }
