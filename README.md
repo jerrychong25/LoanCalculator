@@ -1,6 +1,4 @@
-# Project Title
-
-Loan Calculator
+# Loan Calculator
 
 ## Getting Started
 
