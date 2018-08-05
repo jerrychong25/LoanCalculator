@@ -1,5 +1,12 @@
 # Loan Calculator
 
+<p align="center">
+  <img src="ScreenShotHome.png" alt="Loan Calculator Screenshot Home"
+       width="300" height="533">
+  <img src="ScreenShotFunction.png" alt="Loan Calculator Screenshot Function"
+       width="300" height="533">
+</p>
+
 ## Getting Started
 
 This is a loan calculator mobile app that calculate Monthly Repayment, Total Repayment, Total Interest and Average Monthly Interest based on input of Loan Amount, Down Payment, Term & Annual Interest Rate.
