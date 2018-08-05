@@ -12,7 +12,7 @@ Tested on Android 6.0 mobile phone.
 
 ## Built With
 
-* [Android Studio 3.1.3](https://developer.android.com/studio/) 
+[Android Studio 3.1.3](https://developer.android.com/studio/) 
 
 ## Contributing
 
@@ -20,11 +20,11 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 ## Versioning
 
-* [Semantic Versioning (SemVer) 2.0.0](http://semver.org/)
+[Semantic Versioning (SemVer) 2.0.0](http://semver.org/)
 
 ## Authors
 
-* **Jerry Chong** - [jerrychong25](https://github.com/jerrychong25)
+**Jerry Chong** - [jerrychong25](https://github.com/jerrychong25)
 
 ## License
 
