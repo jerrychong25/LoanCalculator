@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 public class MyCursorAdapter extends CursorAdapter{
 
-    public MyCursorAdapter(Context context, Cursor c) {
-        super(context, c, false);
+    public MyCursorAdapter(Context context, Cursor cursor) {
+        super(context, cursor, false);
     }
 
     @Override
@@ -31,10 +31,15 @@ public class MyCursorAdapter extends CursorAdapter{
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         ViewHolder viewHolder = (ViewHolder) view.getTag();
-
         viewHolder.tv_monthlyRepayment.setText(cursor.getString(1));
         viewHolder.tv_totalRepayment.setText(cursor.getString(2));
         viewHolder.tv_totalInterest.setText(cursor.getString(3));
         viewHolder.tv_monthlyInterest.setText(cursor.getString(4));
+    }
+    public class ViewHolder {
+        public TextView tv_monthlyRepayment;
+        public TextView tv_totalRepayment;
+        public TextView tv_totalInterest;
+        public TextView tv_monthlyInterest;
     }
 }

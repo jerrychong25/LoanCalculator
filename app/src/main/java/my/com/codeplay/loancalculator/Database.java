@@ -8,17 +8,18 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 
 public class Database {
-    public static final String TABLENAME = "tablename";
-    public static final String COL_LOANAMOUNT = "t_loanamount";
-    public static final String COL_DOWNPAYMENT = "t_downpayment";
-    public static final String COL_TERM = "t_term";
-    public static final String COL_ANNUALINTERESTRATE = "t_annualinterestrate";
+    public static final String TABLENAME = "loanhistory";
+    public static final String COL_MONTHLYPAYMENT = "monthly_payment";
+    public static final String COL_TOTALREPAYMENT = "total_repayment";
+    public static final String COL_TOTALINTEREST = "total_interest";
+    public static final String COL_AVERAGEMONTHLYINTEREST = "average_monthly_interest";
 
-    private static final String SQL_CREATE_TABLE = "CREATE TABLE " + TABLENAME + "(" + BaseColumns._ID + " integer primary key autoincrement, "
-            + COL_LOANAMOUNT + " text not null, "
-            + COL_DOWNPAYMENT + " text not null, "
-            + COL_TERM + " text not null, "
-            + COL_ANNUALINTERESTRATE + " text not null);";
+    private static final String SQL_CREATE_TABLE = "CREATE TABLE " + TABLENAME + " (" + 
+			BaseColumns._ID + " integer primary key autoincrement, "
+            + COL_MONTHLYPAYMENT + " text not null, "
+            + COL_TOTALREPAYMENT + " text not null, "
+            + COL_TOTALINTEREST + " text not null, "
+            + COL_AVERAGEMONTHLYINTEREST + " text not null);";
     private MySQLiteOpenHelper dbHelper;
 
     private class MySQLiteOpenHelper extends SQLiteOpenHelper {
@@ -32,18 +33,6 @@ public class Database {
         @Override
         public void onCreate(SQLiteDatabase db) {
             db.execSQL(SQL_CREATE_TABLE);
-        }
-
-        public void onResume(SQLiteDatabase db){
-
-        }
-
-        public void onStart(SQLiteDatabase db) {
-
-        }
-
-        public void onClose (SQLiteDatabase db) {
-            close();
         }
 
         @Override

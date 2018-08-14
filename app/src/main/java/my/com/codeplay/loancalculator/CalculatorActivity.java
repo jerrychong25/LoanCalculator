@@ -1,5 +1,6 @@
 package my.com.codeplay.loancalculator;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,13 +17,18 @@ import android.widget.TextView;
 
 import static java.lang.Math.pow;
 
+import static my.com.codeplay.loancalculator.Database.COL_MONTHLYPAYMENT;
+import static my.com.codeplay.loancalculator.Database.COL_TOTALREPAYMENT;
+import static my.com.codeplay.loancalculator.Database.COL_TOTALINTEREST;
+import static my.com.codeplay.loancalculator.Database.COL_AVERAGEMONTHLYINTEREST;
+
 public class CalculatorActivity extends AppCompatActivity {
 
     private EditText etLoanAmount, etDownPayment, etTerm, etAnnualInterestRate;
     private TextView tvMonthlyPayment, tvTotalRepayment, tvTotalInterest, tvAverageMonthlyInterest;
     public static final String MyPREFERENCES = "MyPrefs" ;
     private SharedPreferences sp;
-    private Database db;
+    public Database db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +47,6 @@ public class CalculatorActivity extends AppCompatActivity {
         String previous_downPayment = sp.getString("DownPayment", "");
         String previous_interestRate = sp.getString("AnnualInterestRate", "");
         String previous_term = sp.getString("Term", "");
-
         etLoanAmount.setText(previous_loanAmount);
         etDownPayment.setText(previous_downPayment);
         etAnnualInterestRate.setText(previous_interestRate);
@@ -57,13 +62,26 @@ public class CalculatorActivity extends AppCompatActivity {
         String previous_totalRepayment = sp.getString("TotalRepayment", "");
         String previous_totalInterest = sp.getString("TotalInterest", "");
         String previous_monthlyInterest = sp.getString("MonthlyInterest", "");
-
         tvMonthlyPayment.setText(previous_monthlyRepayment);
         tvTotalRepayment.setText(previous_totalRepayment);
         tvTotalInterest.setText(previous_totalInterest);
         tvAverageMonthlyInterest.setText(previous_monthlyInterest);
     }
 
+	@Override
+    protected void onStop() {
+        super.onStop();
+        db.close();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if (db == null)
+            db = new Database(this);
+    }
+	
     public void onClick(View v){
         switch(v.getId()){
             case R.id.button_calculate:
@@ -74,25 +92,11 @@ public class CalculatorActivity extends AppCompatActivity {
                 Log.d("Check", "Reset Button Clicked!");
                 reset();
                 break;
-            case R.id.button_history:
-                Log.d("Check", "History Button Clicked!");
-                history();
-                break;
+//            case R.id.button_history:
+//                Log.d("Check", "History Button Clicked!");
+//                history();
+//                break;
         }
-    }
-
-    public void onResume(View v){
-        super.onResume();
-
-        if(db==null)
-            db = new Database(this);
-    }
-
-    public void onRestart(View v){
-        super.onRestart();
-
-        if(db==null)
-            db = new Database(this);
     }
 
     private void calculate () {
@@ -117,8 +121,17 @@ public class CalculatorActivity extends AppCompatActivity {
             tvAverageMonthlyInterest.setText(String.valueOf(monthlyInterest));
         }
 
-        SharedPreferences.Editor editor = sp.edit();
+		// Store Database
+		ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_MONTHLYPAYMENT, tvMonthlyPayment.getText().toString());
+        contentValues.put(COL_TOTALREPAYMENT, tvTotalRepayment.getText().toString());
+        contentValues.put(COL_TOTALINTEREST, tvTotalInterest.getText().toString());
+        contentValues.put(COL_AVERAGEMONTHLYINTEREST, tvAverageMonthlyInterest.getText().toString());
 
+        db.insert(contentValues);
+
+        // Shared Preferences
+        SharedPreferences.Editor editor = sp.edit();
         editor.putString("LoanAmount", amount);
         editor.putString("DownPayment", downPayment);
         editor.putString("AnnualInterestRate", interestRate);
@@ -127,7 +140,6 @@ public class CalculatorActivity extends AppCompatActivity {
         editor.putString("TotalRepayment", String.valueOf(totalRepayment));
         editor.putString("TotalInterest", String.valueOf(totalInterest));
         editor.putString("MonthlyInterest", String.valueOf(monthlyInterest));
-
         editor.apply();
         editor.commit();
     }

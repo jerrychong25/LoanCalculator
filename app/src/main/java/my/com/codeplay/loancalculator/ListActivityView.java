@@ -11,7 +11,8 @@ import android.widget.ListView;
 import java.util.List;
 
 public class ListActivityView extends AppCompatActivity {
-    private Database db;
+    private Database db = null;
+    private Cursor result;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -22,7 +23,24 @@ public class ListActivityView extends AppCompatActivity {
 
         db = new Database(this);
 
-        Cursor c = db.query();
-        listView.setAdapter(new MyCursorAdapter(this, c));
+        result = db.query();
+        listView.setAdapter(new MyCursorAdapter(this, result));
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (null == db) {
+            db = new Database(this);
+            result = db.query();
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        if (db != null)
+            db.close();
     }
 }
