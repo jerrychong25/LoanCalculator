@@ -109,10 +109,10 @@ public class CalculatorActivity extends AppCompatActivity {
         double interest = Double.parseDouble(interestRate)/12/100;
         double noOfMonth = (Integer.parseInt(term) * 12);
 
-        double monthlyRepayment = loanAmount * (interest + (interest/(pow((1+interest), noOfMonth) - 1)));
-        double totalRepayment = monthlyRepayment * noOfMonth;
-        double totalInterest = totalRepayment - loanAmount;
-        double monthlyInterest = totalInterest / noOfMonth;
+        double monthlyRepayment = Math.round(loanAmount * (interest + (interest/(pow((1+interest), noOfMonth) - 1))));
+        double totalRepayment = Math.round(monthlyRepayment * noOfMonth);
+        double totalInterest = Math.round((totalRepayment - loanAmount));
+        double monthlyInterest = Math.round(totalInterest / noOfMonth);
 
         if(noOfMonth > 0) {
             tvMonthlyPayment.setText(String.valueOf(monthlyRepayment));
