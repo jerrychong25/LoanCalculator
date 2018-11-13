@@ -62,6 +62,7 @@ public class CalculatorActivity extends AppCompatActivity {
         String previous_totalRepayment = sp.getString("TotalRepayment", "");
         String previous_totalInterest = sp.getString("TotalInterest", "");
         String previous_monthlyInterest = sp.getString("MonthlyInterest", "");
+
         tvMonthlyPayment.setText(previous_monthlyRepayment);
         tvTotalRepayment.setText(previous_totalRepayment);
         tvTotalInterest.setText(previous_totalInterest);
@@ -109,16 +110,16 @@ public class CalculatorActivity extends AppCompatActivity {
         double interest = Double.parseDouble(interestRate)/12/100;
         double noOfMonth = (Integer.parseInt(term) * 12);
 
-        double monthlyRepayment = Math.round(loanAmount * (interest + (interest/(pow((1+interest), noOfMonth) - 1))));
-        double totalRepayment = Math.round(monthlyRepayment * noOfMonth);
-        double totalInterest = Math.round((totalRepayment - loanAmount));
-        double monthlyInterest = Math.round(totalInterest / noOfMonth);
+        double monthlyRepayment = loanAmount * (interest + (interest/(pow((1+interest), noOfMonth) - 1)));
+        double totalRepayment = monthlyRepayment * noOfMonth;
+        double totalInterest = totalRepayment - loanAmount;
+        double monthlyInterest = totalInterest / noOfMonth;
 
         if(noOfMonth > 0) {
-            tvMonthlyPayment.setText(String.valueOf(monthlyRepayment));
-            tvTotalRepayment.setText(String.valueOf(totalRepayment));
-            tvTotalInterest.setText(String.valueOf(totalInterest));
-            tvAverageMonthlyInterest.setText(String.valueOf(monthlyInterest));
+            tvMonthlyPayment.setText(String.format("%.2f", monthlyRepayment));
+            tvTotalRepayment.setText(String.format("%.2f", totalRepayment));
+            tvTotalInterest.setText(String.format("%.2f", totalInterest));
+            tvAverageMonthlyInterest.setText(String.format("%.2f", monthlyInterest));
         }
 
 		// Store Database
