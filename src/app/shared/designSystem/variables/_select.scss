@@ -1,0 +1,11 @@
+$select-bg: $brand-bg-color;
+$select-margin: 0;
+$select-padding: $space-8 0;
+$select-color: foreground-color($select-bg);
+$select-font-family: $font-family;
+$select-font-size: $font-size;
+$select-font-weight: $font-weight-light;
+$select-arrow-color: $brand-secondary;
+
+$select-multi-max-height: $space-84;
+$select-multi-option-padding: $space-4 0;
