@@ -14,12 +14,12 @@
 
 <script lang="ts">
 export default {
-  name: 'VueNavBar',
+  name: "VueNavBar",
 };
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .vueNavBar {
   width: $nav-bar-width;

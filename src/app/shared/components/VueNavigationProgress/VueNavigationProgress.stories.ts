@@ -1,12 +1,12 @@
-import { storiesOf } from '@storybook/vue';
-import { withInfo } from 'storybook-addon-vue-info';
-import VueNavigationProgress from './VueNavigationProgress.vue';
-import VueCheckbox from '../VueCheckbox/VueCheckbox.vue';
+import { storiesOf } from "@storybook/vue";
+import { withInfo } from "storybook-addon-vue-info";
+import VueNavigationProgress from "./VueNavigationProgress.vue";
+import VueCheckbox from "../VueCheckbox/VueCheckbox.vue";
 
-const story = storiesOf('Atoms|NavigationProgress', module) as any;
+const story = storiesOf("Atoms|NavigationProgress", module) as any;
 
 story.add(
-  'Default',
+  "Default",
   withInfo({ propTablesExclude: [VueCheckbox] })(() => ({
     components: { VueNavigationProgress, VueCheckbox },
     data() {
@@ -19,5 +19,5 @@ story.add(
   <vue-checkbox id="isNavigating" name="isNavigating" label="isNavigating" v-model="isNavigating" />
   <vue-navigation-progress :isNavigating="isNavigating" />
 </div>`,
-  })),
+  }))
 );

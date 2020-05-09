@@ -1,10 +1,16 @@
 <template>
-  <component :is="component" :class="[$style.vueHeadline, cssClass]" v-on="$listeners"> <slot /> </component>
+  <component
+    :is="component"
+    :class="[$style.vueHeadline, cssClass]"
+    v-on="$listeners"
+  >
+    <slot />
+  </component>
 </template>
 
 <script lang="ts">
 export default {
-  name: 'VueHeadline',
+  name: "VueHeadline",
   components: {},
   props: {
     level: {
@@ -24,20 +30,22 @@ export default {
       let component: string = `h${this.level}`;
 
       if (this.native === false) {
-        component = 'div';
+        component = "div";
       }
 
       return component;
     },
     cssClass() {
-      return this.appearanceLevel ? this.$style[`h${this.appearanceLevel}`] : this.$style[`h${this.level}`];
+      return this.appearanceLevel
+        ? this.$style[`h${this.appearanceLevel}`]
+        : this.$style[`h${this.level}`];
     },
   },
 };
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .vueHeadline {
   font-family: $font-family-headings;

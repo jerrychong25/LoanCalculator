@@ -1,20 +1,20 @@
-import { createLocalVue, mount } from '@vue/test-utils';
-import VueSidebarGroup from './VueSidebarGroup.vue';
+import { createLocalVue, mount } from "@vue/test-utils";
+import VueSidebarGroup from "./VueSidebarGroup.vue";
 
 const localVue = createLocalVue();
 
-describe('VueSidebarGroup.vue', () => {
-  test('renders component', () => {
+describe("VueSidebarGroup.vue", () => {
+  test("renders component", () => {
     const wrapper = mount(VueSidebarGroup, {
       localVue,
       propsData: {
-        title: 'foo',
+        title: "foo",
       },
       slots: {
-        default: 'foo',
+        default: "foo",
       },
     });
 
-    expect(wrapper.text()).toBe('foo foo');
+    expect(wrapper.text()).toBe("foo foo");
   });
 });

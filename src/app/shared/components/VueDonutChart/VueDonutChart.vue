@@ -1,6 +1,8 @@
 <template>
   <figure :class="$style.vueDonutChart">
-    <vue-headline level="2" :native="false" :class="$style.title"> {{ title }} </vue-headline>
+    <vue-headline level="2" :native="false" :class="$style.title">
+      {{ title }}
+    </vue-headline>
 
     <svg viewBox="0 0 42 42" :aria-label="title" role="img">
       <circle
@@ -26,9 +28,8 @@
     <figcaption>
       <ul aria-hidden="true" role="presentation">
         <li v-for="(circle, idx) in circles.reverse()" :key="idx">
-          <span :style="{ background: circle.color }"></span> {{ circle.roundedPercent }}% - {{ circle.label }} ({{
-            circle.value
-          }}
+          <span :style="{ background: circle.color }"></span>
+          {{ circle.roundedPercent }}% - {{ circle.label }} ({{ circle.value }}
           {{ unit }})
         </li>
       </ul>
@@ -37,14 +38,14 @@
 </template>
 
 <script lang="ts">
-import { getIntInRange } from '@vuesion/utils/dist/randomGenerator';
-import { IChartDataItem } from './IChartDataItem';
-import VueHeadline from '../VueHeadline/VueHeadline.vue';
+import { getIntInRange } from "@vuesion/utils/dist/randomGenerator";
+import { IChartDataItem } from "./IChartDataItem";
+import VueHeadline from "../VueHeadline/VueHeadline.vue";
 
 let usedColors: string[] = [];
 
 export default {
-  name: 'VueDonutChart',
+  name: "VueDonutChart",
   components: { VueHeadline },
   props: {
     title: {
@@ -63,12 +64,14 @@ export default {
     },
     type: {
       type: String,
-      default: 'donut',
+      default: "donut",
     },
   },
   computed: {
     sum() {
-      return this.data.map((item: IChartDataItem) => item.value).reduce((f: number, s: number) => f + s, 0);
+      return this.data
+        .map((item: IChartDataItem) => item.value)
+        .reduce((f: number, s: number) => f + s, 0);
     },
     circles() {
       return this.data.map((item: IChartDataItem) => {
@@ -83,10 +86,12 @@ export default {
       });
     },
     colorCount() {
-      return Object.keys(this.$style).filter((key: string) => key.indexOf('color') > -1).length;
+      return Object.keys(this.$style).filter(
+        (key: string) => key.indexOf("color") > -1
+      ).length;
     },
     width() {
-      return this.type === 'donut' ? this.strokeWidth : 32;
+      return this.type === "donut" ? this.strokeWidth : 32;
     },
   },
   methods: {
@@ -121,7 +126,7 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .vueDonutChart {
   position: relative;
@@ -187,11 +192,11 @@ export default {
 }
 
 :export {
-  color1: palette-color-level('coral', 50);
-  color2: palette-color-level('blue', 50);
-  color3: palette-color-level('red', 50);
-  color4: palette-color-level('green', 50);
-  color5: palette-color-level('yellow', 50);
-  color6: palette-color-level('coral', 20);
+  color1: palette-color-level("coral", 50);
+  color2: palette-color-level("blue", 50);
+  color3: palette-color-level("red", 50);
+  color4: palette-color-level("green", 50);
+  color5: palette-color-level("yellow", 50);
+  color6: palette-color-level("coral", 20);
 }
 </style>

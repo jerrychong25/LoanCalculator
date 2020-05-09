@@ -1,12 +1,12 @@
-import { storiesOf } from '@storybook/vue';
-import { withInfo } from 'storybook-addon-vue-info';
-import VueBadge from './VueBadge.vue';
-import { brandVariations } from '@components/utils';
+import { storiesOf } from "@storybook/vue";
+import { withInfo } from "storybook-addon-vue-info";
+import VueBadge from "./VueBadge.vue";
+import { brandVariations } from "@components/utils";
 
-const story = storiesOf('Atoms|Badge', module) as any;
+const story = storiesOf("Atoms|Badge", module) as any;
 
 story.add(
-  'Badge Variants',
+  "Badge Variants",
   withInfo({})(() => ({
     components: { VueBadge },
     data(): any {
@@ -22,5 +22,5 @@ story.add(
 <br />
 </template>
 </div>`,
-  })),
+  }))
 );

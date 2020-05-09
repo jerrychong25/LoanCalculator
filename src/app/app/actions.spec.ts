@@ -1,8 +1,8 @@
-import { ActionContext, Commit, Dispatch } from 'vuex';
-import { IAppState } from './state';
-import { AppActions } from './actions';
+import { ActionContext, Commit, Dispatch } from "vuex";
+import { IAppState } from "./state";
+import { AppActions } from "./actions";
 
-describe('AppActions', () => {
+describe("AppActions", () => {
   let testContext: ActionContext<IAppState, IAppState>;
 
   beforeEach(() => {
@@ -12,17 +12,20 @@ describe('AppActions', () => {
     } as ActionContext<IAppState, IAppState>;
   });
 
-  test('it should change the locale', () => {
-    AppActions.changeLocale(testContext, 'de');
+  test("it should change the locale", () => {
+    AppActions.changeLocale(testContext, "de");
 
     expect(testContext.commit).toHaveBeenCalled();
-    expect(testContext.commit).toHaveBeenCalledWith('CHANGE_LOCALE', 'de');
+    expect(testContext.commit).toHaveBeenCalledWith("CHANGE_LOCALE", "de");
   });
 
-  test('it should change the cookie consent version', () => {
-    AppActions.setCookieConsentVersion(testContext, '1.0.0');
+  test("it should change the cookie consent version", () => {
+    AppActions.setCookieConsentVersion(testContext, "1.0.0");
 
     expect(testContext.commit).toHaveBeenCalled();
-    expect(testContext.commit).toHaveBeenCalledWith('SET_COOKIE_CONSENT_VERSION', '1.0.0');
+    expect(testContext.commit).toHaveBeenCalledWith(
+      "SET_COOKIE_CONSENT_VERSION",
+      "1.0.0"
+    );
   });
 });

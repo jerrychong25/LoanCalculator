@@ -26,10 +26,10 @@
 </template>
 
 <script lang="ts">
-import VueDatePicker from '../VueDatePicker/VueDatePicker.vue';
+import VueDatePicker from "../VueDatePicker/VueDatePicker.vue";
 
 export default {
-  name: 'VueDateRangePicker',
+  name: "VueDateRangePicker",
   components: {
     VueDatePicker,
   },
@@ -67,7 +67,7 @@ export default {
     },
     onEndChange(endDate: Date) {
       this.endDate = endDate;
-      this.$emit('change', [this.startDate, this.endDate]);
+      this.$emit("change", [this.startDate, this.endDate]);
     },
   },
 };

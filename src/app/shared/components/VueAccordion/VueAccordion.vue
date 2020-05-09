@@ -4,7 +4,7 @@
 
 <script lang="ts">
 export default {
-  name: 'VueAccordion',
+  name: "VueAccordion",
   props: {
     multiple: {
       type: Boolean,

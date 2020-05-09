@@ -1,15 +1,15 @@
-import { createLocalVue, mount } from '@vue/test-utils';
-import VueCarousel from './VueCarousel.vue';
+import { createLocalVue, mount } from "@vue/test-utils";
+import VueCarousel from "./VueCarousel.vue";
 
 const localVue = createLocalVue();
 const images: any[] = [
-  { alt: 'foo', copyright: 'foo', url: 'foo' },
-  { alt: 'foo', copyright: 'foo', url: 'foo' },
-  { alt: 'foo', copyright: 'foo', url: 'foo' },
+  { alt: "foo", copyright: "foo", url: "foo" },
+  { alt: "foo", copyright: "foo", url: "foo" },
+  { alt: "foo", copyright: "foo", url: "foo" },
 ];
 
-describe('VueCarousel.vue', () => {
-  test('renders component', () => {
+describe("VueCarousel.vue", () => {
+  test("renders component", () => {
     const wrapper = mount<any>(VueCarousel, {
       localVue,
     });
@@ -19,7 +19,7 @@ describe('VueCarousel.vue', () => {
     wrapper.destroy();
   });
 
-  test('renders component with images', (done) => {
+  test("renders component with images", (done) => {
     const wrapper = mount<any>(VueCarousel, {
       localVue,
       propsData: {
@@ -28,12 +28,12 @@ describe('VueCarousel.vue', () => {
     });
 
     setTimeout(() => {
-      expect(wrapper.findAll('.image')).toHaveLength(1);
+      expect(wrapper.findAll(".image")).toHaveLength(1);
       done();
     }, 100);
   });
 
-  test('should change slide', () => {
+  test("should change slide", () => {
     const wrapper = mount<any>(VueCarousel, {
       localVue,
       propsData: {

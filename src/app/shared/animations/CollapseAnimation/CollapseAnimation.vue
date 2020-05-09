@@ -1,11 +1,17 @@
 <template>
-  <transition @beforeEnter="beforeEnter" @enter="enter" @beforeLeave="beforeLeave" @leave="leave" :css="false">
+  <transition
+    @beforeEnter="beforeEnter"
+    @enter="enter"
+    @beforeLeave="beforeLeave"
+    @leave="leave"
+    :css="false"
+  >
     <slot />
   </transition>
 </template>
 
 <script lang="ts">
-import anime from 'animejs';
+import anime from "animejs";
 
 export default {
   components: {},
@@ -21,9 +27,9 @@ export default {
   computed: {},
   methods: {
     beforeEnter(el: HTMLElement) {
-      el.style.height = '0';
-      el.style.opacity = '0';
-      el.style.overflow = 'hidden';
+      el.style.height = "0";
+      el.style.opacity = "0";
+      el.style.overflow = "hidden";
     },
     enter(el: HTMLElement, done: any) {
       anime({
@@ -37,12 +43,12 @@ export default {
           duration: this.duration,
         },
         round: 1,
-        easing: 'easeInOutCirc',
+        easing: "easeInOutCirc",
         complete: done,
       });
     },
     beforeLeave(el: HTMLElement) {
-      el.style.overflow = 'hidden';
+      el.style.overflow = "hidden";
     },
     leave(el: HTMLElement, done: any) {
       anime({
@@ -72,7 +78,7 @@ export default {
           duration: this.duration,
         },
         round: 1,
-        easing: 'easeInOutCirc',
+        easing: "easeInOutCirc",
         complete: done,
       });
     },

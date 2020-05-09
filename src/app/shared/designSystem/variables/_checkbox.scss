@@ -4,7 +4,8 @@ $checkbox-margin: 0 0 $space-12 0;
 $checkbox-size: $space-20;
 $checkbox-bg: $brand-bg-color;
 $checkbox-border: 1px solid $brand-secondary;
-$checkbox-transition: background $brand-transition-duration cubic-bezier(0, 0.84, 0.83, 0.67);
+$checkbox-transition: background $brand-transition-duration
+  cubic-bezier(0, 0.84, 0.83, 0.67);
 $checkbox-check: 2px solid #fff;
 $checkbox-check-margin: 0 $space-12 0 0;
 $checkbox-checked-bg: $brand-secondary;

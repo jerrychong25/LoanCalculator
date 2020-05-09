@@ -1,10 +1,10 @@
-import { createLocalVue, mount } from '@vue/test-utils';
-import VueDataTableSearch from './VueDataTableSearch.vue';
+import { createLocalVue, mount } from "@vue/test-utils";
+import VueDataTableSearch from "./VueDataTableSearch.vue";
 
 const localVue = createLocalVue();
 
-describe('VueDataTableSearch.vue', () => {
-  test('renders component', () => {
+describe("VueDataTableSearch.vue", () => {
+  test("renders component", () => {
     const wrapper = mount(VueDataTableSearch, {
       localVue,
     });

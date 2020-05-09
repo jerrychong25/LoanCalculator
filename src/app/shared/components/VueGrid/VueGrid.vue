@@ -4,12 +4,12 @@
 
 <script lang="ts">
 export default {
-  name: 'VueGrid',
+  name: "VueGrid",
 };
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .grid {
   max-width: 425px;

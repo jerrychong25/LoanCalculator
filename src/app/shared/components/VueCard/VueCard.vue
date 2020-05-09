@@ -4,12 +4,12 @@
 
 <script lang="ts">
 export default {
-  name: 'VueCard',
+  name: "VueCard",
 };
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .vueCard {
   background-color: $card-bg;

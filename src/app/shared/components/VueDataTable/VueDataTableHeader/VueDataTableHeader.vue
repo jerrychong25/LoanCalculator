@@ -11,8 +11,12 @@
 
         <div :class="$style.icons" v-if="column.sortable">
           <vue-icon-sort v-if="!sortKey && !isActive(column.sortKey)" />
-          <vue-icon-sort-up v-if="isActive(column.sortKey) && sortDirection === 'asc'" />
-          <vue-icon-sort-down v-if="isActive(column.sortKey) && sortDirection === 'desc'" />
+          <vue-icon-sort-up
+            v-if="isActive(column.sortKey) && sortDirection === 'asc'"
+          />
+          <vue-icon-sort-down
+            v-if="isActive(column.sortKey) && sortDirection === 'desc'"
+          />
         </div>
       </th>
     </tr>
@@ -20,13 +24,13 @@
 </template>
 
 <script lang="ts">
-import { IDataTableHeaderItem } from '../IDataTable';
-import VueIconSort from '../../icons/VueIconSort/VueIconSort.vue';
-import VueIconSortUp from '../../icons/VueIconSortUp/VueIconSortUp.vue';
-import VueIconSortDown from '../../icons/VueIconSortDown/VueIconSortDown.vue';
+import { IDataTableHeaderItem } from "../IDataTable";
+import VueIconSort from "../../icons/VueIconSort/VueIconSort.vue";
+import VueIconSortUp from "../../icons/VueIconSortUp/VueIconSortUp.vue";
+import VueIconSortDown from "../../icons/VueIconSortDown/VueIconSortDown.vue";
 
 export default {
-  name: 'VueDataTableHeader',
+  name: "VueDataTableHeader",
   components: { VueIconSortDown, VueIconSortUp, VueIconSort },
   props: {
     columns: {
@@ -43,13 +47,15 @@ export default {
   },
   computed: {
     visibleColumns() {
-      return this.columns.filter((column: IDataTableHeaderItem) => column.visible);
+      return this.columns.filter(
+        (column: IDataTableHeaderItem) => column.visible
+      );
     },
   },
   methods: {
     onClick(column: IDataTableHeaderItem) {
       if (column.sortable) {
-        this.$emit('click', column);
+        this.$emit("click", column);
       }
     },
     isActive(sortKey: string) {
@@ -60,7 +66,7 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '../../../design-system';
+@import "../../../design-system";
 
 .vueDataTableHeader {
   border: $data-table-header-border;

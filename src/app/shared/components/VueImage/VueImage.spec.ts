@@ -1,14 +1,14 @@
-import { createLocalVue, mount } from '@vue/test-utils';
-import VueImage from './VueImage.vue';
+import { createLocalVue, mount } from "@vue/test-utils";
+import VueImage from "./VueImage.vue";
 
 const localVue = createLocalVue();
 
-describe('VueImage.vue', () => {
-  test('renders native image', () => {
+describe("VueImage.vue", () => {
+  test("renders native image", () => {
     const wrapper = mount<any>(VueImage, {
       localVue,
       propsData: {
-        src: 'foo',
+        src: "foo",
       },
     });
     const actual = wrapper.html();
@@ -17,11 +17,11 @@ describe('VueImage.vue', () => {
     expect(actual).toBe(expected);
   });
 
-  test('renders image as div', () => {
+  test("renders image as div", () => {
     const wrapper = mount<any>(VueImage, {
       localVue,
       propsData: {
-        src: 'foo',
+        src: "foo",
         native: false,
       },
     });
@@ -31,7 +31,7 @@ describe('VueImage.vue', () => {
     expect(actual).toBe(expected);
   });
 
-  test('renders image via observer', () => {
+  test("renders image via observer", () => {
     let disconnected = false;
     (window as any).IntersectionObserver = class IntersectionObserver {
       public cb: any;
@@ -53,7 +53,7 @@ describe('VueImage.vue', () => {
     const wrapper = mount<any>(VueImage, {
       localVue,
       propsData: {
-        src: 'foo',
+        src: "foo",
       },
     });
     let actual: any = wrapper.html();

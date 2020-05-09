@@ -29,10 +29,10 @@
 </template>
 
 <script lang="ts">
-import { Validator } from 'vee-validate';
+import { Validator } from "vee-validate";
 
 export default {
-  name: 'VueInput',
+  name: "VueInput",
   inheritAttrs: false,
   inject: {
     $validator: {
@@ -62,7 +62,7 @@ export default {
     },
     type: {
       type: String,
-      default: 'text',
+      default: "text",
     },
     disabled: {
       type: Boolean,
@@ -81,7 +81,7 @@ export default {
     },
     autocomplete: {
       type: String,
-      default: 'off',
+      default: "off",
     },
   },
   computed: {
@@ -118,7 +118,7 @@ export default {
             this.$refs.input.focus();
           }
         },
-        { root: this.$refs.input.parentElement, threshold: 1 },
+        { root: this.$refs.input.parentElement, threshold: 1 }
       );
       this.observer.observe(this.$refs.input);
     },
@@ -135,7 +135,7 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .vueInput {
   position: relative;
@@ -216,7 +216,7 @@ export default {
 
   &:before,
   &:after {
-    content: '';
+    content: "";
     height: $input-bar-height;
     width: 0;
     bottom: 0;

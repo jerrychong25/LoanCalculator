@@ -1,37 +1,37 @@
-import { createLocalVue, mount, shallowMount } from '@vue/test-utils';
-import VueAutocomplete from './VueAutocomplete.vue';
-import VueLoader from '../VueLoader/VueLoader.vue';
-import { AutocompleteOptionsFixture } from './fixtures/IAutocompleteFixture';
-import { i18n } from '../../plugins/i18n/i18n';
+import { createLocalVue, mount, shallowMount } from "@vue/test-utils";
+import VueAutocomplete from "./VueAutocomplete.vue";
+import VueLoader from "../VueLoader/VueLoader.vue";
+import { AutocompleteOptionsFixture } from "./fixtures/IAutocompleteFixture";
+import { i18n } from "../../plugins/i18n/i18n";
 
 const localVue = createLocalVue();
 
-describe('VueAutocomplete.vue', () => {
-  test('renders and destroys component', () => {
+describe("VueAutocomplete.vue", () => {
+  test("renders and destroys component", () => {
     const wrapper = shallowMount<any>(VueAutocomplete, {
       localVue,
       i18n,
       propsData: {
-        id: 'foo',
-        name: 'foo',
-        placeholder: 'Type something',
+        id: "foo",
+        name: "foo",
+        placeholder: "Type something",
         options: AutocompleteOptionsFixture,
       },
     });
 
     wrapper.vm.$destroy();
 
-    expect(wrapper.props().placeholder).toBe('Type something');
+    expect(wrapper.props().placeholder).toBe("Type something");
   });
 
-  test('renders component with loader', () => {
+  test("renders component with loader", () => {
     const wrapper = shallowMount<any>(VueAutocomplete, {
       localVue,
       i18n,
       propsData: {
-        id: 'foo',
-        name: 'foo',
-        placeholder: 'Type something',
+        id: "foo",
+        name: "foo",
+        placeholder: "Type something",
         options: AutocompleteOptionsFixture,
         isLoading: true,
       },
@@ -40,34 +40,34 @@ describe('VueAutocomplete.vue', () => {
     expect(wrapper.findAll(VueLoader)).toHaveLength(1);
   });
 
-  test('onFocus', () => {
+  test("onFocus", () => {
     const wrapper = mount<any>(VueAutocomplete, {
       localVue,
       i18n,
       propsData: {
-        id: 'foo',
-        name: 'foo',
-        placeholder: 'Type something',
+        id: "foo",
+        name: "foo",
+        placeholder: "Type something",
         options: AutocompleteOptionsFixture,
       },
     });
-    wrapper.vm.searchQuery = 'Te';
+    wrapper.vm.searchQuery = "Te";
     wrapper.vm.onFocus();
     expect(wrapper.vm.isOpen).toBe(false);
 
-    wrapper.vm.searchQuery = 'Test123';
+    wrapper.vm.searchQuery = "Test123";
     wrapper.vm.onFocus();
     expect(wrapper.vm.isOpen).toBe(true);
   });
 
-  test('onArrowDown', () => {
+  test("onArrowDown", () => {
     const wrapper = mount<any>(VueAutocomplete, {
       localVue,
       i18n,
       propsData: {
-        id: 'foo',
-        name: 'foo',
-        placeholder: 'Type something',
+        id: "foo",
+        name: "foo",
+        placeholder: "Type something",
         options: AutocompleteOptionsFixture,
       },
     });
@@ -86,14 +86,14 @@ describe('VueAutocomplete.vue', () => {
     expect(wrapper.vm.selectedOptionIndex).toBe(0);
   });
 
-  test('onArrowUp', () => {
+  test("onArrowUp", () => {
     const wrapper = mount<any>(VueAutocomplete, {
       localVue,
       i18n,
       propsData: {
-        id: 'foo',
-        name: 'foo',
-        placeholder: 'Type something',
+        id: "foo",
+        name: "foo",
+        placeholder: "Type something",
         options: AutocompleteOptionsFixture,
       },
     });
@@ -111,34 +111,34 @@ describe('VueAutocomplete.vue', () => {
     expect(wrapper.vm.selectedOptionIndex).toBe(7);
   });
 
-  test('handleClickOutside', () => {
+  test("handleClickOutside", () => {
     const wrapper = mount<any>(VueAutocomplete, {
       localVue,
       i18n,
       propsData: {
-        id: 'foo',
-        name: 'foo',
+        id: "foo",
+        name: "foo",
         options: AutocompleteOptionsFixture,
       },
     });
 
-    wrapper.vm.search = 'Test';
+    wrapper.vm.search = "Test";
     wrapper.vm.handleOutsideClick({ target: null });
     expect(wrapper.vm.isOpen).toBeFalsy();
 
     wrapper.vm.isOpen = true;
-    wrapper.vm.handleOutsideClick({ target: wrapper.find('div').element });
+    wrapper.vm.handleOutsideClick({ target: wrapper.find("div").element });
     expect(wrapper.vm.isOpen).toBeTruthy();
   });
 
-  test('onEnterKeyPress', () => {
+  test("onEnterKeyPress", () => {
     const wrapper = mount<any>(VueAutocomplete, {
       localVue,
       i18n,
       propsData: {
-        id: 'foo',
-        name: 'foo',
-        placeholder: 'Type something',
+        id: "foo",
+        name: "foo",
+        placeholder: "Type something",
         options: AutocompleteOptionsFixture,
       },
     });
@@ -149,78 +149,84 @@ describe('VueAutocomplete.vue', () => {
     wrapper.vm.onEnterKeyPress(e);
     expect(e.preventDefault).not.toHaveBeenCalled();
 
-    wrapper.vm.searchQuery = 'Test';
+    wrapper.vm.searchQuery = "Test";
     wrapper.vm.selectedOptionIndex = -1;
     wrapper.setData({ isOpen: true });
     wrapper.vm.onEnterKeyPress(e);
-    expect(wrapper.emitted().change[0][0]).toEqual(AutocompleteOptionsFixture[0]);
+    expect(wrapper.emitted().change[0][0]).toEqual(
+      AutocompleteOptionsFixture[0]
+    );
     expect(e.preventDefault).toHaveBeenCalled();
 
-    wrapper.vm.searchQuery = 'Test2';
+    wrapper.vm.searchQuery = "Test2";
     wrapper.vm.selectedOptionIndex = 1;
     wrapper.vm.onEnterKeyPress(e);
-    expect(wrapper.emitted().change[1][0]).toEqual(AutocompleteOptionsFixture[1]);
+    expect(wrapper.emitted().change[1][0]).toEqual(
+      AutocompleteOptionsFixture[1]
+    );
   });
 
-  test('onOptionClick', () => {
+  test("onOptionClick", () => {
     const wrapper = mount<any>(VueAutocomplete, {
       localVue,
       i18n,
       propsData: {
-        id: 'foo',
-        name: 'foo',
-        placeholder: 'Type something',
+        id: "foo",
+        name: "foo",
+        placeholder: "Type something",
         options: AutocompleteOptionsFixture,
       },
     });
 
-    wrapper.vm.searchQuery = 'foo2';
+    wrapper.vm.searchQuery = "foo2";
     wrapper.vm.onOptionClick(1);
     expect(wrapper.emitted().change).toHaveLength(1);
 
     wrapper.vm.onOptionClick(1);
     expect(wrapper.emitted().change).toHaveLength(2);
 
-    wrapper.vm.searchQuery = 'Test';
+    wrapper.vm.searchQuery = "Test";
     wrapper.vm.onOptionClick(1);
-    expect(wrapper.emitted().change[0][0]).toEqual(AutocompleteOptionsFixture[1]);
+    expect(wrapper.emitted().change[0][0]).toEqual(
+      AutocompleteOptionsFixture[1]
+    );
   });
 
-  test('onInput', () => {
+  test("onInput", () => {
     const wrapper = mount<any>(VueAutocomplete, {
       localVue,
       i18n,
       propsData: {
-        id: 'foo',
-        name: 'foo',
-        placeholder: 'Type something',
+        id: "foo",
+        name: "foo",
+        placeholder: "Type something",
         options: AutocompleteOptionsFixture,
       },
     });
 
-    wrapper.vm.searchQuery = '';
-    wrapper.vm.onInput('');
+    wrapper.vm.searchQuery = "";
+    wrapper.vm.onInput("");
     expect(wrapper.vm.isOpen).toBe(false);
 
-    wrapper.vm.searchQuery = 'Test';
+    wrapper.vm.searchQuery = "Test";
     wrapper.vm.emitRequest = jest.fn();
-    wrapper.vm.onInput('Test');
+    wrapper.vm.onInput("Test");
 
     expect(wrapper.vm.emitRequest).toHaveBeenCalled();
   });
 
-  test('emitRequest', (done) => {
+  test("emitRequest", (done) => {
     const wrapper = mount<any>(VueAutocomplete, {
       localVue,
       i18n,
       propsData: {
-        id: 'foo',
-        name: 'foo',
-        placeholder: 'Type something',
+        id: "foo",
+        name: "foo",
+        placeholder: "Type something",
         options: AutocompleteOptionsFixture,
       },
     });
-    wrapper.vm.searchQuery = 'Test';
+    wrapper.vm.searchQuery = "Test";
     wrapper.vm.emitRequest();
 
     setTimeout(() => {
@@ -229,14 +235,14 @@ describe('VueAutocomplete.vue', () => {
     }, 300);
   });
 
-  test('setResultContainerHeight', () => {
+  test("setResultContainerHeight", () => {
     const wrapper = mount<any>(VueAutocomplete, {
       localVue,
       i18n,
       propsData: {
-        id: 'foo',
-        name: 'foo',
-        placeholder: 'Type something',
+        id: "foo",
+        name: "foo",
+        placeholder: "Type something",
         maxOptions: 10,
       },
     });
@@ -262,14 +268,14 @@ describe('VueAutocomplete.vue', () => {
     expect(wrapper.vm.resultContainerHeight).toBe(55);
   });
 
-  test('onFocusItem', () => {
+  test("onFocusItem", () => {
     const wrapper = mount<any>(VueAutocomplete, {
       localVue,
       i18n,
       propsData: {
-        id: 'foo',
-        name: 'foo',
-        placeholder: 'Type something',
+        id: "foo",
+        name: "foo",
+        placeholder: "Type something",
         maxOptions: 10,
       },
     });

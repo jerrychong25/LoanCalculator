@@ -21,7 +21,7 @@
 
 <script lang="ts">
 export default {
-  name: 'VueTabGroup',
+  name: "VueTabGroup",
   provide() {
     return {
       register: this.register,
@@ -79,7 +79,7 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .vueTabGroup {
   background: $tab-group-bg;

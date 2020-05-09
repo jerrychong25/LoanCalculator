@@ -1,13 +1,13 @@
-import { storiesOf } from '@storybook/vue';
-import { action } from '@storybook/addon-actions';
-import { withInfo } from 'storybook-addon-vue-info';
-import VueButton from './VueButton.vue';
-import { brandVariations } from '@components/utils';
+import { storiesOf } from "@storybook/vue";
+import { action } from "@storybook/addon-actions";
+import { withInfo } from "storybook-addon-vue-info";
+import VueButton from "./VueButton.vue";
+import { brandVariations } from "@components/utils";
 
-const story = storiesOf('Atoms|Button', module) as any;
+const story = storiesOf("Atoms|Button", module) as any;
 
 story.add(
-  'Button Variants',
+  "Button Variants",
   withInfo({})(() => ({
     components: { VueButton },
     data(): any {
@@ -28,13 +28,13 @@ story.add(
 </div>
 `,
     methods: {
-      action: action('@onClick'),
+      action: action("@onClick"),
     },
-  })),
+  }))
 );
 
 story.add(
-  'Button as Link',
+  "Button as Link",
   withInfo({})(() => ({
     components: { VueButton },
     template: `<div>
@@ -55,7 +55,7 @@ A-Element: <br/>
 </div>
 `,
     methods: {
-      action: action('@onClick'),
+      action: action("@onClick"),
     },
-  })),
+  }))
 );

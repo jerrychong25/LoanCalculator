@@ -1,4 +1,4 @@
-import { ICounterState } from './state';
+import { ICounterState } from "./state";
 
 export interface ICounterGetters {
   incrementPending(state: ICounterState): boolean;

@@ -5,11 +5,21 @@
     <vue-navigation-progress :is-navigating="isNavigating" />
 
     <vue-nav-bar>
-      <vue-button slot="right" v-if="isAuthenticated === false" color="primary" @click="showLoginModal = true">
+      <vue-button
+        slot="right"
+        v-if="isAuthenticated === false"
+        color="primary"
+        @click="showLoginModal = true"
+      >
         Login
       </vue-button>
 
-      <vue-button slot="right" v-if="isAuthenticated" color="primary" @click="onLogout">
+      <vue-button
+        slot="right"
+        v-if="isAuthenticated"
+        color="primary"
+        @click="onLogout"
+      >
         Logout
       </vue-button>
     </vue-nav-bar>
@@ -23,14 +33,20 @@
       :cookie-consent-version="cookieConsentVersion"
       :set-cookie-consent-version="setCookieConsentVersion"
     >
-      This is a cookie consent component which shows the cookie consent every time you change the version of the
-      consent.
+      This is a cookie consent component which shows the cookie consent every
+      time you change the version of the consent.
     </vue-cookie-consent>
 
     <vue-sidebar>
       <vue-sidebar-group title="Languages">
         <vue-sidebar-group-item>
-          <vue-select name="lang" id="lang" :options="languages" @input="localeSwitch" :value="getLocale" />
+          <vue-select
+            name="lang"
+            id="lang"
+            :options="languages"
+            @input="localeSwitch"
+            :value="getLocale"
+          />
         </vue-sidebar-group-item>
       </vue-sidebar-group>
 
@@ -76,22 +92,36 @@
 
       <vue-sidebar-group title="Community">
         <vue-sidebar-group-item>
-          <a href="https://github.com/vuesion/vuesion" target="_blank" rel="noopener">
+          <a
+            href="https://github.com/vuesion/vuesion"
+            target="_blank"
+            rel="noopener"
+          >
             <vue-icon-github />
             Github
           </a>
         </vue-sidebar-group-item>
 
         <vue-sidebar-group-item>
-          <a href="https://discord.gg/59x5cg2" target="_blank" rel="noopener"> Discord </a>
+          <a href="https://discord.gg/59x5cg2" target="_blank" rel="noopener">
+            Discord
+          </a>
         </vue-sidebar-group-item>
 
         <vue-sidebar-group-item>
-          <a href="https://slack-vuesion.herokuapp.com/" target="_blank" rel="noopener"> Slack </a>
+          <a
+            href="https://slack-vuesion.herokuapp.com/"
+            target="_blank"
+            rel="noopener"
+          >
+            Slack
+          </a>
         </vue-sidebar-group-item>
 
         <vue-sidebar-group-item>
-          <a href="https://chat.vuejs.org/" target="_blank" rel="noopener"> VueLand </a>
+          <a href="https://chat.vuejs.org/" target="_blank" rel="noopener">
+            VueLand
+          </a>
         </vue-sidebar-group-item>
 
         <vue-sidebar-group-item>
@@ -110,33 +140,33 @@
 </template>
 
 <script lang="ts">
-import { mapActions, mapGetters } from 'vuex';
-import { loadLocaleAsync } from '@shared/plugins/i18n/i18n';
-import '@shared/designSystem/global.scss';
-import VueNavBar from '@components/VueNavBar/VueNavBar.vue';
-import VueGrid from '@components/VueGrid/VueGrid.vue';
-import VueGridItem from '@components/VueGridItem/VueGridItem.vue';
-import VueFooter from '@components/VueFooter/VueFooter.vue';
-import VueNotificationStack from '@components/VueNotificationStack/VueNotificationStack.vue';
-import VueCookieConsent from '@components/VueCookieConsent/VueCookieConsent.vue';
-import VueNavigationProgress from '@components/VueNavigationProgress/VueNavigationProgress.vue';
-import VueSidebar from '@components/VueSidebar/VueSidebar.vue';
-import VueSidebarGroup from '@components/VueSidebar/VueSidebarGroup/VueSidebarGroup.vue';
-import VueSidebarGroupItem from '@components/VueSidebar/VueSidebarGroupItem/VueSidebarGroupItem.vue';
-import VueIconCode from '@components/icons/VueIconCode/VueIconCode.vue';
-import VueIconBook from '@components/icons/VueIconBook/VueIconBook.vue';
-import VueIconHashtag from '@components/icons/VueIconHashtag/VueIconHashtag.vue';
-import VueIconGithub from '@components/icons/VueIconGithub/VueIconGithub.vue';
-import VueIconTwitterSquare from '@components/icons/VueIconTwitterSquare/VueIconTwitterSquare.vue';
-import VueSelect from '@components/VueSelect/VueSelect.vue';
-import VueIconPuzzlePiece from '@components/icons/VueIconPuzzlePiece/VueIconPuzzlePiece.vue';
-import VueButton from '@components/VueButton/VueButton.vue';
-import VueModal from '@components/VueModal/VueModal.vue';
-import LoginForm from '@shared/modules/auth/LoginForm/LoginForm.vue';
-import { addNotification } from '@components/VueNotificationStack/utils';
+import { mapActions, mapGetters } from "vuex";
+import { loadLocaleAsync } from "@shared/plugins/i18n/i18n";
+import "@shared/designSystem/global.scss";
+import VueNavBar from "@components/VueNavBar/VueNavBar.vue";
+import VueGrid from "@components/VueGrid/VueGrid.vue";
+import VueGridItem from "@components/VueGridItem/VueGridItem.vue";
+import VueFooter from "@components/VueFooter/VueFooter.vue";
+import VueNotificationStack from "@components/VueNotificationStack/VueNotificationStack.vue";
+import VueCookieConsent from "@components/VueCookieConsent/VueCookieConsent.vue";
+import VueNavigationProgress from "@components/VueNavigationProgress/VueNavigationProgress.vue";
+import VueSidebar from "@components/VueSidebar/VueSidebar.vue";
+import VueSidebarGroup from "@components/VueSidebar/VueSidebarGroup/VueSidebarGroup.vue";
+import VueSidebarGroupItem from "@components/VueSidebar/VueSidebarGroupItem/VueSidebarGroupItem.vue";
+import VueIconCode from "@components/icons/VueIconCode/VueIconCode.vue";
+import VueIconBook from "@components/icons/VueIconBook/VueIconBook.vue";
+import VueIconHashtag from "@components/icons/VueIconHashtag/VueIconHashtag.vue";
+import VueIconGithub from "@components/icons/VueIconGithub/VueIconGithub.vue";
+import VueIconTwitterSquare from "@components/icons/VueIconTwitterSquare/VueIconTwitterSquare.vue";
+import VueSelect from "@components/VueSelect/VueSelect.vue";
+import VueIconPuzzlePiece from "@components/icons/VueIconPuzzlePiece/VueIconPuzzlePiece.vue";
+import VueButton from "@components/VueButton/VueButton.vue";
+import VueModal from "@components/VueModal/VueModal.vue";
+import LoginForm from "@shared/modules/auth/LoginForm/LoginForm.vue";
+import { addNotification } from "@components/VueNotificationStack/utils";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     LoginForm,
     VueModal,
@@ -163,22 +193,22 @@ export default {
     return {
       isNavigating: false,
       languages: [
-        { label: 'English', value: 'en' },
-        { label: 'Deutsch', value: 'de' },
-        { label: 'Português', value: 'pt' },
-        { label: '中文', value: 'zh-cn' },
+        { label: "English", value: "en" },
+        { label: "Deutsch", value: "de" },
+        { label: "Português", value: "pt" },
+        { label: "中文", value: "zh-cn" },
       ],
       showLoginModal: false,
       isLoginPending: false,
     };
   },
   computed: {
-    ...mapGetters('app', ['cookieConsentVersion', 'getLocale']),
-    ...mapGetters('auth', ['isAuthenticated']),
+    ...mapGetters("app", ["cookieConsentVersion", "getLocale"]),
+    ...mapGetters("auth", ["isAuthenticated"]),
   },
   methods: {
-    ...mapActions('app', ['changeLocale', 'setCookieConsentVersion']),
-    ...mapActions('auth', ['createToken', 'revokeToken']),
+    ...mapActions("app", ["changeLocale", "setCookieConsentVersion"]),
+    ...mapActions("auth", ["createToken", "revokeToken"]),
     localeSwitch(locale: string) {
       loadLocaleAsync(locale).catch((error: Error) => console.log(error)); // tslint:disable-line
 
@@ -199,9 +229,12 @@ export default {
       try {
         await this.createToken(formData);
 
-        this.$router.push({ name: 'dashboard' });
+        this.$router.push({ name: "dashboard" });
       } catch (e) {
-        addNotification({ title: 'Error during login', text: 'Please try again!' });
+        addNotification({
+          title: "Error during login",
+          text: "Please try again!",
+        });
       }
 
       this.isLoginPending = false;
@@ -212,7 +245,7 @@ export default {
 
       await this.revokeToken();
 
-      this.$router.push('/');
+      this.$router.push("/");
 
       this.isLoginPending = false;
       this.showLoginModal = false;
@@ -225,9 +258,9 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
-@import '~@/app/shared/designSystem/reset';
-@import '~@/app/shared/designSystem/typo';
+@import "~@/app/shared/design-system";
+@import "~@/app/shared/designSystem/reset";
+@import "~@/app/shared/designSystem/typo";
 
 .app {
   min-height: 100vh;

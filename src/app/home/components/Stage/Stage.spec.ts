@@ -1,11 +1,11 @@
-import { createLocalVue, mount } from '@vue/test-utils';
-import Stage from './Stage.vue';
-import { i18n } from '../../../shared/plugins/i18n/i18n';
+import { createLocalVue, mount } from "@vue/test-utils";
+import Stage from "./Stage.vue";
+import { i18n } from "../../../shared/plugins/i18n/i18n";
 
 const localVue = createLocalVue();
 
-describe('Stage.vue', () => {
-  test('renders component', () => {
+describe("Stage.vue", () => {
+  test("renders component", () => {
     (window as any).HTMLCanvasElement.prototype.getContext = jest.fn();
 
     const wrapper = mount(Stage, {
@@ -16,7 +16,7 @@ describe('Stage.vue', () => {
       },
     });
 
-    expect(wrapper.find('h1').text()).toBe('vuesion');
+    expect(wrapper.find("h1").text()).toBe("vuesion");
 
     (wrapper as any).vm.$refs.stage.getClientRects = () => {
       return {
@@ -33,7 +33,7 @@ describe('Stage.vue', () => {
     (wrapper as any).vm.handleResize();
   });
 
-  test('adds and removes resize listeners', () => {
+  test("adds and removes resize listeners", () => {
     window.addEventListener = jest.fn();
     window.removeEventListener = jest.fn();
 

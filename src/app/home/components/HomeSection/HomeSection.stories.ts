@@ -1,12 +1,12 @@
-import { storiesOf } from '@storybook/vue';
-import { withInfo } from 'storybook-addon-vue-info';
-import HomeSection from './HomeSection.vue';
-import VueHeadline from '@components/VueHeadline/VueHeadline.vue';
+import { storiesOf } from "@storybook/vue";
+import { withInfo } from "storybook-addon-vue-info";
+import HomeSection from "./HomeSection.vue";
+import VueHeadline from "@components/VueHeadline/VueHeadline.vue";
 
-const story = storiesOf('Organisms|HomeSection', module) as any;
+const story = storiesOf("Organisms|HomeSection", module) as any;
 
 story.add(
-  'Default',
+  "Default",
   withInfo({})(() => ({
     components: { HomeSection, VueHeadline },
     template: `<home-section image="https://via.placeholder.com/512">
@@ -35,11 +35,11 @@ story.add(
         <li>Run <code>npm run dev</code></li>
       </ol>
     </home-section>`,
-  })),
+  }))
 );
 
 story.add(
-  'Alternative',
+  "Alternative",
   withInfo({})(() => ({
     components: { HomeSection, VueHeadline },
     template: `<home-section image="https://via.placeholder.com/512" alternative>
@@ -68,11 +68,11 @@ story.add(
         <li>Run <code>npm run dev</code></li>
       </ol>
     </home-section>`,
-  })),
+  }))
 );
 
 story.add(
-  'Flip',
+  "Flip",
   withInfo({})(() => ({
     components: { HomeSection, VueHeadline },
     template: `<home-section image="https://via.placeholder.com/512" flip>
@@ -101,5 +101,5 @@ story.add(
         <li>Run <code>npm run dev</code></li>
       </ol>
     </home-section>`,
-  })),
+  }))
 );

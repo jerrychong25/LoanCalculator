@@ -4,7 +4,7 @@
 
 <script lang="ts">
 export default {
-  name: 'VueImage',
+  name: "VueImage",
   components: {},
   props: {
     native: {
@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     component() {
-      return this.native ? 'img' : 'div';
+      return this.native ? "img" : "div";
     },
   },
   methods: {
@@ -43,7 +43,10 @@ export default {
       });
     },
     createObserver() {
-      this.observer = new IntersectionObserver(this.handleObserver, { rootMargin: '0px', threshold: 0.1 });
+      this.observer = new IntersectionObserver(this.handleObserver, {
+        rootMargin: "0px",
+        threshold: 0.1,
+      });
       this.observer.observe(this.$refs.image);
     },
   },

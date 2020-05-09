@@ -1,13 +1,13 @@
-import { createLocalVue, mount } from '@vue/test-utils';
-import VueAccordion from './VueAccordion.vue';
-import VueAccordionItem from './VueAccordionItem/VueAccordionItem.vue';
+import { createLocalVue, mount } from "@vue/test-utils";
+import VueAccordion from "./VueAccordion.vue";
+import VueAccordionItem from "./VueAccordionItem/VueAccordionItem.vue";
 
 const localVue = createLocalVue();
 
-localVue.component('vueA-accordion-item', VueAccordionItem);
+localVue.component("vueA-accordion-item", VueAccordionItem);
 
-describe('VueAccordion.vue', () => {
-  test('renders component with an accordion item', () => {
+describe("VueAccordion.vue", () => {
+  test("renders component with an accordion item", () => {
     const wrapper = mount<any>(VueAccordion, {
       localVue,
       slots: {
@@ -26,7 +26,7 @@ describe('VueAccordion.vue', () => {
     wrapper.destroy();
   });
 
-  test('renders component with an open accordion item', () => {
+  test("renders component with an open accordion item", () => {
     const wrapper = mount<any>(VueAccordion, {
       localVue,
       slots: {
@@ -45,7 +45,7 @@ describe('VueAccordion.vue', () => {
     wrapper.destroy();
   });
 
-  test('should handle single accordion', () => {
+  test("should handle single accordion", () => {
     const wrapper = mount<any>(VueAccordion, {
       localVue,
       propsData: {
@@ -65,7 +65,7 @@ describe('VueAccordion.vue', () => {
     expect(wrapper.vm.openItems).toEqual([]);
   });
 
-  test('should handle multiple accordion', () => {
+  test("should handle multiple accordion", () => {
     const wrapper = mount<any>(VueAccordion, {
       localVue,
       propsData: {

@@ -1,7 +1,7 @@
-import MockAdapter from 'axios-mock-adapter';
-import { HttpService, initHttpService } from './HttpService';
+import MockAdapter from "axios-mock-adapter";
+import { HttpService, initHttpService } from "./HttpService";
 
-describe('RequestInterceptor', () => {
+describe("RequestInterceptor", () => {
   let mockAxios: MockAdapter;
 
   beforeEach(() => {
@@ -9,20 +9,20 @@ describe('RequestInterceptor', () => {
     mockAxios = new MockAdapter(HttpService);
   });
 
-  test('should add the accessToken as header', async () => {
+  test("should add the accessToken as header", async () => {
     HttpService.store = {
       state: {
         auth: {
-          accessToken: 'TOKEN',
+          accessToken: "TOKEN",
         },
       },
       dispatch: jest.fn(),
     } as any;
 
-    mockAxios.onGet('/foo').reply(200);
+    mockAxios.onGet("/foo").reply(200);
 
-    const res = await HttpService.get('/foo');
+    const res = await HttpService.get("/foo");
 
-    expect(res.config.headers.Authorization).toBe('Bearer TOKEN');
+    expect(res.config.headers.Authorization).toBe("Bearer TOKEN");
   });
 });

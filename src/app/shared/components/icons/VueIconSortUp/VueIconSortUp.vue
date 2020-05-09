@@ -10,7 +10,7 @@
 
 <script lang="ts">
 export default {
-  name: 'VueIconSortUp',
+  name: "VueIconSortUp",
 };
 </script>
 

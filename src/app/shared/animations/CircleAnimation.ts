@@ -1,4 +1,7 @@
-import { getFloatInRange, getIntInRange } from '@vuesion/utils/dist/randomGenerator';
+import {
+  getFloatInRange,
+  getIntInRange,
+} from "@vuesion/utils/dist/randomGenerator";
 
 class Circle {
   private opacity: number = getFloatInRange(0.05, 0.9);
@@ -11,7 +14,7 @@ class Circle {
     private speed: number,
     private width: number,
     private xPos: number,
-    private yPos: number,
+    private yPos: number
   ) {
     this.direction = getIntInRange(0, 1) === 1 ? -1 : 1;
   }
@@ -30,12 +33,12 @@ class Circle {
       this.width,
       0,
       Math.PI * 2,
-      false,
+      false
     );
 
     this.context.closePath();
 
-    this.context.fillStyle = 'rgba(244, 59, 108,' + this.opacity + ')';
+    this.context.fillStyle = "rgba(244, 59, 108," + this.opacity + ")";
     this.context.fill();
 
     if (this.opacity <= 0) {
@@ -50,7 +53,7 @@ class Circle {
 const getCircles = (
   circleCount: number,
   canvas: HTMLCanvasElement | any,
-  context: CanvasRenderingContext2D | any,
+  context: CanvasRenderingContext2D | any
 ): Circle[] => {
   const localCircles: any[] = [];
 
@@ -62,15 +65,19 @@ const getCircles = (
         getFloatInRange(0.1, 1),
         getFloatInRange(2, 10),
         getIntInRange(0, canvas.width),
-        getIntInRange(0, canvas.height),
-      ),
+        getIntInRange(0, canvas.height)
+      )
     );
   }
 
   return localCircles;
 };
 
-const draw = (canvas: HTMLCanvasElement | any, context: CanvasRenderingContext2D | any, circles: Circle[]): void => {
+const draw = (
+  canvas: HTMLCanvasElement | any,
+  context: CanvasRenderingContext2D | any,
+  circles: Circle[]
+): void => {
   context.clearRect(0, 0, canvas.width, canvas.height);
 
   circles.forEach((circle: Circle) => {
@@ -84,7 +91,7 @@ const draw = (canvas: HTMLCanvasElement | any, context: CanvasRenderingContext2D
 };
 
 export const CircleAnimation = (canvas: HTMLCanvasElement | any): any => {
-  const context: CanvasRenderingContext2D | any = canvas.getContext('2d');
+  const context: CanvasRenderingContext2D | any = canvas.getContext("2d");
   const circleCount: number = 50;
   const circles: Circle[] = getCircles(circleCount, canvas, context);
 

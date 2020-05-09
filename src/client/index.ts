@@ -1,13 +1,16 @@
-import Vue from 'vue';
-import { Route } from 'vue-router';
-import { Component } from 'vue-router/types/router';
-import { createApp, IApp } from '@/app/app';
-import { IPreLoad } from '@/server/isomorphic';
-import { HttpService, initHttpService } from '@shared/services/HttpService/HttpService';
+import Vue from "vue";
+import { Route } from "vue-router";
+import { Component } from "vue-router/types/router";
+import { createApp, IApp } from "@/app/app";
+import { IPreLoad } from "@/server/isomorphic";
+import {
+  HttpService,
+  initHttpService,
+} from "@shared/services/HttpService/HttpService";
 
 if (PRODUCTION) {
-  const runtime: any = require('serviceworker-webpack-plugin/lib/runtime');
-  if ('serviceWorker' in navigator) {
+  const runtime: any = require("serviceworker-webpack-plugin/lib/runtime");
+  if ("serviceWorker" in navigator) {
     runtime.register().then((registration: ServiceWorkerRegistration) => {
       registration.update();
     });
@@ -17,7 +20,7 @@ if (PRODUCTION) {
 const { app, router, store, i18n }: IApp = createApp();
 
 i18n.locale = store.state.app.locale;
-i18n.fallbackLocale = 'en';
+i18n.fallbackLocale = "en";
 i18n.setLocaleMessage(store.state.app.locale, store.state.app.defaultMessages);
 
 initHttpService(store, router);
@@ -35,14 +38,14 @@ if (store.state.app.redirectTo !== null) {
 Vue.config.errorHandler = (error: Error) => {
   console.error(error); // tslint:disable-line
 
-  HttpService.post('/log/error', {
+  HttpService.post("/log/error", {
     error: {
       message: error.message,
       stack: error.stack,
     },
   });
 
-  router.replace('/error');
+  router.replace("/error");
 };
 
 router.onReady(() => {
@@ -51,9 +54,11 @@ router.onReady(() => {
     const prevMatched: Component[] = router.getMatchedComponents(from);
     let diffed: boolean = false;
 
-    const activated: Component[] = matched.filter((component: Component, i: number) => {
-      return diffed || (diffed = prevMatched[i] !== component);
-    });
+    const activated: Component[] = matched.filter(
+      (component: Component, i: number) => {
+        return diffed || (diffed = prevMatched[i] !== component);
+      }
+    );
 
     if (!activated.length) {
       return next();
@@ -63,11 +68,15 @@ router.onReady(() => {
       await Promise.all(
         activated.map((component: Component) => {
           if ((component as any).prefetch) {
-            return (component as any).prefetch({ store, route: to, router } as IPreLoad);
+            return (component as any).prefetch({
+              store,
+              route: to,
+              router,
+            } as IPreLoad);
           }
 
           return Promise.resolve();
-        }),
+        })
       );
 
       next();
@@ -77,5 +86,5 @@ router.onReady(() => {
     }
   });
 
-  app.$mount('#app');
+  app.$mount("#app");
 });

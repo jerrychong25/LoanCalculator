@@ -1,35 +1,35 @@
-import { mount, createLocalVue } from '@vue/test-utils';
-import CollapseAnimation from './CollapseAnimation.vue';
+import { mount, createLocalVue } from "@vue/test-utils";
+import CollapseAnimation from "./CollapseAnimation.vue";
 
 const localVue = createLocalVue();
 
-describe('CollapseAnimation.vue', () => {
-  test('should set default before enter values', () => {
+describe("CollapseAnimation.vue", () => {
+  test("should set default before enter values", () => {
     const wrapper = mount<any>(CollapseAnimation, {
       localVue,
       slots: {
-        default: '<p>TEST</p>',
+        default: "<p>TEST</p>",
       },
     });
 
-    const testElement: HTMLElement = wrapper.find('p').element;
+    const testElement: HTMLElement = wrapper.find("p").element;
 
     wrapper.vm.beforeEnter(testElement);
 
-    expect(testElement.style.height).toBe('0px');
-    expect(testElement.style.opacity).toBe('0');
-    expect(testElement.style.overflow).toBe('hidden');
+    expect(testElement.style.height).toBe("0px");
+    expect(testElement.style.opacity).toBe("0");
+    expect(testElement.style.overflow).toBe("hidden");
   });
 
-  test('should animate enter', (done) => {
+  test("should animate enter", (done) => {
     const wrapper = mount<any>(CollapseAnimation, {
       localVue,
       slots: {
-        default: '<p>TEST</p>',
+        default: "<p>TEST</p>",
       },
     });
 
-    const testElement: HTMLElement = wrapper.find('p').element;
+    const testElement: HTMLElement = wrapper.find("p").element;
 
     (testElement as any).getClientRects = () => {
       return {
@@ -38,38 +38,38 @@ describe('CollapseAnimation.vue', () => {
     };
 
     wrapper.vm.enter(testElement, () => {
-      expect(testElement.style.height).toBe('0px');
-      expect(testElement.style.opacity).toBe('1');
+      expect(testElement.style.height).toBe("0px");
+      expect(testElement.style.opacity).toBe("1");
       done();
     });
   });
 
-  test('should set default before leave values', () => {
+  test("should set default before leave values", () => {
     const wrapper = mount<any>(CollapseAnimation, {
       localVue,
       slots: {
-        default: '<p>TEST</p>',
+        default: "<p>TEST</p>",
       },
     });
 
-    const testElement: HTMLElement = wrapper.find('p').element;
+    const testElement: HTMLElement = wrapper.find("p").element;
 
     wrapper.vm.beforeLeave(testElement);
 
-    expect(testElement.style.height).toBe('');
-    expect(testElement.style.opacity).toBe('');
-    expect(testElement.style.overflow).toBe('hidden');
+    expect(testElement.style.height).toBe("");
+    expect(testElement.style.opacity).toBe("");
+    expect(testElement.style.overflow).toBe("hidden");
   });
 
-  test('should animate leave', (done) => {
+  test("should animate leave", (done) => {
     const wrapper = mount<any>(CollapseAnimation, {
       localVue,
       slots: {
-        default: '<p>TEST</p>',
+        default: "<p>TEST</p>",
       },
     });
 
-    const testElement: HTMLElement = wrapper.find('p').element;
+    const testElement: HTMLElement = wrapper.find("p").element;
 
     (testElement as any).getClientRects = () => {
       return {
@@ -82,8 +82,8 @@ describe('CollapseAnimation.vue', () => {
     };
 
     wrapper.vm.leave(testElement, () => {
-      expect(testElement.style.height).toBe('');
-      expect(testElement.style.opacity).toBe('0');
+      expect(testElement.style.height).toBe("");
+      expect(testElement.style.opacity).toBe("0");
       done();
     });
   });

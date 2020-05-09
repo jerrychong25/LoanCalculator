@@ -17,10 +17,10 @@
 </template>
 
 <script lang="ts">
-import { Validator } from 'vee-validate';
+import { Validator } from "vee-validate";
 
 export default {
-  name: 'VueCheckbox',
+  name: "VueCheckbox",
   inheritAttrs: false,
   inject: {
     $validator: {
@@ -77,9 +77,9 @@ export default {
     },
     inputType() {
       if (this.radio) {
-        return 'radio';
+        return "radio";
       } else {
-        return 'checkbox';
+        return "checkbox";
       }
     },
   },
@@ -88,8 +88,8 @@ export default {
       e.preventDefault();
 
       if (!this.disabled) {
-        this.$emit('click', e);
-        this.$emit('input', !Boolean(this.value));
+        this.$emit("click", e);
+        this.$emit("input", !Boolean(this.value));
       }
     },
   },
@@ -97,7 +97,7 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .input {
   user-select: none;
@@ -144,7 +144,7 @@ export default {
   .box {
     &:before,
     &:after {
-      content: '';
+      content: "";
       position: absolute;
       left: 0;
       top: 0;
@@ -184,7 +184,7 @@ export default {
     }
   }
 
-  input[type='checkbox'] {
+  input[type="checkbox"] {
     &:checked {
       + .box:after {
         transform: rotate(-45deg) scale(1);
@@ -212,7 +212,7 @@ export default {
     }
   }
 
-  input[type='radio'] {
+  input[type="radio"] {
     left: 6px;
     top: 6px;
 

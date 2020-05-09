@@ -1,12 +1,12 @@
-import { storiesOf } from '@storybook/vue';
-import { action } from '@storybook/addon-actions';
-import { withInfo } from 'storybook-addon-vue-info';
-import VueDropdownMenu from './VueDropdownMenu.vue';
+import { storiesOf } from "@storybook/vue";
+import { action } from "@storybook/addon-actions";
+import { withInfo } from "storybook-addon-vue-info";
+import VueDropdownMenu from "./VueDropdownMenu.vue";
 
-const story = storiesOf('Atoms|DropdownMenu', module) as any;
+const story = storiesOf("Atoms|DropdownMenu", module) as any;
 
 story.add(
-  'Default',
+  "Default",
   withInfo({})(() => ({
     components: { VueDropdownMenu },
     template: `<div>This is a dropdown menu within
@@ -16,13 +16,13 @@ File
 </vue-dropdown-menu>
 a normal text. It should perfectly fit.</div>`,
     methods: {
-      action: action('@onClick'),
+      action: action("@onClick"),
     },
-  })),
+  }))
 );
 
 story.add(
-  'Custom option renderer',
+  "Custom option renderer",
   withInfo({})(() => ({
     components: { VueDropdownMenu },
     template: `<div>This is a dropdown menu within
@@ -36,7 +36,7 @@ story.add(
 </vue-dropdown-menu>
 a normal text. It should perfectly fit.</div>`,
     methods: {
-      action: action('@onClick'),
+      action: action("@onClick"),
     },
-  })),
+  }))
 );

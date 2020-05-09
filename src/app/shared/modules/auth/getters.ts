@@ -1,4 +1,4 @@
-import { IAuthState } from './state';
+import { IAuthState } from "./state";
 
 export interface IAuthGetters {
   isAuthenticated(state: IAuthState): boolean;

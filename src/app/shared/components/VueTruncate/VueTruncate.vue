@@ -3,24 +3,37 @@
     <div :class="$style.text" ref="text">
       <slot />
 
-      <div :class="$style.fadeOut" ref="fadeOut" :style="{ height: `${height}px` }" v-show="isTruncated"></div>
+      <div
+        :class="$style.fadeOut"
+        ref="fadeOut"
+        :style="{ height: `${height}px` }"
+        v-show="isTruncated"
+      ></div>
     </div>
 
-    <a v-show="isTruncated && showMoreButton" href="#" @click.prevent="showMore">
-      {{ $t('components.truncate.showMore' /* Show more */) }}
+    <a
+      v-show="isTruncated && showMoreButton"
+      href="#"
+      @click.prevent="showMore"
+    >
+      {{ $t("components.truncate.showMore" /* Show more */) }}
     </a>
 
-    <a v-show="isTruncated && !showMoreButton" href="#" @click.prevent="showLess">
-      {{ $t('components.truncate.showLess' /* Show less */) }}
+    <a
+      v-show="isTruncated && !showMoreButton"
+      href="#"
+      @click.prevent="showLess"
+    >
+      {{ $t("components.truncate.showLess" /* Show less */) }}
     </a>
   </div>
 </template>
 
 <script lang="ts">
-import anime from 'animejs';
+import anime from "animejs";
 
 export default {
-  name: 'VueTruncate',
+  name: "VueTruncate",
   props: {
     lines: {
       type: Number,
@@ -54,7 +67,7 @@ export default {
           duration: this.duration,
         },
         round: 1,
-        easing: 'easeInOutCirc',
+        easing: "easeInOutCirc",
         complete: () => (this.showMoreButton = false),
       });
       anime({
@@ -64,7 +77,7 @@ export default {
           duration: this.duration,
         },
         round: 1,
-        easing: 'easeInOutCirc',
+        easing: "easeInOutCirc",
       });
     },
     showLess() {
@@ -75,7 +88,7 @@ export default {
           duration: this.duration,
         },
         round: 1,
-        easing: 'easeInOutCirc',
+        easing: "easeInOutCirc",
         complete: () => (this.showMoreButton = true),
       });
       anime({
@@ -85,13 +98,15 @@ export default {
           duration: this.duration,
         },
         round: 1,
-        easing: 'easeInOutCirc',
+        easing: "easeInOutCirc",
       });
     },
   },
   mounted() {
     this.offsetHeight = this.$refs.text.offsetHeight;
-    this.lineHeight = parseFloat((window as any).getComputedStyle(this.$refs.text)['line-height']);
+    this.lineHeight = parseFloat(
+      (window as any).getComputedStyle(this.$refs.text)["line-height"]
+    );
     this.collapsedHeight = this.lines * this.lineHeight;
 
     if (this.offsetHeight <= this.collapsedHeight) {
@@ -100,13 +115,13 @@ export default {
 
     this.isTruncated = true;
     this.showMoreButton = true;
-    this.$refs.text.style.height = this.collapsedHeight + 'px';
+    this.$refs.text.style.height = this.collapsedHeight + "px";
   },
 };
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .vueTruncate {
   display: block;
@@ -122,9 +137,14 @@ export default {
   bottom: 0;
   width: 100%;
   @include background-gradient(
-    rgba(red($brand-bg-color), green($brand-bg-color), blue($brand-bg-color), 0),
+    rgba(
+      red($brand-bg-color),
+      green($brand-bg-color),
+      blue($brand-bg-color),
+      0
+    ),
     $brand-bg-color,
-    'vertical'
+    "vertical"
   );
 }
 </style>

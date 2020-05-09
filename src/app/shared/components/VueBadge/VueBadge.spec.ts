@@ -1,22 +1,22 @@
-import { createLocalVue, mount } from '@vue/test-utils';
-import VueBadge from './VueBadge.vue';
-import { brandVariations } from '@components/utils';
+import { createLocalVue, mount } from "@vue/test-utils";
+import VueBadge from "./VueBadge.vue";
+import { brandVariations } from "@components/utils";
 
 const localVue = createLocalVue();
 
-describe('VueBadge.vue', () => {
-  test('renders component', () => {
+describe("VueBadge.vue", () => {
+  test("renders component", () => {
     const wrapper = mount(VueBadge, {
       localVue,
       slots: {
-        default: 'VueBadge',
+        default: "VueBadge",
       },
     });
 
-    expect(wrapper.find('span').text()).toBe('VueBadge');
+    expect(wrapper.find("span").text()).toBe("VueBadge");
   });
 
-  test('renders color variations', () => {
+  test("renders color variations", () => {
     brandVariations.forEach((variation: string) => {
       const wrapper = mount(VueBadge, {
         localVue,
@@ -30,7 +30,7 @@ describe('VueBadge.vue', () => {
     });
   });
 
-  test('renders outlined', () => {
+  test("renders outlined", () => {
     const wrapper = mount(VueBadge, {
       localVue,
       propsData: {
@@ -38,6 +38,6 @@ describe('VueBadge.vue', () => {
       },
     });
 
-    expect(wrapper.findAll('.outlined')).toHaveLength(1);
+    expect(wrapper.findAll(".outlined")).toHaveLength(1);
   });
 });

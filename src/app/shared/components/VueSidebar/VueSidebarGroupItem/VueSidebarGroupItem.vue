@@ -10,7 +10,7 @@
 
 <script lang="ts">
 export default {
-  name: 'VueSidebarGroupItem',
+  name: "VueSidebarGroupItem",
   props: {
     to: {},
   },
@@ -18,7 +18,7 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '../../../design-system';
+@import "../../../design-system";
 
 .vueSidebarGroupItem {
   display: block;

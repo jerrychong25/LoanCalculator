@@ -1,10 +1,10 @@
-import { createLocalVue, mount } from '@vue/test-utils';
-import VueNavigationProgress from './VueNavigationProgress.vue';
+import { createLocalVue, mount } from "@vue/test-utils";
+import VueNavigationProgress from "./VueNavigationProgress.vue";
 
 const localVue = createLocalVue();
 
-describe('VueNavigationProgress.vue', () => {
-  test('renders component', () => {
+describe("VueNavigationProgress.vue", () => {
+  test("renders component", () => {
     const wrapper = mount(VueNavigationProgress, {
       localVue,
       propsData: {
@@ -12,10 +12,10 @@ describe('VueNavigationProgress.vue', () => {
       },
     });
 
-    expect(wrapper.classes()).toContain('vueNavigationProgress');
+    expect(wrapper.classes()).toContain("vueNavigationProgress");
   });
 
-  test('has width when is navigating', (done) => {
+  test("has width when is navigating", (done) => {
     const wrapper = mount(VueNavigationProgress, {
       localVue,
       propsData: {
@@ -34,7 +34,7 @@ describe('VueNavigationProgress.vue', () => {
     }, 200);
   });
 
-  test('has no width after navigating', (done) => {
+  test("has no width after navigating", (done) => {
     const wrapper = mount(VueNavigationProgress, {
       localVue,
       propsData: {

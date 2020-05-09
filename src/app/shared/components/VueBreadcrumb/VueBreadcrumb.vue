@@ -1,7 +1,9 @@
 <template>
   <ul :class="$style.vueBreadcrumb">
     <li :class="$style.item" v-for="(item, idx) in items" :key="idx">
-      <router-link :to="item.href" v-if="idx < items.length - 1">{{ item.label }}</router-link>
+      <router-link :to="item.href" v-if="idx < items.length - 1">{{
+        item.label
+      }}</router-link>
       <span v-else>{{ item.label }}</span>
     </li>
   </ul>
@@ -9,7 +11,7 @@
 
 <script lang="ts">
 export default {
-  name: 'VueBreadcrumb',
+  name: "VueBreadcrumb",
   props: {
     items: {
       type: Array,
@@ -20,7 +22,7 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '../../designSystem/variables';
+@import "../../designSystem/variables";
 
 .vueBreadcrumb {
   padding: $breadcrumb-padding;
@@ -40,7 +42,7 @@ export default {
   &:first-child {
     &:before {
       padding: 0;
-      content: '';
+      content: "";
     }
   }
 

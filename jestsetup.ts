@@ -1,9 +1,9 @@
-import Vue from 'vue';
-import VeeValidate from 'vee-validate';
+import Vue from "vue";
+import VeeValidate from "vee-validate";
 
 Vue.use(VeeValidate);
 
-const $style: any = require('identity-obj-proxy');
+const $style: any = require("identity-obj-proxy");
 
 (HTMLCanvasElement as any).prototype.getContext = () => {
   return;

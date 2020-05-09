@@ -15,17 +15,21 @@
       v-bind="$attrs"
     />
     <div :class="$style.container" @click="onClick">
-      <div :class="$style.handle" :aria-checked="isChecked ? 'true' : 'false'" role="checkbox" />
+      <div
+        :class="$style.handle"
+        :aria-checked="isChecked ? 'true' : 'false'"
+        role="checkbox"
+      />
     </div>
     <label :for="name" v-html="label" />
   </div>
 </template>
 
 <script lang="ts">
-import { Validator } from 'vee-validate';
+import { Validator } from "vee-validate";
 
 export default {
-  name: 'VueToggle',
+  name: "VueToggle",
   inheritAttrs: false,
   inject: {
     $validator: {
@@ -94,8 +98,8 @@ export default {
       this.$refs.input.focus();
 
       if (!this.disabled) {
-        this.$emit('click', e);
-        this.$emit('input', !Boolean(this.value));
+        this.$emit("click", e);
+        this.$emit("input", !Boolean(this.value));
       }
     },
   },
@@ -103,7 +107,7 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .vueToggle {
   display: inline-flex;

@@ -4,12 +4,12 @@
 
 <script lang="ts">
 export default {
-  name: 'VueGridRow',
+  name: "VueGridRow",
 };
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .vueGridRow {
   display: flex;

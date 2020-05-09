@@ -10,7 +10,7 @@
 
 <script lang="ts">
 export default {
-  name: 'VueCardHeader',
+  name: "VueCardHeader",
   props: {
     title: {
       type: String,
@@ -24,7 +24,7 @@ export default {
   },
   computed: {
     cssClasses() {
-      const classes = ['vue-card-header', this.$style.vueCardHeader];
+      const classes = ["vue-card-header", this.$style.vueCardHeader];
 
       if (this.image) {
         classes.push(this.$style.withImage);
@@ -38,7 +38,7 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '../../../design-system';
+@import "../../../design-system";
 
 .vueCardHeader {
   display: block;

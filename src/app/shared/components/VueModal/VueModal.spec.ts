@@ -1,24 +1,24 @@
-import { createLocalVue, mount } from '@vue/test-utils';
-import VueModal from './VueModal.vue';
+import { createLocalVue, mount } from "@vue/test-utils";
+import VueModal from "./VueModal.vue";
 
 const localVue = createLocalVue();
 
-describe('VueModal.vue', () => {
-  test('renders slot', (done) => {
+describe("VueModal.vue", () => {
+  test("renders slot", (done) => {
     const wrapper = mount<any>(VueModal, {
       localVue,
       slots: {
-        default: '<p>TEST</p>',
+        default: "<p>TEST</p>",
       },
     }) as any;
 
-    expect(wrapper.findAll('p')).toHaveLength(0);
+    expect(wrapper.findAll("p")).toHaveLength(0);
 
     wrapper.setProps({ show: true });
-    expect(wrapper.findAll('p')).toHaveLength(1);
+    expect(wrapper.findAll("p")).toHaveLength(1);
 
     wrapper.setProps({ show: false });
-    expect(wrapper.findAll('p')).toHaveLength(0);
+    expect(wrapper.findAll("p")).toHaveLength(0);
 
     wrapper.setProps({ show: true });
 
@@ -28,7 +28,7 @@ describe('VueModal.vue', () => {
     wrapper.vm.leave(wrapper.vm.$el, done);
   });
 
-  test('registers and unregisters scroll/click/keydown event', () => {
+  test("registers and unregisters scroll/click/keydown event", () => {
     document.addEventListener = jest.fn();
     document.removeEventListener = jest.fn();
 
@@ -40,11 +40,11 @@ describe('VueModal.vue', () => {
     expect(document.removeEventListener).toHaveBeenCalledTimes(3);
   });
 
-  test('should close on outside click', () => {
+  test("should close on outside click", () => {
     const wrapper = mount<any>(VueModal, {
       localVue,
       slots: {
-        default: '<p>TEST</p>',
+        default: "<p>TEST</p>",
       },
     });
 
@@ -62,17 +62,17 @@ describe('VueModal.vue', () => {
     expect(wrapper.vm.$emit).toHaveBeenCalledTimes(1);
   });
 
-  test('should close on ESC press', () => {
+  test("should close on ESC press", () => {
     const wrapper = mount<any>(VueModal, {
       localVue,
     });
 
     wrapper.vm.$emit = jest.fn();
 
-    wrapper.vm.handleDocumentKeyDown({ key: 'Enter' });
+    wrapper.vm.handleDocumentKeyDown({ key: "Enter" });
     expect(wrapper.vm.$emit).toHaveBeenCalledTimes(0);
 
-    wrapper.vm.handleDocumentKeyDown({ key: 'Escape' });
+    wrapper.vm.handleDocumentKeyDown({ key: "Escape" });
     expect(wrapper.vm.$emit).toHaveBeenCalledTimes(1);
   });
 });

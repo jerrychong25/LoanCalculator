@@ -1,12 +1,18 @@
 <template>
-  <div :class="cssClasses" @mouseenter="onEnter" @mouseleave="onLeave" @touchend="onTouchEnd" :data-tip="tip">
+  <div
+    :class="cssClasses"
+    @mouseenter="onEnter"
+    @mouseleave="onLeave"
+    @touchend="onTouchEnd"
+    :data-tip="tip"
+  >
     <slot />
   </div>
 </template>
 
 <script lang="ts">
 export default {
-  name: 'VueTooltip',
+  name: "VueTooltip",
   props: {
     tip: {
       type: String,
@@ -29,7 +35,11 @@ export default {
         classes.push(this.$style.show);
       }
 
-      if (!this.disabled && this.$slots.default && this.$slots.default[0].tag === undefined) {
+      if (
+        !this.disabled &&
+        this.$slots.default &&
+        this.$slots.default[0].tag === undefined
+      ) {
         classes.push(this.$style.highlight);
       }
 
@@ -55,7 +65,7 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .vueTooltip {
   display: inline-block;
@@ -90,7 +100,7 @@ export default {
     border-right: $space-8 solid transparent;
     border-top: $space-8 solid $tooltip-bg;
     border-left: $space-8 solid transparent;
-    content: '';
+    content: "";
     height: 0;
     top: -$space-8;
     left: $space-8;

@@ -1,21 +1,21 @@
 /* tslint:disable */
-import { storiesOf } from '@storybook/vue';
-import { withInfo } from 'storybook-addon-vue-info';
-import VueMarkdown from '@components/VueMarkdown/VueMarkdown.vue';
-import BrandColors from './components/BrandColors.vue';
-import ColorPalette from './components/ColorPalette.vue';
+import { storiesOf } from "@storybook/vue";
+import { withInfo } from "storybook-addon-vue-info";
+import VueMarkdown from "@components/VueMarkdown/VueMarkdown.vue";
+import BrandColors from "./components/BrandColors.vue";
+import ColorPalette from "./components/ColorPalette.vue";
 
-let story = storiesOf('Design System|Design System', module) as any;
+let story = storiesOf("Design System|Design System", module) as any;
 
 story.addParameters({ options: { showAddonPanel: false } });
 
 story.add(
-  'Intro',
+  "Intro",
   withInfo({
     header: false,
     source: false,
     propTables: false,
-    styles: { propTableHead: { display: 'none' } },
+    styles: { propTableHead: { display: "none" } },
     propTablesExclude: [VueMarkdown],
   })(() => ({
     components: { VueMarkdown },
@@ -43,20 +43,20 @@ We are aware that not everyone has to implement their own professional Design Sy
 If this is the case for you, you might be interested in [integrating a 3rd party UI library](https://vuesion.github.io/docs/en/tutorials/third-party.html)
 </vue-markdown>
 `,
-  })),
+  }))
 );
 
-story = storiesOf('Design System|Branding', module) as any;
+story = storiesOf("Design System|Branding", module) as any;
 
 story.addParameters({ options: { showAddonPanel: false } });
 
 story.add(
-  '1. Color Palette',
+  "1. Color Palette",
   withInfo({
     header: false,
     source: false,
     propTables: false,
-    styles: { propTableHead: { display: 'none' } },
+    styles: { propTableHead: { display: "none" } },
     propTablesExclude: [VueMarkdown, ColorPalette],
   })(() => ({
     components: { VueMarkdown, ColorPalette },
@@ -67,16 +67,16 @@ story.add(
 <color-palette />
 </div>
 `,
-  })),
+  }))
 );
 
 story.add(
-  '2. Brand Colors',
+  "2. Brand Colors",
   withInfo({
     header: false,
     source: false,
     propTables: false,
-    styles: { propTableHead: { display: 'none' } },
+    styles: { propTableHead: { display: "none" } },
     propTablesExclude: [VueMarkdown, BrandColors],
   })(() => ({
     components: { VueMarkdown, BrandColors },
@@ -88,20 +88,20 @@ Every brand color is related to a color of the color palette.
 <brand-colors/>
 </div>
 `,
-  })),
+  }))
 );
 
-story = storiesOf('Design System|Typography', module) as any;
+story = storiesOf("Design System|Typography", module) as any;
 
 story.addParameters({ options: { showAddonPanel: false } });
 
 story.add(
-  'Typography',
+  "Typography",
   withInfo({
     header: false,
     source: false,
     propTables: false,
-    styles: { propTableHead: { display: 'none' } },
+    styles: { propTableHead: { display: "none" } },
     propTablesExclude: [VueMarkdown],
   })(() => ({
     components: { VueMarkdown },
@@ -135,20 +135,20 @@ Line height is measured by taking the font size and adding 0.8rem.
 Lists are indented by 1.6rem.
 </vue-markdown>
 `,
-  })),
+  }))
 );
 
-story = storiesOf('Design System|Layout', module) as any;
+story = storiesOf("Design System|Layout", module) as any;
 
 story.addParameters({ options: { showAddonPanel: false } });
 
 story.add(
-  'Layout',
+  "Layout",
   withInfo({
     header: false,
     source: false,
     propTables: false,
-    styles: { propTableHead: { display: 'none' } },
+    styles: { propTableHead: { display: "none" } },
     propTablesExclude: [VueMarkdown],
   })(() => ({
     components: { VueMarkdown },
@@ -181,20 +181,20 @@ $space-52  |  52px
 $space-84  |  84px
 </vue-markdown>
 `,
-  })),
+  }))
 );
 
-story = storiesOf('Design System|Break points', module) as any;
+story = storiesOf("Design System|Break points", module) as any;
 
 story.addParameters({ options: { showAddonPanel: false } });
 
 story.add(
-  'Break points',
+  "Break points",
   withInfo({
     header: false,
     source: false,
     propTables: false,
-    styles: { propTableHead: { display: 'none' } },
+    styles: { propTableHead: { display: "none" } },
     propTablesExclude: [VueMarkdown],
   })(() => ({
     components: { VueMarkdown },
@@ -216,5 +216,5 @@ smallDesktop     | 1280px   | 1279px   | 3.2rem
 largeDesktop     | 1440px   | 1439px   | 3.2rem
 </vue-markdown>
 `,
-  })),
+  }))
 );

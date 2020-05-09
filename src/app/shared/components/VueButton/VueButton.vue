@@ -19,16 +19,16 @@
 </template>
 
 <script lang="ts">
-import VueLoader from '@components/VueLoader/VueLoader.vue';
-import { variationValidator } from '@components/utils';
+import VueLoader from "@components/VueLoader/VueLoader.vue";
+import { variationValidator } from "@components/utils";
 
 export default {
-  name: 'VueButton',
+  name: "VueButton",
   props: {
     color: {
       type: String,
       validator: variationValidator,
-      default: 'default',
+      default: "default",
     },
     disabled: {
       type: Boolean,
@@ -38,7 +38,7 @@ export default {
     },
     as: {
       type: String,
-      default: 'button',
+      default: "button",
     },
     target: {
       type: String,
@@ -73,16 +73,18 @@ export default {
       return classes;
     },
     actualWidth() {
-      return this.loading && this.$refs.button ? `${this.$refs.button.getBoundingClientRect().width}px` : null;
+      return this.loading && this.$refs.button
+        ? `${this.$refs.button.getBoundingClientRect().width}px`
+        : null;
     },
     isDisabled() {
       return this.disabled || this.loading;
     },
     isRouterLink() {
-      return this.as === 'router-link';
+      return this.as === "router-link";
     },
     isRegularLink() {
-      return this.as === 'a';
+      return this.as === "a";
     },
   },
   methods: {
@@ -93,7 +95,7 @@ export default {
       }
 
       if (this.isDisabled === false) {
-        this.$emit('click', e);
+        this.$emit("click", e);
       }
     },
   },
@@ -101,7 +103,7 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .button {
   display: inline-block;
@@ -156,7 +158,7 @@ export default {
   transform: translate3d(0, 0, 0);
 
   &:before {
-    content: '';
+    content: "";
     display: block;
     position: absolute;
     width: 100%;
@@ -187,35 +189,35 @@ export default {
 
 @each $variation, $values in $button-variations {
   .#{$variation} {
-    color: map-get($values, 'color');
-    background: map-get($values, 'bg');
-    border: map-get($values, 'border');
+    color: map-get($values, "color");
+    background: map-get($values, "bg");
+    border: map-get($values, "border");
 
     &:hover {
-      background: map-get($values, 'hover-bg');
-      color: map-get($values, 'hover-color');
-      border-color: map-get($values, 'hover-bg');
+      background: map-get($values, "hover-bg");
+      color: map-get($values, "hover-color");
+      border-color: map-get($values, "hover-bg");
     }
 
     :global {
       .vueLoaderPath {
-        stroke: map-get($values, 'color');
+        stroke: map-get($values, "color");
       }
     }
   }
 
   .outlined {
     &.#{$variation} {
-      color: map-get($values, 'bg');
+      color: map-get($values, "bg");
 
       &:hover {
-        border-color: map-get($values, 'hover-bg');
-        color: map-get($values, 'hover-bg');
+        border-color: map-get($values, "hover-bg");
+        color: map-get($values, "hover-bg");
       }
 
       :global {
         .vueLoaderPath {
-          stroke: map-get($values, 'bg');
+          stroke: map-get($values, "bg");
         }
       }
     }

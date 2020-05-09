@@ -1,15 +1,15 @@
-import { createLocalVue, mount } from '@vue/test-utils';
-import Vuex, { Store } from 'vuex';
-import { i18n } from '@shared/plugins/i18n/i18n';
-import Counter from './Counter.vue';
-import { ICounterState } from '../state';
-import { CounterModule } from '../module';
+import { createLocalVue, mount } from "@vue/test-utils";
+import Vuex, { Store } from "vuex";
+import { i18n } from "@shared/plugins/i18n/i18n";
+import Counter from "./Counter.vue";
+import { ICounterState } from "../state";
+import { CounterModule } from "../module";
 
 const localVue = createLocalVue();
 
 localVue.use(Vuex);
 
-describe('Counter.vue', () => {
+describe("Counter.vue", () => {
   let store: Store<ICounterState>;
 
   beforeEach(() => {
@@ -20,24 +20,24 @@ describe('Counter.vue', () => {
     } as any);
   });
 
-  test('renders component', () => {
+  test("renders component", () => {
     const wrapper = mount<any>(Counter, {
       store,
       localVue,
       i18n,
-      stubs: ['router-link'],
+      stubs: ["router-link"],
     });
 
-    expect(wrapper.find('h1').text()).toBe('Counter');
+    expect(wrapper.find("h1").text()).toBe("Counter");
   });
 
-  test('should increment and decrement', () => {
+  test("should increment and decrement", () => {
     store.dispatch = jest.fn();
     const wrapper = mount<any>(Counter, {
       store,
       localVue,
       i18n,
-      stubs: ['router-link'],
+      stubs: ["router-link"],
     });
 
     wrapper.vm.increment();
@@ -47,7 +47,7 @@ describe('Counter.vue', () => {
     expect(store.dispatch).toHaveBeenCalledWith(`counter/decrement`, undefined);
   });
 
-  test('dispatches action on the server', () => {
+  test("dispatches action on the server", () => {
     store.dispatch = jest.fn();
 
     Counter.prefetch({ store });

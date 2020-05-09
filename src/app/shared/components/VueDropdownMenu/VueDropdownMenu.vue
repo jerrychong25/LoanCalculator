@@ -1,6 +1,11 @@
 <template>
   <div :class="$style.vueDropdownMenu" @keydown="onKeyPress" ref="dropdownMenu">
-    <span @click.stop.prevent="show = !show" role="button" tabindex="0" :aria-expanded="show.toString()">
+    <span
+      @click.stop.prevent="show = !show"
+      role="button"
+      tabindex="0"
+      :aria-expanded="show.toString()"
+    >
       <slot />
       <vue-icon-sort-down />
     </span>
@@ -26,12 +31,12 @@
 </template>
 
 <script lang="ts">
-import { getIntInRange } from '@vuesion/utils/dist/randomGenerator';
-import VueIconSortDown from '../icons/VueIconSortDown/VueIconSortDown.vue';
-import VueCollapse from '../VueCollapse/VueCollapse.vue';
+import { getIntInRange } from "@vuesion/utils/dist/randomGenerator";
+import VueIconSortDown from "../icons/VueIconSortDown/VueIconSortDown.vue";
+import VueCollapse from "../VueCollapse/VueCollapse.vue";
 
 export default {
-  name: 'VueDropdownMenu',
+  name: "VueDropdownMenu",
   components: { VueCollapse, VueIconSortDown },
   props: {
     options: {
@@ -48,7 +53,7 @@ export default {
   },
   methods: {
     onClick(option: any) {
-      this.$emit('click', option);
+      this.$emit("click", option);
       this.close();
     },
     close() {
@@ -56,7 +61,10 @@ export default {
       this.index = -1;
     },
     checkForPropagation(e: KeyboardEvent) {
-      if (['Enter', 'Space', 'ArrowDown', 'ArrowUp', 'Escape'].indexOf(e.code) > -1) {
+      if (
+        ["Enter", "Space", "ArrowDown", "ArrowUp", "Escape"].indexOf(e.code) >
+        -1
+      ) {
         e.stopPropagation();
         e.preventDefault();
       }
@@ -64,22 +72,29 @@ export default {
     onKeyPress(e: KeyboardEvent) {
       this.checkForPropagation(e);
 
-      if (['Enter', 'Space', 'ArrowDown', 'ArrowUp'].indexOf(e.code) > -1 && this.show === false) {
+      if (
+        ["Enter", "Space", "ArrowDown", "ArrowUp"].indexOf(e.code) > -1 &&
+        this.show === false
+      ) {
         this.show = true;
-      } else if (['Enter', 'Space'].indexOf(e.code) > -1 && this.index > -1) {
+      } else if (["Enter", "Space"].indexOf(e.code) > -1 && this.index > -1) {
         this.onClick(this.options[this.index]);
-      } else if (e.code === 'ArrowDown') {
-        this.handleSelection(this.getNewIndex('down'));
-      } else if (e.code === 'ArrowUp') {
-        this.handleSelection(this.getNewIndex('up'));
-      } else if (e.code === 'Escape') {
+      } else if (e.code === "ArrowDown") {
+        this.handleSelection(this.getNewIndex("down"));
+      } else if (e.code === "ArrowUp") {
+        this.handleSelection(this.getNewIndex("up"));
+      } else if (e.code === "Escape") {
         this.close();
       }
     },
     getNewIndex(direction: string) {
-      let newIndex: number = direction === 'down' ? this.index + 1 : this.index - 1;
-      if (this.options[newIndex] && this.options[newIndex].value === 'separator') {
-        newIndex = direction === 'down' ? newIndex + 1 : newIndex - 1;
+      let newIndex: number =
+        direction === "down" ? this.index + 1 : this.index - 1;
+      if (
+        this.options[newIndex] &&
+        this.options[newIndex].value === "separator"
+      ) {
+        newIndex = direction === "down" ? newIndex + 1 : newIndex - 1;
       }
       return newIndex;
     },
@@ -93,24 +108,27 @@ export default {
       }
     },
     handleDocumentClick(e: Event) {
-      if (this.$refs.dropdownMenu && this.$refs.dropdownMenu.contains(e.target) === false) {
+      if (
+        this.$refs.dropdownMenu &&
+        this.$refs.dropdownMenu.contains(e.target) === false
+      ) {
         this.close();
       }
     },
   },
   beforeMount() {
-    document.addEventListener('mousedown', this.handleDocumentClick);
-    document.addEventListener('touchstart', this.handleDocumentClick);
+    document.addEventListener("mousedown", this.handleDocumentClick);
+    document.addEventListener("touchstart", this.handleDocumentClick);
   },
   beforeDestroy() {
-    document.removeEventListener('mousedown', this.handleDocumentClick);
-    document.removeEventListener('touchstart', this.handleDocumentClick);
+    document.removeEventListener("mousedown", this.handleDocumentClick);
+    document.removeEventListener("touchstart", this.handleDocumentClick);
   },
 };
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .vueDropdownMenu {
   display: inline-block;

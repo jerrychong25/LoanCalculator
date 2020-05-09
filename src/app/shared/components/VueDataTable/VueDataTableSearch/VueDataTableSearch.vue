@@ -11,10 +11,10 @@
 </template>
 
 <script lang="ts">
-import VueInput from '../../VueInput/VueInput.vue';
+import VueInput from "../../VueInput/VueInput.vue";
 
 export default {
-  name: 'VueDataTableSearch',
+  name: "VueDataTableSearch",
   components: { VueInput },
   props: {
     value: {
@@ -33,7 +33,7 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '../../../design-system';
+@import "../../../design-system";
 
 .vueDataTableSearch {
   padding-top: $space-12;

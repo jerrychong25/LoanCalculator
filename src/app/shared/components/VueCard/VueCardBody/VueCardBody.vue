@@ -4,12 +4,12 @@
 
 <script lang="ts">
 export default {
-  name: 'VueCardBody',
+  name: "VueCardBody",
 };
 </script>
 
 <style lang="scss" module>
-@import '../../../design-system';
+@import "../../../design-system";
 
 .vueCardBody {
   display: block;

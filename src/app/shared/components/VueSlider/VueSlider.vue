@@ -15,7 +15,10 @@
     </ul>
 
     <div :class="cssClasses">
-      <div :class="$style.progress" :style="{ width: progressWidth, marginLeft: progressLeft }"></div>
+      <div
+        :class="$style.progress"
+        :style="{ width: progressWidth, marginLeft: progressLeft }"
+      ></div>
 
       <button
         :class="handleCssClasses(0)"
@@ -52,12 +55,12 @@
 </template>
 
 <script lang="ts">
-import { IAlgorithm, linear } from './algorithms';
+import { IAlgorithm, linear } from "./algorithms";
 
 const algorithm: IAlgorithm = linear;
 
 export default {
-  name: 'VueSlider',
+  name: "VueSlider",
   props: {
     min: {
       type: Number,
@@ -100,12 +103,15 @@ export default {
       if (this.isMultiRange) {
         return `${algorithm.getPosition(this.currentMin, this.min, this.max)}%`;
       } else {
-        return '0';
+        return "0";
       }
     },
     progressWidth(): string {
       if (this.isMultiRange) {
-        return `${parseInt(this.handleRightPosition, 10) - parseInt(this.handleLeftPosition, 10)}%`;
+        return `${
+          parseInt(this.handleRightPosition, 10) -
+          parseInt(this.handleLeftPosition, 10)
+        }%`;
       } else {
         return `${parseInt(this.handleLeftPosition, 10)}%`;
       }
@@ -125,7 +131,10 @@ export default {
   },
   methods: {
     getClosestHandle(percentageDiff: number) {
-      const handlePos: number[] = [parseInt(this.handleLeftPosition, 10), parseInt(this.handleRightPosition, 10)];
+      const handlePos: number[] = [
+        parseInt(this.handleLeftPosition, 10),
+        parseInt(this.handleRightPosition, 10),
+      ];
       const startIndex: number = this.isMultiRange ? 1 : 0;
 
       return handlePos.reduce((closestIdx, node, idx) => {
@@ -143,18 +152,18 @@ export default {
       return ((positionX - this.sliderBox.left) / this.sliderBox.width) * 100;
     },
     bindEvents() {
-      document.addEventListener('touchmove', this.moving, { passive: false });
-      document.addEventListener('mousemove', this.moving);
-      document.addEventListener('touchend', this.moveEnd, { passive: false });
-      document.addEventListener('mouseup', this.moveEnd);
-      document.addEventListener('mouseleave', this.moveEnd);
+      document.addEventListener("touchmove", this.moving, { passive: false });
+      document.addEventListener("mousemove", this.moving);
+      document.addEventListener("touchend", this.moveEnd, { passive: false });
+      document.addEventListener("mouseup", this.moveEnd);
+      document.addEventListener("mouseleave", this.moveEnd);
     },
     unbindEvents() {
-      document.removeEventListener('touchmove', this.moving);
-      document.removeEventListener('mousemove', this.moving);
-      document.removeEventListener('touchend', this.moveEnd);
-      document.removeEventListener('mouseup', this.moveEnd);
-      document.removeEventListener('mouseleave', this.moveEnd);
+      document.removeEventListener("touchmove", this.moving);
+      document.removeEventListener("mousemove", this.moving);
+      document.removeEventListener("touchend", this.moveEnd);
+      document.removeEventListener("mouseup", this.moveEnd);
+      document.removeEventListener("mouseleave", this.moveEnd);
     },
     moveStart(e: any) {
       if (this.disabled) {
@@ -174,7 +183,7 @@ export default {
         return;
       }
 
-      this.$emit('change', { values: [this.currentMin, this.currentMax] });
+      this.$emit("change", { values: [this.currentMin, this.currentMax] });
 
       setTimeout(() => {
         this.currentSlider = null;
@@ -182,13 +191,21 @@ export default {
       }, 10);
     },
     moving(e: any) {
-      const value: number = algorithm.getValue(this.percentageDiff(e), this.min, this.max);
-      const valueId: string = this.currentSlider === 0 ? 'currentMin' : 'currentMax';
+      const value: number = algorithm.getValue(
+        this.percentageDiff(e),
+        this.min,
+        this.max
+      );
+      const valueId: string =
+        this.currentSlider === 0 ? "currentMin" : "currentMax";
       const padding: number = this.isMultiRange ? 1 : 0;
 
-      if (valueId === 'currentMin' && value >= this.currentMax - padding) {
+      if (valueId === "currentMin" && value >= this.currentMax - padding) {
         this[valueId] = this.currentMax - padding;
-      } else if (valueId === 'currentMax' && value <= this.currentMin + padding) {
+      } else if (
+        valueId === "currentMax" &&
+        value <= this.currentMin + padding
+      ) {
         this[valueId] = this.currentMin + padding;
       } else {
         this[valueId] = value;
@@ -207,13 +224,14 @@ export default {
       return classes;
     },
     onKeyDown(e: any) {
-      const valueId: string = this.currentSlider === 0 ? 'currentMin' : 'currentMax';
+      const valueId: string =
+        this.currentSlider === 0 ? "currentMin" : "currentMax";
       const padding: number = this.isMultiRange ? 1 : 0;
       let value: number = this[valueId];
 
-      if (e.code === 'ArrowLeft') {
+      if (e.code === "ArrowLeft") {
         value = value - 5;
-      } else if (e.code === 'ArrowRight') {
+      } else if (e.code === "ArrowRight") {
         value = value + 5;
       }
 
@@ -225,24 +243,27 @@ export default {
         return;
       }
 
-      if (valueId === 'currentMin' && value >= this.currentMax - padding) {
+      if (valueId === "currentMin" && value >= this.currentMax - padding) {
         this[valueId] = this.currentMax - padding;
-      } else if (valueId === 'currentMax' && value <= this.currentMin + padding) {
+      } else if (
+        valueId === "currentMax" &&
+        value <= this.currentMin + padding
+      ) {
         this[valueId] = this.currentMin + padding;
       } else {
         this[valueId] = value;
       }
     },
     onKeyUp() {
-      this.$emit('change', { values: [this.currentMin, this.currentMax] });
+      this.$emit("change", { values: [this.currentMin, this.currentMax] });
     },
   },
   mounted() {
     this.sliderBox = this.$refs.slider.getBoundingClientRect();
-    window.addEventListener('resize', this.refresh);
+    window.addEventListener("resize", this.refresh);
   },
   destroyed() {
-    window.removeEventListener('resize', this.refresh);
+    window.removeEventListener("resize", this.refresh);
   },
   watch: {
     values: {
@@ -257,7 +278,7 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .vueSlider {
   user-select: none;
@@ -318,7 +339,7 @@ export default {
     li {
       &:first-child {
         &:after {
-          content: '-';
+          content: "-";
           display: inline-block;
           margin: 0 $space-8;
         }

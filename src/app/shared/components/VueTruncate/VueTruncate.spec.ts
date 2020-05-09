@@ -1,11 +1,11 @@
-import { createLocalVue, mount } from '@vue/test-utils';
-import VueTruncate from './VueTruncate.vue';
-import { i18n } from '../../plugins/i18n/i18n';
+import { createLocalVue, mount } from "@vue/test-utils";
+import VueTruncate from "./VueTruncate.vue";
+import { i18n } from "../../plugins/i18n/i18n";
 
 const localVue = createLocalVue();
 
-describe('VueTruncate.vue', () => {
-  test('renders component and truncate text', () => {
+describe("VueTruncate.vue", () => {
+  test("renders component and truncate text", () => {
     const wrapper = mount<any>(VueTruncate, {
       i18n,
       localVue,
@@ -24,12 +24,12 @@ describe('VueTruncate.vue', () => {
     expect(wrapper.vm.isTruncated).toBeTruthy();
   });
 
-  test('renders component and not truncate text', () => {
+  test("renders component and not truncate text", () => {
     const getComputedStyle = window.getComputedStyle;
 
     (window as any).getComputedStyle = () => {
       return {
-        'line-height': 0,
+        "line-height": 0,
       };
     };
 
@@ -56,7 +56,7 @@ describe('VueTruncate.vue', () => {
     (window as any).getComputedStyle = getComputedStyle;
   });
 
-  test('truncate text and show whole text and collapse text', (done) => {
+  test("truncate text and show whole text and collapse text", (done) => {
     const wrapper = mount<any>(VueTruncate, {
       i18n,
       localVue,

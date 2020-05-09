@@ -3,15 +3,15 @@
 </template>
 
 <script lang="ts">
-import { variationValidator } from '@components/utils';
+import { variationValidator } from "@components/utils";
 
 export default {
-  name: 'VueBadge',
+  name: "VueBadge",
   props: {
     color: {
       type: String,
       validator: variationValidator,
-      default: 'default',
+      default: "default",
     },
     outlined: {
       type: Boolean,
@@ -34,7 +34,7 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .vueBadge {
   display: inline-block;
@@ -49,14 +49,14 @@ export default {
 
 @each $variation, $values in $badge-variations {
   .#{$variation} {
-    color: map-get($values, 'color');
-    background: map-get($values, 'bg');
+    color: map-get($values, "color");
+    background: map-get($values, "bg");
   }
 
   .outlined {
     &.#{$variation} {
-      border-color: map-get($values, 'bg');
-      color: map-get($values, 'bg');
+      border-color: map-get($values, "bg");
+      color: map-get($values, "bg");
     }
   }
 }

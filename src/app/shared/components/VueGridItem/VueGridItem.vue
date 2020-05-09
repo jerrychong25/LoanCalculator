@@ -4,7 +4,7 @@
 
 <script lang="ts">
 export default {
-  name: 'VueGridItem',
+  name: "VueGridItem",
   props: {
     fill: {
       type: Boolean,
@@ -26,7 +26,7 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .gridItem {
   flex-basis: 100%;

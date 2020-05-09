@@ -1,4 +1,4 @@
-import { IAppState } from './state';
+import { IAppState } from "./state";
 
 export interface IAppMutations {
   CHANGE_LOCALE(state: IAppState, locale: string): void;

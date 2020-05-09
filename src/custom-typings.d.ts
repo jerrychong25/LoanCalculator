@@ -5,7 +5,7 @@ interface Window {
 
 declare var nodeRequire: any;
 
-declare module 'marked' {
+declare module "marked" {
   const marked: any;
   export = marked;
 }

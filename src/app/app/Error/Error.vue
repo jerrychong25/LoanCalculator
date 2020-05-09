@@ -6,19 +6,19 @@
 </template>
 
 <script lang="ts">
-import VueHeadline from '@components/VueHeadline/VueHeadline.vue';
+import VueHeadline from "@components/VueHeadline/VueHeadline.vue";
 
 export default {
   metaInfo: {
-    title: 'vuesion - an error occurred',
+    title: "vuesion - an error occurred",
     meta: [
       {
-        name: 'robots',
-        content: 'NOINDEX,NOFOLLOW',
+        name: "robots",
+        content: "NOINDEX,NOFOLLOW",
       },
     ],
   },
-  name: 'Error',
+  name: "Error",
   components: { VueHeadline },
   props: {},
   data(): any {
@@ -30,7 +30,7 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .error {
   padding-top: $nav-bar-height;

@@ -6,10 +6,10 @@
 </template>
 
 <script lang="ts">
-import { getIntInRange } from '@vuesion/utils/dist/randomGenerator';
+import { getIntInRange } from "@vuesion/utils/dist/randomGenerator";
 
 export default {
-  name: 'VueNavigationProgress',
+  name: "VueNavigationProgress",
   props: {
     isNavigating: {
       type: Boolean,
@@ -73,7 +73,7 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .vueNavigationProgress {
   position: fixed;
@@ -82,7 +82,11 @@ export default {
   right: 0;
   z-index: 9999;
   height: 2px;
-  @include background-gradient($brand-secondary, lighten($brand-secondary, 30%), 'horizontal');
+  @include background-gradient(
+    $brand-secondary,
+    lighten($brand-secondary, 30%),
+    "horizontal"
+  );
   opacity: 0;
 }
 

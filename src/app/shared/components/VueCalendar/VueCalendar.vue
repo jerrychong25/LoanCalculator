@@ -21,7 +21,7 @@
         tabindex="0"
         :aria-label="$d(calculatedDate, 'calendarHeader')"
       >
-        {{ $d(calculatedDate, 'calendarHeader') }}
+        {{ $d(calculatedDate, "calendarHeader") }}
       </vue-headline>
     </div>
 
@@ -32,11 +32,15 @@
           @click="setByMonth(currentMonth - 1)"
           @keypress.enter.space.stop.prevent="setByMonth(currentMonth - 1)"
           role="button"
-          :aria-label="$t('components.calendar.previousMonth' /* previous month */)"
+          :aria-label="
+            $t('components.calendar.previousMonth' /* previous month */)
+          "
           tabindex="0"
         ></div>
 
-        <div :class="$style.currentDate">{{ $d(new Date(currentYear, currentMonth, 1), 'calendarNav') }}</div>
+        <div :class="$style.currentDate">
+          {{ $d(new Date(currentYear, currentMonth, 1), "calendarNav") }}
+        </div>
 
         <div
           :class="$style.arrow"
@@ -51,7 +55,11 @@
       <table>
         <thead>
           <tr>
-            <td v-for="(weekday, idx) in weekdays" :key="`weekday-${idx}`" :class="$style.disabledDay">
+            <td
+              v-for="(weekday, idx) in weekdays"
+              :key="`weekday-${idx}`"
+              :class="$style.disabledDay"
+            >
               <span>{{ weekday }}</span>
             </td>
           </tr>
@@ -68,7 +76,14 @@
               v-for="(day, dayIdx) in days"
               :key="`day-${dayIdx}`"
               :tabindex="day.day ? 0 : null"
-              :aria-label="day.day ? $d(new Date(currentYear, currentMonth, day.day), 'calendarLabel') : null"
+              :aria-label="
+                day.day
+                  ? $d(
+                      new Date(currentYear, currentMonth, day.day),
+                      'calendarLabel'
+                    )
+                  : null
+              "
               @keydown.enter.stop.prevent="setByDay(day)"
               @keydown.space.stop.prevent="setByDay(day)"
               @click="setByDay(day)"
@@ -96,16 +111,20 @@
     </div>
 
     <div :class="$style.footer">
-      <vue-button @click.stop.prevent="onClose" ghost>{{ $t('common.cancel' /* Cancel */) }}</vue-button>
-      <vue-button @click.stop.prevent="onChange" color="primary">{{ $t('common.ok' /* Ok */) }}</vue-button>
+      <vue-button @click.stop.prevent="onClose" ghost>{{
+        $t("common.cancel" /* Cancel */)
+      }}</vue-button>
+      <vue-button @click.stop.prevent="onChange" color="primary">{{
+        $t("common.ok" /* Ok */)
+      }}</vue-button>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import chunk from 'lodash/chunk';
-import VueButton from '../VueButton/VueButton.vue';
-import VueHeadline from '../VueHeadline/VueHeadline.vue';
+import chunk from "lodash/chunk";
+import VueButton from "../VueButton/VueButton.vue";
+import VueHeadline from "../VueHeadline/VueHeadline.vue";
 
 interface IData {
   selecting: string;
@@ -130,7 +149,7 @@ interface IYear {
 }
 
 export default {
-  name: 'VueCalendar',
+  name: "VueCalendar",
   components: {
     VueHeadline,
     VueButton,
@@ -167,8 +186,11 @@ export default {
     calendar(): IDay[][] {
       let days: number[] = [];
 
-      let paddingLeft = new Date(this.currentYear, this.currentMonth, 1).getDay() - this.firstDayOfWeek;
-      const daysInMonth = 32 - new Date(this.currentYear, this.currentMonth, 32).getDate();
+      let paddingLeft =
+        new Date(this.currentYear, this.currentMonth, 1).getDay() -
+        this.firstDayOfWeek;
+      const daysInMonth =
+        32 - new Date(this.currentYear, this.currentMonth, 32).getDate();
 
       if (paddingLeft === -1) {
         paddingLeft = 6;
@@ -186,20 +208,31 @@ export default {
 
       const dayObjects: IDay[] = days.map(
         (day: number): IDay => {
-          const date: Date = day ? new Date(this.currentYear, this.currentMonth, day) : new Date(0, 0, 0);
+          const date: Date = day
+            ? new Date(this.currentYear, this.currentMonth, day)
+            : new Date(0, 0, 0);
           const currentDay: boolean =
             date.getTime() ===
-            new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate()).getTime();
+            new Date(
+              this.today.getFullYear(),
+              this.today.getMonth(),
+              this.today.getDate()
+            ).getTime();
           let disabled: boolean = this.dayDisabled(day, date);
-          let selected: boolean = date.getTime() === this.calculatedDate.getTime();
+          let selected: boolean =
+            date.getTime() === this.calculatedDate.getTime();
 
           if (this.startDate) {
             disabled = disabled || date.getTime() < this.startDate.getTime();
-            selected = date.getTime() >= this.startDate.getTime() && date.getTime() <= this.calculatedDate.getTime();
+            selected =
+              date.getTime() >= this.startDate.getTime() &&
+              date.getTime() <= this.calculatedDate.getTime();
           }
 
           if (this.endDate) {
-            selected = date.getTime() <= this.endDate.getTime() && date.getTime() >= this.calculatedDate.getTime();
+            selected =
+              date.getTime() <= this.endDate.getTime() &&
+              date.getTime() >= this.calculatedDate.getTime();
           }
 
           if (day === null) {
@@ -207,7 +240,7 @@ export default {
           }
 
           return { day, currentDay, selected, disabled } as IDay;
-        },
+        }
       );
 
       return chunk(dayObjects, 7);
@@ -235,13 +268,13 @@ export default {
     },
     weekdays(): string[] {
       const weekdays: string[] = [
-        this.$t('components.calendar.sunday.short' /* S */),
-        this.$t('components.calendar.monday.short' /* M */),
-        this.$t('components.calendar.tuesday.short' /* T */),
-        this.$t('components.calendar.wednesday.short' /* W */),
-        this.$t('components.calendar.thursday.short' /* T */),
-        this.$t('components.calendar.friday.short' /* F */),
-        this.$t('components.calendar.saturday.short' /* S */),
+        this.$t("components.calendar.sunday.short" /* S */),
+        this.$t("components.calendar.monday.short" /* M */),
+        this.$t("components.calendar.tuesday.short" /* T */),
+        this.$t("components.calendar.wednesday.short" /* W */),
+        this.$t("components.calendar.thursday.short" /* T */),
+        this.$t("components.calendar.friday.short" /* F */),
+        this.$t("components.calendar.saturday.short" /* S */),
       ];
       const orderedDays: string[] = [];
       let startDay: number = this.firstDayOfWeek;
@@ -264,7 +297,7 @@ export default {
   },
   data(): IData {
     return {
-      selecting: 'date',
+      selecting: "date",
       currentMonth: null,
       currentYear: null,
       selectedDayOfWeek: null,
@@ -277,18 +310,23 @@ export default {
     async setSelecting(value: string) {
       this.selecting = value;
 
-      if (this.selecting === 'year') {
+      if (this.selecting === "year") {
         await this.$nextTick();
         this.scrollSelectedYearIntoView();
       }
     },
     scrollSelectedYearIntoView() {
-      const yearContainer: HTMLElement = this.$refs.calendar.querySelector(`.${this.$style.year}`);
-      const selectedYear: HTMLElement = yearContainer.querySelector(`.${this.$style.selected}`);
+      const yearContainer: HTMLElement = this.$refs.calendar.querySelector(
+        `.${this.$style.year}`
+      );
+      const selectedYear: HTMLElement = yearContainer.querySelector(
+        `.${this.$style.selected}`
+      );
 
       yearContainer.scrollTop =
         selectedYear.offsetTop -
-        (yearContainer.getBoundingClientRect().height / 2 + selectedYear.getBoundingClientRect().height);
+        (yearContainer.getBoundingClientRect().height / 2 +
+          selectedYear.getBoundingClientRect().height);
     },
     setByDay(day: IDay): void {
       if (day.disabled) {
@@ -298,7 +336,11 @@ export default {
       this.selectedYear = this.currentYear;
       this.selectedDay = day.day;
       this.selectedMonth = this.currentMonth;
-      this.selectedDayOfWeek = new Date(this.selectedYear, this.selectedMonth, day.day).getDay();
+      this.selectedDayOfWeek = new Date(
+        this.selectedYear,
+        this.selectedMonth,
+        day.day
+      ).getDay();
     },
     setByMonth(month: number): void {
       if (month === 12) {
@@ -320,7 +362,7 @@ export default {
     setByYear(year: number): void {
       this.selectedYear = year;
       this.currentYear = year;
-      this.selecting = 'date';
+      this.selecting = "date";
     },
     setDate(): void {
       let date: Date = this.today;
@@ -362,18 +404,18 @@ export default {
       return disabled;
     },
     onChange(): void {
-      this.$emit('change', this.calculatedDate);
+      this.$emit("change", this.calculatedDate);
       this.onClose();
     },
     onClose(): void {
-      this.$emit('close');
+      this.$emit("close");
     },
   },
 };
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .calendar {
   width: 100%;
@@ -417,7 +459,7 @@ export default {
 
       td {
         &:before {
-          content: '';
+          content: "";
           float: left;
           padding-top: 100%;
         }
@@ -457,7 +499,7 @@ export default {
 
   &:before,
   &:after {
-    content: '';
+    content: "";
     transition: all 0.25s ease-in-out;
     position: absolute;
     background-color: $calendar-arrow-color;

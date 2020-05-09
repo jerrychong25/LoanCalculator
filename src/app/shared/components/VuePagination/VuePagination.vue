@@ -22,7 +22,7 @@
 
 <script lang="ts">
 export default {
-  name: 'VuePagination',
+  name: "VuePagination",
   props: {
     pages: {
       type: Number,
@@ -56,12 +56,12 @@ export default {
   methods: {
     prevClick() {
       if (this.current > 1) {
-        this.$emit('change', this.current - 1);
+        this.$emit("change", this.current - 1);
       }
     },
     nextClick() {
       if (this.current < this.pages) {
-        this.$emit('change', this.current + 1);
+        this.$emit("change", this.current + 1);
       }
     },
   },
@@ -69,7 +69,7 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .vuePagination {
   padding: $pagination-padding;
@@ -97,7 +97,7 @@ export default {
 
   &:before,
   &:after {
-    content: '';
+    content: "";
     transition: all 0.25s ease-in-out;
     position: absolute;
     background-color: $pagination-arrow-color;

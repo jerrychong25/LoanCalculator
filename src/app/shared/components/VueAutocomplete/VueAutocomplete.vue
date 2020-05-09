@@ -22,7 +22,9 @@
       :errorMessage="errorMessage"
       :validation="validation"
       :autocomplete="autocomplete"
-      :aria-activedescendant="hasOptions ? `result-item-${selectedOptionIndex}-${id}` : null"
+      :aria-activedescendant="
+        hasOptions ? `result-item-${selectedOptionIndex}-${id}` : null
+      "
       @input="onInput"
       @keyup.stop.prevent.down="onArrowDown"
       @keydown.stop.prevent.up="onArrowUp"
@@ -31,7 +33,11 @@
     />
 
     <vue-icon-search v-show="isLoading === false" />
-    <vue-loader :class="$style.loader" color="secondary" v-show="isLoading === true" />
+    <vue-loader
+      :class="$style.loader"
+      color="secondary"
+      v-show="isLoading === true"
+    />
 
     <ul
       ref="resultContainer"
@@ -42,7 +48,11 @@
     >
       <li
         v-if="hasOptions === false"
-        v-html="$t('components.autocomplete.emptyMessage' /* No options found for %s */).replace('%s', searchQuery)"
+        v-html="
+          $t(
+            'components.autocomplete.emptyMessage' /* No options found for %s */
+          ).replace('%s', searchQuery)
+        "
       ></li>
 
       <li
@@ -62,15 +72,15 @@
 </template>
 
 <script lang="ts">
-import debounce from 'lodash/debounce';
-import { getGUID } from '@vuesion/utils/dist/randomGenerator';
-import { IAutocompleteOption } from './IAutocompleteOption';
-import VueInput from '../VueInput/VueInput.vue';
-import VueLoader from '../VueLoader/VueLoader.vue';
-import VueIconSearch from '../icons/VueIconSearch/VueIconSearch.vue';
+import debounce from "lodash/debounce";
+import { getGUID } from "@vuesion/utils/dist/randomGenerator";
+import { IAutocompleteOption } from "./IAutocompleteOption";
+import VueInput from "../VueInput/VueInput.vue";
+import VueLoader from "../VueLoader/VueLoader.vue";
+import VueIconSearch from "../icons/VueIconSearch/VueIconSearch.vue";
 
 export default {
-  name: 'VueAutocomplete',
+  name: "VueAutocomplete",
   components: {
     VueIconSearch,
     VueLoader,
@@ -96,11 +106,11 @@ export default {
     },
     value: {
       type: Object,
-      default: () => ({ label: '', value: '' }),
+      default: () => ({ label: "", value: "" }),
     },
     type: {
       type: String,
-      default: 'text',
+      default: "text",
     },
     disabled: {
       type: Boolean,
@@ -119,7 +129,7 @@ export default {
     },
     autocomplete: {
       type: String,
-      default: 'off',
+      default: "off",
     },
     options: {
       type: Array,
@@ -141,8 +151,8 @@ export default {
   data(): any {
     return {
       isOpen: false,
-      searchQuery: '',
-      previousQuery: '',
+      searchQuery: "",
+      previousQuery: "",
       selectedOptionIndex: 0,
       resultContainerHeight: 0,
     };
@@ -154,7 +164,8 @@ export default {
   },
   methods: {
     setResultContainerHeight() {
-      const resultContainerItem: HTMLElement = this.$refs.resultContainer.firstChild;
+      const resultContainerItem: HTMLElement = this.$refs.resultContainer
+        .firstChild;
       const resultContainerItemHeight = resultContainerItem.offsetHeight;
       let newHeight: number = resultContainerItemHeight;
 
@@ -162,7 +173,9 @@ export default {
         newHeight = resultContainerItemHeight * this.options.length;
 
         if (this.options.length > this.maxOptions) {
-          newHeight = this.maxOptions * resultContainerItemHeight + resultContainerItemHeight / 2;
+          newHeight =
+            this.maxOptions * resultContainerItemHeight +
+            resultContainerItemHeight / 2;
         }
       }
 
@@ -172,7 +185,10 @@ export default {
       return this.previousQuery === this.searchQuery;
     },
     onFocus() {
-      if (this.options.length > 0 && this.searchQuery.length >= this.minInputChars) {
+      if (
+        this.options.length > 0 &&
+        this.searchQuery.length >= this.minInputChars
+      ) {
         this.isOpen = true;
       }
     },
@@ -183,18 +199,20 @@ export default {
 
       if (resultContainerScrollHeight > resultContainerClientHeight) {
         const element: HTMLElement = document.querySelector(
-          `#result-item-${this.selectedOptionIndex}-${this.id}`,
+          `#result-item-${this.selectedOptionIndex}-${this.id}`
         ) as HTMLElement;
 
         if (element === null) {
           return;
         }
 
-        const scrollBottom: number = resultContainerClientHeight + resultContainer.scrollTop;
+        const scrollBottom: number =
+          resultContainerClientHeight + resultContainer.scrollTop;
         const elementBottom: number = element.offsetTop + element.offsetHeight;
 
         if (elementBottom > scrollBottom) {
-          resultContainer.scrollTop = elementBottom - resultContainer.clientHeight;
+          resultContainer.scrollTop =
+            elementBottom - resultContainer.clientHeight;
         } else if (element.offsetTop < resultContainer.scrollTop) {
           resultContainer.scrollTop = element.offsetTop;
         }
@@ -234,8 +252,8 @@ export default {
     isSelected(index: number) {
       return index === this.selectedOptionIndex;
     },
-    emitRequest: debounce(function() {
-      this.$emit('request', this.searchQuery);
+    emitRequest: debounce(function () {
+      this.$emit("request", this.searchQuery);
       this.isOpen = true;
       this.selectedOptionIndex = -1;
     }, 300),
@@ -253,7 +271,10 @@ export default {
         e.preventDefault();
       }
 
-      if (this.searchQuery.length < this.minInputChars || this.options.length === 0) {
+      if (
+        this.searchQuery.length < this.minInputChars ||
+        this.options.length === 0
+      ) {
         return;
       }
 
@@ -269,8 +290,8 @@ export default {
     triggerChange(option: IAutocompleteOption) {
       this.searchQuery = option.label;
 
-      this.$emit('change', option);
-      this.$emit('input', option);
+      this.$emit("change", option);
+      this.$emit("input", option);
 
       if (this.isSameSearchQuery()) {
         return;
@@ -289,16 +310,16 @@ export default {
   },
   mounted() {
     this.searchQuery = this.value.label;
-    document.addEventListener('click', this.handleOutsideClick);
+    document.addEventListener("click", this.handleOutsideClick);
   },
   destroyed() {
-    document.removeEventListener('click', this.handleOutsideClick);
+    document.removeEventListener("click", this.handleOutsideClick);
   },
 };
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .vueAutocomplete {
   position: relative;
@@ -340,7 +361,7 @@ export default {
       padding: $autocomplete-item-padding;
       border-top: $autocomplete-item-border;
 
-      &[role='option'] {
+      &[role="option"] {
         cursor: pointer;
       }
       &:last-child {

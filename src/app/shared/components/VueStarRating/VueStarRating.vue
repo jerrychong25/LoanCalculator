@@ -17,10 +17,10 @@
 </template>
 
 <script lang="ts">
-import VueIconStar from '@components/icons/VueIconStar/VueIconStar.vue';
+import VueIconStar from "@components/icons/VueIconStar/VueIconStar.vue";
 
 export default {
-  name: 'VueStarRating',
+  name: "VueStarRating",
   components: {
     VueIconStar,
   },
@@ -95,7 +95,7 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .vueStarRating {
   display: flex;

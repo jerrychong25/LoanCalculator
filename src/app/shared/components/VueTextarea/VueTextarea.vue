@@ -20,16 +20,17 @@
       }"
       ref="input"
     ></textarea>
-    <span :class="$style.bar"></span> <label :for="name"> {{ placeholder }}<sup v-if="required">*</sup> </label>
+    <span :class="$style.bar"></span>
+    <label :for="name"> {{ placeholder }}<sup v-if="required">*</sup> </label>
     <div :class="$style.message">{{ messageOrError }}</div>
   </div>
 </template>
 
 <script lang="ts">
-import { Validator } from 'vee-validate';
+import { Validator } from "vee-validate";
 
 export default {
-  name: 'VueTextarea',
+  name: "VueTextarea",
   inheritAttrs: false,
   inject: {
     $validator: {
@@ -107,7 +108,7 @@ export default {
             this.$refs.input.focus();
           }
         },
-        { root: this.$refs.input.parentElement, threshold: 1 },
+        { root: this.$refs.input.parentElement, threshold: 1 }
       );
       this.observer.observe(this.$refs.input);
     },
@@ -124,7 +125,7 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .vueTextarea {
   position: relative;
@@ -205,7 +206,7 @@ export default {
 
   &:before,
   &:after {
-    content: '';
+    content: "";
     height: $input-bar-height;
     width: 0;
     bottom: 0;

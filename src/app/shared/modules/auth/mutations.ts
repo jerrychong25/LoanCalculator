@@ -1,4 +1,4 @@
-import { IAuthState } from './state';
+import { IAuthState } from "./state";
 
 export interface IAuthMutations {
   SET_ACCESS_TOKEN(state: IAuthState, accessToken: string): void;

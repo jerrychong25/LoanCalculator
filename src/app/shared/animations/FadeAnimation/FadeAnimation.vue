@@ -13,12 +13,12 @@
 
 <script lang="ts">
 export default {
-  name: 'FadeAnimation',
+  name: "FadeAnimation",
 };
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .enterActive,
 .leaveActive {

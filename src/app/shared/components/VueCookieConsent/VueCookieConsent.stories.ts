@@ -1,13 +1,13 @@
-import { storiesOf } from '@storybook/vue';
-import { action } from '@storybook/addon-actions';
-import { withInfo } from 'storybook-addon-vue-info';
-import VueCookieConsent from './VueCookieConsent.vue';
-import { i18n } from '../../plugins/i18n/i18n';
+import { storiesOf } from "@storybook/vue";
+import { action } from "@storybook/addon-actions";
+import { withInfo } from "storybook-addon-vue-info";
+import VueCookieConsent from "./VueCookieConsent.vue";
+import { i18n } from "../../plugins/i18n/i18n";
 
-const story = storiesOf('Organisms|CookieConsent', module) as any;
+const story = storiesOf("Organisms|CookieConsent", module) as any;
 
 story.add(
-  'Default',
+  "Default",
   withInfo({})(() => ({
     i18n,
     components: { VueCookieConsent },
@@ -15,7 +15,7 @@ story.add(
                   VueCookieConsent
                 </vue-cookie-consent>`,
     methods: {
-      action: action('@onClick'),
+      action: action("@onClick"),
     },
-  })),
+  }))
 );

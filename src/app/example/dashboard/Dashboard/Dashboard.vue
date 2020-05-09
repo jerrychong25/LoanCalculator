@@ -1,7 +1,9 @@
 <template>
   <div :class="$style.dashboard">
     <vue-grid>
-      <vue-breadcrumb :items="[{ label: 'Home', href: '/' }, { label: 'VueX Example' }]" />
+      <vue-breadcrumb
+        :items="[{ label: 'Home', href: '/' }, { label: 'VueX Example' }]"
+      />
       <vue-grid-row>
         <vue-grid-item fill>
           <vue-headline level="1">Dashboard</vue-headline>
@@ -13,25 +15,36 @@
         </vue-grid-item>
 
         <vue-grid-item>
-          Press this&nbsp;&nbsp;&nbsp;&nbsp;<vue-button outlined @click="onClick">button</vue-button>
+          Press this&nbsp;&nbsp;&nbsp;&nbsp;<vue-button
+            outlined
+            @click="onClick"
+            >button</vue-button
+          >
           and the following will happen:
 
           <br />
           <br />
 
           <ul>
-            <li>We will try to fetch data 10 times from our example endpoint <code>/protected</code></li>
             <li>
-              The endpoint will return error-code 401 for not authenticated (which is the same as sending an expired
-              accessToken)
+              We will try to fetch data 10 times from our example endpoint
+              <code>/protected</code>
             </li>
             <li>
-              The HttpService will handle the error and try to refresh the accessToken.
+              The endpoint will return error-code 401 for not authenticated
+              (which is the same as sending an expired accessToken)
+            </li>
+            <li>
+              The HttpService will handle the error and try to refresh the
+              accessToken.
               <ul>
-                <li>if an error occurs (random) during the refresh you will be logged out</li>
                 <li>
-                  if the refresh works your accessToken will change the value to <code>accessToken2</code> and the
-                  request will be repeated.
+                  if an error occurs (random) during the refresh you will be
+                  logged out
+                </li>
+                <li>
+                  if the refresh works your accessToken will change the value to
+                  <code>accessToken2</code> and the request will be repeated.
                 </li>
               </ul>
             </li>
@@ -43,17 +56,17 @@
 </template>
 
 <script lang="ts">
-import VueGrid from '@components/VueGrid/VueGrid.vue';
-import VueGridItem from '@components/VueGridItem/VueGridItem.vue';
-import VueButton from '@components/VueButton/VueButton.vue';
-import VueGridRow from '@components/VueGridRow/VueGridRow.vue';
-import VueHeadline from '@components/VueHeadline/VueHeadline.vue';
-import { HttpService } from '@shared/services/HttpService/HttpService';
-import VueBreadcrumb from '@components/VueBreadcrumb/VueBreadcrumb.vue';
+import VueGrid from "@components/VueGrid/VueGrid.vue";
+import VueGridItem from "@components/VueGridItem/VueGridItem.vue";
+import VueButton from "@components/VueButton/VueButton.vue";
+import VueGridRow from "@components/VueGridRow/VueGridRow.vue";
+import VueHeadline from "@components/VueHeadline/VueHeadline.vue";
+import { HttpService } from "@shared/services/HttpService/HttpService";
+import VueBreadcrumb from "@components/VueBreadcrumb/VueBreadcrumb.vue";
 
 export default {
   metaInfo: {
-    title: 'Dashboard',
+    title: "Dashboard",
   },
   components: {
     VueBreadcrumb,
@@ -73,7 +86,7 @@ export default {
       this.pending = true;
 
       for (let i = 0; i < 1; i++) {
-        requests.push(HttpService.get('/protected'));
+        requests.push(HttpService.get("/protected"));
       }
 
       Promise.all(requests)
@@ -91,7 +104,7 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .dashboard {
   margin-top: $nav-bar-height;

@@ -1,29 +1,31 @@
-import { mount, createLocalVue } from '@vue/test-utils';
-import VueNotificationStack from './VueNotificationStack.vue';
-import { INotification, addNotification } from './utils';
+import { mount, createLocalVue } from "@vue/test-utils";
+import VueNotificationStack from "./VueNotificationStack.vue";
+import { INotification, addNotification } from "./utils";
 
 const localVue = createLocalVue();
 
-describe('VueNotificationStack.vue', () => {
-  test('renders component', () => {
+describe("VueNotificationStack.vue", () => {
+  test("renders component", () => {
     const wrapper = mount<any>(VueNotificationStack, {
       localVue,
     });
     const notification: INotification = {
-      title: 'this is a test',
-      text: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod',
+      title: "this is a test",
+      text:
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
     } as INotification;
 
     expect(wrapper.vm.notifications).toHaveLength(0);
   });
 
-  test('add and remove notification', () => {
+  test("add and remove notification", () => {
     const wrapper = mount<any>(VueNotificationStack, {
       localVue,
     });
     const notification: INotification = {
-      title: 'this is a test',
-      text: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod',
+      title: "this is a test",
+      text:
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
     } as INotification;
 
     expect(wrapper.vm.notifications).toHaveLength(0);
@@ -37,7 +39,7 @@ describe('VueNotificationStack.vue', () => {
     expect(wrapper.vm.notifications).toHaveLength(2);
   });
 
-  test('should remove notification after 100 ms', (done) => {
+  test("should remove notification after 100 ms", (done) => {
     const wrapper = mount<any>(VueNotificationStack, {
       localVue,
       propsData: {
@@ -45,8 +47,9 @@ describe('VueNotificationStack.vue', () => {
       },
     });
     const notification: INotification = {
-      title: 'this is a test',
-      text: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod',
+      title: "this is a test",
+      text:
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
     } as INotification;
 
     expect(wrapper.vm.notifications).toHaveLength(0);

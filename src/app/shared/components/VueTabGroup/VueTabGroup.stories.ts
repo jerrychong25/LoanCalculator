@@ -1,12 +1,12 @@
-import { storiesOf } from '@storybook/vue';
-import { withInfo } from 'storybook-addon-vue-info';
-import VueTabGroup from './VueTabGroup.vue';
-import VueTabItem from './VueTabItem/VueTabItem.vue';
+import { storiesOf } from "@storybook/vue";
+import { withInfo } from "storybook-addon-vue-info";
+import VueTabGroup from "./VueTabGroup.vue";
+import VueTabItem from "./VueTabItem/VueTabItem.vue";
 
-const story = storiesOf('Organisms|TabGroup', module) as any;
+const story = storiesOf("Organisms|TabGroup", module) as any;
 
 story.add(
-  'Default',
+  "Default",
   withInfo({})(() => ({
     components: {
       VueTabGroup,
@@ -34,5 +34,5 @@ story.add(
     et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
   </vue-tab-item>
 </vue-tab-group>`,
-  })),
+  }))
 );

@@ -1,9 +1,9 @@
-import VueRouter from 'vue-router';
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
-import { Store } from 'vuex';
-import { IState } from '@/app/state';
-import { setupResponseInterceptor } from './setupResponseInterceptor';
-import { setupRequestInterceptor } from './setupRequestInterceptor';
+import VueRouter from "vue-router";
+import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
+import { Store } from "vuex";
+import { IState } from "@/app/state";
+import { setupResponseInterceptor } from "./setupResponseInterceptor";
+import { setupRequestInterceptor } from "./setupRequestInterceptor";
 
 export interface IHttpService extends AxiosInstance {
   store?: Store<IState>;
@@ -24,7 +24,7 @@ export const initHttpService = (store?: Store<IState>, router?: VueRouter) => {
         store.state.app.config &&
         store.state.app.config.api &&
         store.state.app.config.api.baseUrl) ||
-      '',
+      "",
   });
 
   HttpService.store = store;
@@ -36,7 +36,10 @@ export const initHttpService = (store?: Store<IState>, router?: VueRouter) => {
   setupResponseInterceptor();
 };
 
-export const replaceOldToken = (request: AxiosRequestConfig, accessToken: string): AxiosRequestConfig => {
+export const replaceOldToken = (
+  request: AxiosRequestConfig,
+  accessToken: string
+): AxiosRequestConfig => {
   request.headers.Authorization = `Bearer ${accessToken}`;
   return request;
 };

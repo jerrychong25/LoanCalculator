@@ -7,17 +7,31 @@
         </vue-grid-item>
 
         <vue-grid-item>
-          <a href="https://github.com/devCrossNet" target="_blank" rel="noopener" aria-label="github profile">
+          <a
+            href="https://github.com/devCrossNet"
+            target="_blank"
+            rel="noopener"
+            aria-label="github profile"
+          >
             <vue-icon-github-alt />
           </a>
-          <a href="https://twitter.com/vuesion1" target="_blank" rel="noopener" aria-label="twitter profile">
+          <a
+            href="https://twitter.com/vuesion1"
+            target="_blank"
+            rel="noopener"
+            aria-label="twitter profile"
+          >
             <vue-icon-twitter-square />
           </a>
         </vue-grid-item>
 
         <vue-grid-item>
           <small>
-            <a href="https://github.com/vuesion/vuesion/blob/master/LICENSE" target="_blank" rel="noopener">
+            <a
+              href="https://github.com/vuesion/vuesion/blob/master/LICENSE"
+              target="_blank"
+              rel="noopener"
+            >
               MIT License
             </a>
           </small>
@@ -28,14 +42,14 @@
 </template>
 
 <script lang="ts">
-import VueGrid from '../VueGrid/VueGrid.vue';
-import VueGridItem from '../VueGridItem/VueGridItem.vue';
-import VueGridRow from '../VueGridRow/VueGridRow.vue';
-import VueIconGithubAlt from '../icons/VueIconGithubAlt/VueIconGithubAlt.vue';
-import VueIconTwitterSquare from '../icons/VueIconTwitterSquare/VueIconTwitterSquare.vue';
+import VueGrid from "../VueGrid/VueGrid.vue";
+import VueGridItem from "../VueGridItem/VueGridItem.vue";
+import VueGridRow from "../VueGridRow/VueGridRow.vue";
+import VueIconGithubAlt from "../icons/VueIconGithubAlt/VueIconGithubAlt.vue";
+import VueIconTwitterSquare from "../icons/VueIconTwitterSquare/VueIconTwitterSquare.vue";
 
 export default {
-  name: 'VueFooter',
+  name: "VueFooter",
   components: {
     VueIconTwitterSquare,
     VueIconGithubAlt,
@@ -52,7 +66,7 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .vueFooter {
   padding: $footer-padding;

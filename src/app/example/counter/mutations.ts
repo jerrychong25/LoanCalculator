@@ -1,4 +1,4 @@
-import { ICounterState } from './state';
+import { ICounterState } from "./state";
 
 export interface ICounterMutations {
   SET_INCREMENT_PENDING(state: ICounterState, pending: boolean): void;

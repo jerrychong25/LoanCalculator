@@ -1,6 +1,11 @@
 <template>
   <aside ref="sidebar">
-    <button :class="hamburgerCssClasses" type="button" aria-label="menu" @click="open = !open">
+    <button
+      :class="hamburgerCssClasses"
+      type="button"
+      aria-label="menu"
+      @click="open = !open"
+    >
       <span :class="$style.box"> <span :class="$style.inner" /> </span>
     </button>
     <div :class="sidebarClasses"><slot /></div>
@@ -9,7 +14,7 @@
 
 <script lang="ts">
 export default {
-  name: 'VueSidebar',
+  name: "VueSidebar",
   data(): any {
     return {
       open: false,
@@ -43,18 +48,18 @@ export default {
     },
   },
   beforeMount() {
-    document.addEventListener('click', this.handleDocumentClick);
-    document.addEventListener('touchstart', this.handleDocumentClick);
+    document.addEventListener("click", this.handleDocumentClick);
+    document.addEventListener("touchstart", this.handleDocumentClick);
   },
   beforeDestroy() {
-    document.removeEventListener('click', this.handleDocumentClick);
-    document.removeEventListener('touchstart', this.handleDocumentClick);
+    document.removeEventListener("click", this.handleDocumentClick);
+    document.removeEventListener("touchstart", this.handleDocumentClick);
   },
 };
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .vueSidebar {
   z-index: $sidebar-index;
@@ -125,7 +130,7 @@ export default {
 
     &::before,
     &::after {
-      content: '';
+      content: "";
       display: block;
     }
 
@@ -145,7 +150,8 @@ export default {
     }
 
     &::after {
-      transition: bottom 0.075s 0.12s ease, transform 0.075s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+      transition: bottom 0.075s 0.12s ease,
+        transform 0.075s cubic-bezier(0.55, 0.055, 0.675, 0.19);
     }
   }
 
@@ -172,7 +178,8 @@ export default {
       &::after {
         bottom: 0;
         transform: rotate(-90deg);
-        transition: bottom 0.075s ease, transform 0.075s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+        transition: bottom 0.075s ease,
+          transform 0.075s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
       }
     }
   }

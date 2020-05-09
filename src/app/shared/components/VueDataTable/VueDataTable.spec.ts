@@ -1,19 +1,22 @@
-import { createLocalVue, mount } from '@vue/test-utils';
-import { i18n } from '../../plugins/i18n/i18n';
-import VueDataTable from './VueDataTable.vue';
-import { IComputedDataRowCell, IDataTableHeader } from './IDataTable';
-import VueDataTableSearch from './VueDataTableSearch/VueDataTableSearch.vue';
-import VueDataTableHeader from './VueDataTableHeader/VueDataTableHeader.vue';
-import VuePagination from '../VuePagination/VuePagination.vue';
-import { dataTableDataFixture, dataTableHeaderFixture } from './DataTableFixtures';
+import { createLocalVue, mount } from "@vue/test-utils";
+import { i18n } from "../../plugins/i18n/i18n";
+import VueDataTable from "./VueDataTable.vue";
+import { IComputedDataRowCell, IDataTableHeader } from "./IDataTable";
+import VueDataTableSearch from "./VueDataTableSearch/VueDataTableSearch.vue";
+import VueDataTableHeader from "./VueDataTableHeader/VueDataTableHeader.vue";
+import VuePagination from "../VuePagination/VuePagination.vue";
+import {
+  dataTableDataFixture,
+  dataTableHeaderFixture,
+} from "./DataTableFixtures";
 
 const localVue = createLocalVue();
 
-describe('VueDataTable.vue', () => {
+describe("VueDataTable.vue", () => {
   const header: IDataTableHeader = dataTableHeaderFixture;
   const data: any[] = dataTableDataFixture;
 
-  test('renders component', () => {
+  test("renders component", () => {
     const wrapper = mount<any>(VueDataTable, {
       i18n,
       localVue,
@@ -25,11 +28,11 @@ describe('VueDataTable.vue', () => {
 
     expect(wrapper.findAll(VueDataTableSearch)).toHaveLength(1);
     expect(wrapper.findAll(VueDataTableHeader)).toHaveLength(1);
-    expect(wrapper.findAll('.vueDataTableRow')).toHaveLength(5);
+    expect(wrapper.findAll(".vueDataTableRow")).toHaveLength(5);
     expect(wrapper.findAll(VuePagination)).toHaveLength(1);
   });
 
-  test('renders component without search', () => {
+  test("renders component without search", () => {
     const wrapper = mount<any>(VueDataTable, {
       i18n,
       localVue,
@@ -42,11 +45,11 @@ describe('VueDataTable.vue', () => {
 
     expect(wrapper.findAll(VueDataTableSearch)).toHaveLength(0);
     expect(wrapper.findAll(VueDataTableHeader)).toHaveLength(1);
-    expect(wrapper.findAll('.vueDataTableRow')).toHaveLength(5);
+    expect(wrapper.findAll(".vueDataTableRow")).toHaveLength(5);
     expect(wrapper.findAll(VuePagination)).toHaveLength(1);
   });
 
-  test('should filter data', () => {
+  test("should filter data", () => {
     const wrapper = mount<any>(VueDataTable, {
       i18n,
       localVue,
@@ -56,19 +59,19 @@ describe('VueDataTable.vue', () => {
       },
     });
 
-    wrapper.vm.searchTerm = 'julia';
+    wrapper.vm.searchTerm = "julia";
     expect(wrapper.findAll(VueDataTableSearch)).toHaveLength(1);
     expect(wrapper.findAll(VueDataTableHeader)).toHaveLength(1);
-    expect(wrapper.findAll('.vueDataTableRow')).toHaveLength(4);
+    expect(wrapper.findAll(".vueDataTableRow")).toHaveLength(4);
 
-    wrapper.vm.searchTerm = 'z';
+    wrapper.vm.searchTerm = "z";
     expect(wrapper.findAll(VueDataTableSearch)).toHaveLength(1);
     expect(wrapper.findAll(VueDataTableHeader)).toHaveLength(1);
-    expect(wrapper.findAll('.noResults')).toHaveLength(1);
-    expect(wrapper.findAll('.vueDataTableRow')).toHaveLength(0);
+    expect(wrapper.findAll(".noResults")).toHaveLength(1);
+    expect(wrapper.findAll(".vueDataTableRow")).toHaveLength(0);
   });
 
-  test('should sort data', () => {
+  test("should sort data", () => {
     const wrapper = mount<any>(VueDataTable, {
       i18n,
       localVue,
@@ -78,22 +81,22 @@ describe('VueDataTable.vue', () => {
       },
     });
 
-    wrapper.setProps({ sortKey: 'firstname' });
+    wrapper.setProps({ sortKey: "firstname" });
 
-    expect(wrapper.vm.sortedData[0].firstname).toBe('Julia');
-    expect(wrapper.vm.sortedData[1].firstname).toBe('Julia');
-    expect(wrapper.vm.sortedData[2].firstname).toBe('Julia');
-    expect(wrapper.vm.sortedData[3].firstname).toBe('Julia');
+    expect(wrapper.vm.sortedData[0].firstname).toBe("Julia");
+    expect(wrapper.vm.sortedData[1].firstname).toBe("Julia");
+    expect(wrapper.vm.sortedData[2].firstname).toBe("Julia");
+    expect(wrapper.vm.sortedData[3].firstname).toBe("Julia");
 
-    wrapper.setProps({ sortDirection: 'desc' });
+    wrapper.setProps({ sortDirection: "desc" });
 
-    expect(wrapper.vm.sortedData[0].firstname).toBe('Toni');
-    expect(wrapper.vm.sortedData[1].firstname).toBe('Toni');
-    expect(wrapper.vm.sortedData[2].firstname).toBe('Toni');
-    expect(wrapper.vm.sortedData[3].firstname).toBe('Toni');
+    expect(wrapper.vm.sortedData[0].firstname).toBe("Toni");
+    expect(wrapper.vm.sortedData[1].firstname).toBe("Toni");
+    expect(wrapper.vm.sortedData[2].firstname).toBe("Toni");
+    expect(wrapper.vm.sortedData[3].firstname).toBe("Toni");
   });
 
-  test('should change page', () => {
+  test("should change page", () => {
     const wrapper = mount<any>(VueDataTable, {
       i18n,
       localVue,
@@ -108,7 +111,7 @@ describe('VueDataTable.vue', () => {
     expect(wrapper.vm.currentPage).toBe(1);
   });
 
-  test('should emit click', () => {
+  test("should emit click", () => {
     const wrapper = mount<any>(VueDataTable, {
       i18n,
       localVue,
@@ -118,17 +121,23 @@ describe('VueDataTable.vue', () => {
       },
     });
     const cells: IComputedDataRowCell[] = [
-      { key: 'id', value: 2, visible: false, slot: undefined, cssClass: null },
-      { key: 'name', value: 'foo', visible: false, slot: undefined, cssClass: null },
+      { key: "id", value: 2, visible: false, slot: undefined, cssClass: null },
+      {
+        key: "name",
+        value: "foo",
+        visible: false,
+        slot: undefined,
+        cssClass: null,
+      },
     ];
 
     wrapper.vm.rowClick(cells);
 
-    expect(wrapper.emitted('click')).toBeTruthy();
-    expect(wrapper.emitted('click')[0][0]).toEqual({ id: 2, name: 'foo' });
+    expect(wrapper.emitted("click")).toBeTruthy();
+    expect(wrapper.emitted("click")[0][0]).toEqual({ id: 2, name: "foo" });
   });
 
-  test('should sort', () => {
+  test("should sort", () => {
     const wrapper = mount<any>(VueDataTable, {
       i18n,
       localVue,
@@ -139,22 +148,22 @@ describe('VueDataTable.vue', () => {
     });
 
     expect(wrapper.vm.internalSortKey).toBe(null);
-    expect(wrapper.vm.internalSortDirection).toBe('asc');
+    expect(wrapper.vm.internalSortDirection).toBe("asc");
 
-    wrapper.vm.columnClick({ sortKey: 'foo' });
-    expect(wrapper.vm.internalSortKey).toBe('foo');
-    expect(wrapper.vm.internalSortDirection).toBe('asc');
+    wrapper.vm.columnClick({ sortKey: "foo" });
+    expect(wrapper.vm.internalSortKey).toBe("foo");
+    expect(wrapper.vm.internalSortDirection).toBe("asc");
 
-    wrapper.vm.columnClick({ sortKey: 'foo' });
-    expect(wrapper.vm.internalSortKey).toBe('foo');
-    expect(wrapper.vm.internalSortDirection).toBe('desc');
+    wrapper.vm.columnClick({ sortKey: "foo" });
+    expect(wrapper.vm.internalSortKey).toBe("foo");
+    expect(wrapper.vm.internalSortDirection).toBe("desc");
 
-    wrapper.vm.columnClick({ sortKey: 'foo' });
+    wrapper.vm.columnClick({ sortKey: "foo" });
     expect(wrapper.vm.internalSortKey).toBe(null);
-    expect(wrapper.vm.internalSortDirection).toBe('asc');
+    expect(wrapper.vm.internalSortDirection).toBe("asc");
   });
 
-  test('should display all the data if maxRows is set less or equal 0', () => {
+  test("should display all the data if maxRows is set less or equal 0", () => {
     const wrapper = mount<any>(VueDataTable, {
       i18n,
       localVue,
@@ -169,7 +178,7 @@ describe('VueDataTable.vue', () => {
     expect(wrapper.vm.maxPages).toBe(0);
   });
 
-  test('should add custom css class', () => {
+  test("should add custom css class", () => {
     const wrapper = mount<any>(VueDataTable, {
       i18n,
       localVue,
@@ -180,6 +189,6 @@ describe('VueDataTable.vue', () => {
       },
     });
 
-    expect(wrapper.findAll('.ageColumn')).toHaveLength(21);
+    expect(wrapper.findAll(".ageColumn")).toHaveLength(21);
   });
 });

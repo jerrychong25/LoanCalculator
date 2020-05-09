@@ -1,14 +1,14 @@
-import { createLocalVue, mount } from '@vue/test-utils';
-import VueAccordionItem from './VueAccordionItem.vue';
+import { createLocalVue, mount } from "@vue/test-utils";
+import VueAccordionItem from "./VueAccordionItem.vue";
 
 const localVue = createLocalVue();
 
-describe('VueAccordionItem.vue', () => {
-  test('renders component', () => {
+describe("VueAccordionItem.vue", () => {
+  test("renders component", () => {
     const wrapper = mount<any>(VueAccordionItem, {
       localVue,
       propsData: {
-        title: 'foo',
+        title: "foo",
       },
       provide: {
         register: jest.fn(),
@@ -16,14 +16,14 @@ describe('VueAccordionItem.vue', () => {
       },
     });
 
-    expect(wrapper.find(`.header`).text()).toMatch('foo');
+    expect(wrapper.find(`.header`).text()).toMatch("foo");
   });
 
-  test('opens component', () => {
+  test("opens component", () => {
     const wrapper = mount<any>(VueAccordionItem, {
       localVue,
       propsData: {
-        title: 'foo',
+        title: "foo",
         initOpen: false,
       },
       provide: {
@@ -37,13 +37,13 @@ describe('VueAccordionItem.vue', () => {
     expect(wrapper.findAll(`.open`)).toHaveLength(1);
   });
 
-  test('calls register', () => {
+  test("calls register", () => {
     const register = jest.fn();
     const openItem = jest.fn();
     const wrapper = mount<any>(VueAccordionItem, {
       localVue,
       propsData: {
-        title: 'foo',
+        title: "foo",
         initOpen: false,
       },
       provide: {

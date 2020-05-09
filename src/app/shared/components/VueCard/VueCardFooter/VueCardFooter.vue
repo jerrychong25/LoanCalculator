@@ -4,12 +4,12 @@
 
 <script lang="ts">
 export default {
-  name: 'VueCardFooter',
+  name: "VueCardFooter",
 };
 </script>
 
 <style lang="scss" module>
-@import '../../../design-system';
+@import "../../../design-system";
 
 .vueCardFooter {
   display: block;

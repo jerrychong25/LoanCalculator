@@ -15,10 +15,10 @@
 </template>
 
 <script lang="ts">
-import { variationValidator } from '@components/utils';
+import { variationValidator } from "@components/utils";
 
 export default {
-  name: 'VueLoader',
+  name: "VueLoader",
   props: {
     medium: {
       type: Boolean,
@@ -29,7 +29,7 @@ export default {
     color: {
       type: String,
       validator: variationValidator,
-      default: 'default',
+      default: "default",
     },
   },
   computed: {
@@ -52,7 +52,7 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .loader {
   display: inline-block;
@@ -61,7 +61,7 @@ export default {
   height: $loader-size;
 
   &:before {
-    content: '';
+    content: "";
     display: block;
     padding-top: 100%;
   }

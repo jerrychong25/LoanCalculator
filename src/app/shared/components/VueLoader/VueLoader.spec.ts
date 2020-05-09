@@ -1,11 +1,11 @@
-import { createLocalVue, mount } from '@vue/test-utils';
-import VueLoader from './VueLoader.vue';
-import { brandVariations } from '@components/utils';
+import { createLocalVue, mount } from "@vue/test-utils";
+import VueLoader from "./VueLoader.vue";
+import { brandVariations } from "@components/utils";
 
 const localVue = createLocalVue();
 
-describe('VueLoader.vue', () => {
-  test('renders default loader', () => {
+describe("VueLoader.vue", () => {
+  test("renders default loader", () => {
     const wrapper = mount(VueLoader, {
       localVue,
     });
@@ -13,7 +13,7 @@ describe('VueLoader.vue', () => {
     expect(wrapper.findAll(`.loader`)).toHaveLength(1);
   });
 
-  test('renders medium loader', () => {
+  test("renders medium loader", () => {
     const wrapper = mount(VueLoader, {
       localVue,
       propsData: {
@@ -24,7 +24,7 @@ describe('VueLoader.vue', () => {
     expect(wrapper.findAll(`.medium`)).toHaveLength(1);
   });
 
-  test('renders large loader', () => {
+  test("renders large loader", () => {
     const wrapper = mount(VueLoader, {
       localVue,
       propsData: {
@@ -35,7 +35,7 @@ describe('VueLoader.vue', () => {
     expect(wrapper.findAll(`.large`)).toHaveLength(1);
   });
 
-  test('renders color variations', () => {
+  test("renders color variations", () => {
     brandVariations.forEach((variation: string) => {
       const wrapper = mount(VueLoader, {
         localVue,

@@ -1,6 +1,10 @@
 <template>
   <div :class="$style.container">
-    <vue-data-table-search v-model="searchTerm" v-if="showSearch" :placeholder="placeholder" />
+    <vue-data-table-search
+      v-model="searchTerm"
+      v-if="showSearch"
+      :placeholder="placeholder"
+    />
 
     <table :class="$style.vueDataTable">
       <vue-data-table-header
@@ -11,19 +15,26 @@
       />
 
       <tbody>
-        <tr v-for="(row, rowIdx) in rows" :key="rowIdx" :class="$style.vueDataTableRow" @click="rowClick(row)">
+        <tr
+          v-for="(row, rowIdx) in rows"
+          :key="rowIdx"
+          :class="$style.vueDataTableRow"
+          @click="rowClick(row)"
+        >
           <td
             v-for="(cell, cellIdx) in getVisibleCells(row)"
             :key="cellIdx"
             :class="[$style.column, cell.cssClass && cell.cssClass]"
           >
-            <slot :name="cell.slot" :cell="cell" :row="getRowObject(row)">{{ cell.value }}</slot>
+            <slot :name="cell.slot" :cell="cell" :row="getRowObject(row)">{{
+              cell.value
+            }}</slot>
           </td>
         </tr>
 
         <tr v-show="count === 0">
           <td :class="$style.noResults" :colspan="columns.length - 1">
-            {{ $t('components.dataTable.noResults' /* No results found! */) }}
+            {{ $t("components.dataTable.noResults" /* No results found! */) }}
           </td>
         </tr>
       </tbody>
@@ -32,19 +43,23 @@
     <div v-show="maxPages > 1">
       <br />
 
-      <vue-pagination :current="currentPage + 1" :pages="maxPages" @change="paginationClick" />
+      <vue-pagination
+        :current="currentPage + 1"
+        :pages="maxPages"
+        @change="paginationClick"
+      />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import VueDataTableHeader from './VueDataTableHeader/VueDataTableHeader.vue';
-import VuePagination from '../VuePagination/VuePagination.vue';
-import VueDataTableSearch from './VueDataTableSearch/VueDataTableSearch.vue';
-import { IComputedDataRowCell, IDataTableHeaderItem } from './IDataTable';
+import VueDataTableHeader from "./VueDataTableHeader/VueDataTableHeader.vue";
+import VuePagination from "../VuePagination/VuePagination.vue";
+import VueDataTableSearch from "./VueDataTableSearch/VueDataTableSearch.vue";
+import { IComputedDataRowCell, IDataTableHeaderItem } from "./IDataTable";
 
 export default {
-  name: 'VueDataTable',
+  name: "VueDataTable",
   components: { VueDataTableSearch, VuePagination, VueDataTableHeader },
   props: {
     header: {
@@ -76,18 +91,18 @@ export default {
     },
     sortDirection: {
       type: String,
-      default: 'asc',
+      default: "asc",
     },
   },
   computed: {
     filteredData() {
-      const query = this.searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const query = this.searchTerm.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
       if (query.length === 0) {
         return this.data;
       }
 
-      const searchRegex: RegExp = new RegExp(`${query}`, 'gmi');
+      const searchRegex: RegExp = new RegExp(`${query}`, "gmi");
       const filter = (row: any) => {
         let match: boolean = false;
 
@@ -95,7 +110,8 @@ export default {
           const column: IDataTableHeaderItem = this.header[key];
 
           if (column.visible && match === false) {
-            match = searchRegex.exec(row[key].toString().toLowerCase()) !== null;
+            match =
+              searchRegex.exec(row[key].toString().toLowerCase()) !== null;
           }
         });
 
@@ -111,10 +127,10 @@ export default {
 
       const sort = (a: any, b: any) => {
         if (a[this.internalSortKey] < b[this.internalSortKey]) {
-          return this.internalSortDirection === 'asc' ? -1 : 1;
+          return this.internalSortDirection === "asc" ? -1 : 1;
         }
         if (a[this.internalSortKey] > b[this.internalSortKey]) {
-          return this.internalSortDirection === 'asc' ? 1 : -1;
+          return this.internalSortDirection === "asc" ? 1 : -1;
         }
         return 0;
       };
@@ -126,7 +142,10 @@ export default {
         return this.sortedData;
       }
 
-      return this.sortedData.slice(this.currentPage * this.maxRows, (this.currentPage + 1) * this.maxRows);
+      return this.sortedData.slice(
+        this.currentPage * this.maxRows,
+        (this.currentPage + 1) * this.maxRows
+      );
     },
     columns() {
       return Object.keys(this.header).map((key: string) => {
@@ -136,11 +155,11 @@ export default {
           header.title = key;
         }
 
-        if (typeof header.visible === 'undefined') {
+        if (typeof header.visible === "undefined") {
           header.visible = true;
         }
 
-        if (typeof header.sortable === 'undefined') {
+        if (typeof header.sortable === "undefined") {
           header.sortable = true;
         }
 
@@ -184,19 +203,25 @@ export default {
       internalSortKey: null,
       internalSortDirection: null,
       currentPage: 0,
-      searchTerm: '',
+      searchTerm: "",
     };
   },
   methods: {
     columnClick(column: IDataTableHeaderItem) {
-      if (this.internalSortKey === column.sortKey && this.internalSortDirection === 'desc') {
+      if (
+        this.internalSortKey === column.sortKey &&
+        this.internalSortDirection === "desc"
+      ) {
         this.internalSortKey = null;
-        this.internalSortDirection = 'asc';
-      } else if (this.internalSortKey === column.sortKey && this.internalSortDirection === 'asc') {
-        this.internalSortDirection = 'desc';
+        this.internalSortDirection = "asc";
+      } else if (
+        this.internalSortKey === column.sortKey &&
+        this.internalSortDirection === "asc"
+      ) {
+        this.internalSortDirection = "desc";
       } else {
         this.internalSortKey = column.sortKey;
-        this.internalSortDirection = 'asc';
+        this.internalSortDirection = "asc";
       }
     },
     getRowObject(cells: IComputedDataRowCell[]) {
@@ -209,7 +234,7 @@ export default {
       return row;
     },
     rowClick(cells: IComputedDataRowCell[]) {
-      this.$emit('click', this.getRowObject(cells));
+      this.$emit("click", this.getRowObject(cells));
     },
     paginationClick(page: number) {
       this.currentPage = page - 1;
@@ -239,7 +264,7 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .container {
   overflow-x: auto;

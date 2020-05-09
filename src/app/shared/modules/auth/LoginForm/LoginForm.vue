@@ -1,6 +1,8 @@
 <template>
   <form :class="$style.loginForm" @submit.stop.prevent="onSubmit">
-    <vue-headline level="3">{{ $t('auth.LoginForm.title' /* Login Example */) }}</vue-headline>
+    <vue-headline level="3">{{
+      $t("auth.LoginForm.title" /* Login Example */)
+    }}</vue-headline>
 
     <br />
 
@@ -12,7 +14,9 @@
       :label="$t('common.username' /* Username */)"
       :placeholder="$t('common.username.placeholder' /* Enter any username */)"
       validation="required"
-      :error-message="$t('auth.LoginForm.username.error' /* The username can not be empty */)"
+      :error-message="
+        $t('auth.LoginForm.username.error' /* The username can not be empty */)
+      "
       v-model="username"
     />
 
@@ -23,26 +27,36 @@
       :label="$t('common.password' /* Password */)"
       :placeholder="$t('common.password.placeholder' /* Enter any password */)"
       validation="required|min:6"
-      :error-message="$t('auth.LoginForm.password.error' /* The password has to have at least 6 characters */)"
+      :error-message="
+        $t(
+          'auth.LoginForm.password.error' /* The password has to have at least 6 characters */
+        )
+      "
       v-model="password"
     />
 
-    <vue-button color="primary" tabindex="3" type="submit" :disabled="isSubmitDisabled" :loading="loading">
-      {{ $t('auth.LoginForm.cta' /* Login */) }}
+    <vue-button
+      color="primary"
+      tabindex="3"
+      type="submit"
+      :disabled="isSubmitDisabled"
+      :loading="loading"
+    >
+      {{ $t("auth.LoginForm.cta" /* Login */) }}
     </vue-button>
   </form>
 </template>
 
 <script lang="ts">
-import VueHeadline from '@components/VueHeadline/VueHeadline.vue';
-import VueInput from '@components/VueInput/VueInput.vue';
-import VueButton from '@components/VueButton/VueButton.vue';
+import VueHeadline from "@components/VueHeadline/VueHeadline.vue";
+import VueInput from "@components/VueInput/VueInput.vue";
+import VueButton from "@components/VueButton/VueButton.vue";
 
 export default {
   $_veeValidate: {
-    validator: 'new' as 'new',
+    validator: "new" as "new",
   },
-  name: 'LoginForm',
+  name: "LoginForm",
   components: { VueButton, VueInput, VueHeadline },
   props: {
     loading: {
@@ -52,8 +66,8 @@ export default {
   },
   data(): any {
     return {
-      username: '',
-      password: '',
+      username: "",
+      password: "",
     };
   },
   computed: {
@@ -61,7 +75,7 @@ export default {
       return this.errors && this.errors.items.length > 0;
     },
     hasEmptyFields() {
-      return this.username.trim() === '' || this.password.trim() === '';
+      return this.username.trim() === "" || this.password.trim() === "";
     },
     isSubmitDisabled() {
       return this.hasErrors || this.hasEmptyFields;
@@ -69,14 +83,14 @@ export default {
   },
   methods: {
     onSubmit() {
-      this.$emit('submit', this.$data);
+      this.$emit("submit", this.$data);
     },
   },
 };
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .loginForm {
   display: block;

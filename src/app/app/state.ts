@@ -1,4 +1,4 @@
-import { IAppConfig } from '../config/IAppConfig';
+import { IAppConfig } from "../config/IAppConfig";
 
 export interface IAppState {
   locale: string;
@@ -14,6 +14,6 @@ export const AppDefaultState = (): IAppState => {
     config: null,
     defaultMessages: {},
     redirectTo: null,
-    cookieConsentVersion: '',
+    cookieConsentVersion: "",
   };
 };

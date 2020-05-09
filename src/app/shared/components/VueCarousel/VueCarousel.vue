@@ -21,20 +21,29 @@
         :style="{ backgroundImage: `url(${image.getAttribute('src')})` }"
         :class="$style.image"
       >
-        <div v-show="image.getAttribute('title').length > 0" :class="$style.copyright">
-          &copy; {{ image.getAttribute('title') }}
+        <div
+          v-show="image.getAttribute('title').length > 0"
+          :class="$style.copyright"
+        >
+          &copy; {{ image.getAttribute("title") }}
         </div>
       </div>
     </fade-animation>
 
     <ul v-if="showIndicator" :class="$style.indicator">
-      <li v-for="(image, idx) in preloadedImages" :key="idx" :class="isActiveSlide(idx) && $style.active">&nbsp;</li>
+      <li
+        v-for="(image, idx) in preloadedImages"
+        :key="idx"
+        :class="isActiveSlide(idx) && $style.active"
+      >
+        &nbsp;
+      </li>
     </ul>
   </div>
 </template>
 
 <script lang="ts">
-import FadeAnimation from '../../animations/FadeAnimation/FadeAnimation.vue';
+import FadeAnimation from "../../animations/FadeAnimation/FadeAnimation.vue";
 
 export interface ICarouselImage {
   copyright?: string;
@@ -43,7 +52,7 @@ export interface ICarouselImage {
 }
 
 export default {
-  name: 'VueCarousel',
+  name: "VueCarousel",
   components: { FadeAnimation },
   props: {
     images: {
@@ -119,7 +128,7 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .vueCarousel {
   position: relative;

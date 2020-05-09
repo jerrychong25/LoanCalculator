@@ -1,11 +1,11 @@
-import { storiesOf } from '@storybook/vue';
-import { withInfo } from 'storybook-addon-vue-info';
-import VueToggle from './VueToggle.vue';
+import { storiesOf } from "@storybook/vue";
+import { withInfo } from "storybook-addon-vue-info";
+import VueToggle from "./VueToggle.vue";
 
-const story = storiesOf('Atoms|Toggle', module) as any;
+const story = storiesOf("Atoms|Toggle", module) as any;
 
 story.add(
-  'Default',
+  "Default",
   withInfo({})(() => ({
     components: { VueToggle },
     data() {
@@ -14,11 +14,11 @@ story.add(
       };
     },
     template: `<vue-toggle name="toggle" id="toggle" v-model="checked" label="toggle me">VueToggle</vue-toggle>`,
-  })),
+  }))
 );
 
 story.add(
-  'Disabled',
+  "Disabled",
   withInfo({})(() => ({
     components: { VueToggle },
     data() {
@@ -27,5 +27,5 @@ story.add(
       };
     },
     template: `<vue-toggle disabled name="toggle" id="toggle" v-model="checked" label="toggle me">VueToggle</vue-toggle>`,
-  })),
+  }))
 );

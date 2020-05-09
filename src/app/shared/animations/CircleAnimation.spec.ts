@@ -1,7 +1,7 @@
-import { CircleAnimation } from './CircleAnimation';
+import { CircleAnimation } from "./CircleAnimation";
 
-describe('CircleAnimation', () => {
-  test('should animate', () => {
+describe("CircleAnimation", () => {
+  test("should animate", () => {
     const context: any = {
       clearRect: jest.fn(),
       beginPath: jest.fn(),
@@ -35,7 +35,7 @@ describe('CircleAnimation', () => {
     expect(context.closePath).toHaveBeenCalledTimes(100);
   });
 
-  test('should not animate', () => {
+  test("should not animate", () => {
     const canvas: any = {
       width: 300,
       height: 300,

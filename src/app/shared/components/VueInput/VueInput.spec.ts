@@ -1,16 +1,16 @@
-import { createLocalVue, mount } from '@vue/test-utils';
-import VueInput from './VueInput.vue';
+import { createLocalVue, mount } from "@vue/test-utils";
+import VueInput from "./VueInput.vue";
 
 const localVue = createLocalVue();
 
-describe('VueInput.vue', () => {
-  test('renders component', () => {
+describe("VueInput.vue", () => {
+  test("renders component", () => {
     const wrapper = mount<any>(VueInput, {
       localVue,
       propsData: {
-        message: 'MESSAGE!',
-        name: 'name',
-        id: 'id',
+        message: "MESSAGE!",
+        name: "name",
+        id: "id",
       },
       mocks: {
         errors: null,
@@ -18,36 +18,36 @@ describe('VueInput.vue', () => {
     });
 
     expect(wrapper.findAll(`.vueInput`)).toHaveLength(1);
-    expect(wrapper.find(`.message`).text()).toBe('MESSAGE!');
+    expect(wrapper.find(`.message`).text()).toBe("MESSAGE!");
   });
 
-  test('renders disabled component', () => {
+  test("renders disabled component", () => {
     const wrapper = mount<any>(VueInput, {
       localVue,
       propsData: {
         disabled: true,
-        name: 'name',
-        id: 'id',
+        name: "name",
+        id: "id",
       },
     });
 
     expect(wrapper.findAll(`.disabled`)).toHaveLength(1);
   });
 
-  test('should emit input', () => {
+  test("should emit input", () => {
     const wrapper = mount<any>(VueInput, {
       localVue,
       propsData: {
-        name: 'name',
-        id: 'id',
+        name: "name",
+        id: "id",
       },
     }) as any;
 
-    wrapper.find('input').trigger('input');
-    expect(wrapper.emitted('input')).toBeTruthy();
+    wrapper.find("input").trigger("input");
+    expect(wrapper.emitted("input")).toBeTruthy();
   });
 
-  test('should display error state', () => {
+  test("should display error state", () => {
     const wrapper = mount<any>(VueInput, {
       localVue,
       mocks: {
@@ -58,22 +58,22 @@ describe('VueInput.vue', () => {
         },
       },
       propsData: {
-        errorMessage: 'ERROR!',
-        name: 'name',
-        id: 'id',
+        errorMessage: "ERROR!",
+        name: "name",
+        id: "id",
       },
     });
 
     expect(wrapper.findAll(`.error`)).toHaveLength(1);
-    expect(wrapper.find(`.message`).text()).toBe('ERROR!');
+    expect(wrapper.find(`.message`).text()).toBe("ERROR!");
   });
 
-  test('autofocus fallback', () => {
+  test("autofocus fallback", () => {
     const wrapper = mount<any>(VueInput, {
       localVue,
       propsData: {
-        name: 'name',
-        id: 'id',
+        name: "name",
+        id: "id",
         autofocus: true,
       },
     });
@@ -81,7 +81,7 @@ describe('VueInput.vue', () => {
     expect(wrapper.vm.observer).toBeNull();
   });
 
-  test('autofocus in modern browsers', () => {
+  test("autofocus in modern browsers", () => {
     (window as any).IntersectionObserver = class IntersectionObserver {
       public cb: any;
       public options: any;
@@ -98,8 +98,8 @@ describe('VueInput.vue', () => {
     const wrapper = mount<any>(VueInput, {
       localVue,
       propsData: {
-        name: 'name',
-        id: 'id',
+        name: "name",
+        id: "id",
         autofocus: false,
       },
     });

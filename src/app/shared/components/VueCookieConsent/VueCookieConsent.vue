@@ -17,11 +17,11 @@
 </template>
 
 <script lang="ts">
-import FadeAnimation from '../../animations/FadeAnimation/FadeAnimation.vue';
-import VueIconTimes from '../icons/VueIconTimes/VueIconTimes.vue';
+import FadeAnimation from "../../animations/FadeAnimation/FadeAnimation.vue";
+import VueIconTimes from "../icons/VueIconTimes/VueIconTimes.vue";
 
 export default {
-  name: 'VueCookieConsent',
+  name: "VueCookieConsent",
   components: { FadeAnimation, VueIconTimes },
   props: {
     currentVersion: {
@@ -47,7 +47,9 @@ export default {
       this.setCookieConsentVersion(this.currentVersion);
     },
     addBodyPadding() {
-      document.body.style.paddingBottom = `${this.$refs.cookieConsent.getBoundingClientRect().height}px`;
+      document.body.style.paddingBottom = `${
+        this.$refs.cookieConsent.getBoundingClientRect().height
+      }px`;
     },
     removeBodyPadding() {
       document.body.style.paddingBottom = `0px`;
@@ -69,7 +71,7 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .vueCookieConsent {
   position: fixed;

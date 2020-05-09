@@ -1,11 +1,11 @@
-import Vue from 'vue';
-import Vuex, { Module, Store } from 'vuex';
-import merge from 'deepmerge';
-import { DefaultState, IState } from './state';
-import { VuexPersist } from '@vuesion/addon-vuex-persist';
-import { PersistCookieStorage } from '@vuesion/addon-vuex-persist/dist/PersistCookieStorage';
-import { AppModule } from './app/module';
-import { AuthModule } from '@shared/modules/auth/module';
+import Vue from "vue";
+import Vuex, { Module, Store } from "vuex";
+import merge from "deepmerge";
+import { DefaultState, IState } from "./state";
+import { VuexPersist } from "@vuesion/addon-vuex-persist";
+import { PersistCookieStorage } from "@vuesion/addon-vuex-persist/dist/PersistCookieStorage";
+import { AppModule } from "./app/module";
+import { AuthModule } from "@shared/modules/auth/module";
 
 Vue.use(Vuex);
 
@@ -24,7 +24,7 @@ export const store: Store<IState> = new Vuex.Store({
   state,
   plugins: [
     VuexPersist([
-      new PersistCookieStorage(['app', 'auth'], {
+      new PersistCookieStorage(["app", "auth"], {
         cookieOptions: {
           expires: 365,
         },
@@ -34,8 +34,12 @@ export const store: Store<IState> = new Vuex.Store({
   ],
 });
 
-export const registerModule = (moduleName: string, module: Module<any, any>) => {
-  const moduleIsRegistered: boolean = (store as any)._modules.root._children[moduleName] !== undefined;
+export const registerModule = (
+  moduleName: string,
+  module: Module<any, any>
+) => {
+  const moduleIsRegistered: boolean =
+    (store as any)._modules.root._children[moduleName] !== undefined;
   const stateExists: boolean = store.state[moduleName] !== undefined;
 
   if (stateExists) {
@@ -52,5 +56,5 @@ export const registerModule = (moduleName: string, module: Module<any, any>) => 
   }
 };
 
-registerModule('app', AppModule);
-registerModule('auth', AuthModule);
+registerModule("app", AppModule);
+registerModule("auth", AuthModule);

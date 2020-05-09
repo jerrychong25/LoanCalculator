@@ -12,13 +12,13 @@
 </template>
 
 <script lang="ts">
-import VueGrid from '@components/VueGrid/VueGrid.vue';
-import VueGridRow from '@components/VueGridRow/VueGridRow.vue';
-import VueGridItem from '@components/VueGridItem/VueGridItem.vue';
-import VueImage from '@components/VueImage/VueImage.vue';
+import VueGrid from "@components/VueGrid/VueGrid.vue";
+import VueGridRow from "@components/VueGridRow/VueGridRow.vue";
+import VueGridItem from "@components/VueGridItem/VueGridItem.vue";
+import VueImage from "@components/VueImage/VueImage.vue";
 
 export default {
-  name: 'HomeSection',
+  name: "HomeSection",
   components: { VueImage, VueGridItem, VueGridRow, VueGrid },
   props: {
     image: {
@@ -36,7 +36,7 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .homeSection {
   padding: $space-48 0;

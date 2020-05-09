@@ -10,7 +10,7 @@
 
 <script lang="ts">
 export default {
-  name: 'VueIconSpinner',
+  name: "VueIconSpinner",
 };
 </script>
 

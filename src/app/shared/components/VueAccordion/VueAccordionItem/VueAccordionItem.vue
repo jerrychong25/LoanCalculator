@@ -17,10 +17,10 @@
 </template>
 
 <script lang="ts">
-import VueCollapse from '../../VueCollapse/VueCollapse.vue';
+import VueCollapse from "../../VueCollapse/VueCollapse.vue";
 
 export default {
-  name: 'VueAccordionItem',
+  name: "VueAccordionItem",
   components: {
     VueCollapse,
   },
@@ -34,7 +34,7 @@ export default {
       default: false,
     },
   },
-  inject: ['register', 'openItem'],
+  inject: ["register", "openItem"],
   data(): any {
     return {
       idx: null,
@@ -67,7 +67,7 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '../../../design-system';
+@import "../../../design-system";
 
 .vueAccordionItem {
   display: block;
@@ -90,7 +90,7 @@ export default {
 
   &:before,
   &:after {
-    content: '';
+    content: "";
     transition: all 0.25s ease-in-out;
     position: absolute;
     background-color: $accordion-item-header-arrow-color;

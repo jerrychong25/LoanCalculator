@@ -3,8 +3,8 @@
 </template>
 
 <script lang="ts">
-import marked from 'marked';
-import { VNode } from 'vue';
+import marked from "marked";
+import { VNode } from "vue";
 
 marked.setOptions({
   renderer: new marked.Renderer(),
@@ -19,7 +19,7 @@ marked.setOptions({
 });
 
 export default {
-  name: 'VueMarkdown',
+  name: "VueMarkdown",
   props: {
     useRouter: {
       type: Boolean,
@@ -28,16 +28,16 @@ export default {
   },
   data(): any {
     return {
-      html: '',
+      html: "",
     };
   },
   methods: {
     createHTML() {
-      let text: string = '';
+      let text: string = "";
 
       this.$slots.default.forEach((slot: VNode) => {
         if (slot.text) {
-          slot.text = slot.text.trim().replace(/\n /g, '\n');
+          slot.text = slot.text.trim().replace(/\n /g, "\n");
           text += `${slot.text}\n`;
         }
       });
@@ -64,19 +64,19 @@ export default {
     this.createHTML();
   },
   mounted() {
-    this.$refs.content.addEventListener('click', this.handleClick);
+    this.$refs.content.addEventListener("click", this.handleClick);
   },
   updated() {
     this.createHTML();
   },
   beforeDestroy() {
-    this.$refs.content.removeEventListener('click', this.handleClick);
+    this.$refs.content.removeEventListener("click", this.handleClick);
   },
 };
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .vueMarkdown {
   h1,

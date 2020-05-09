@@ -15,7 +15,12 @@
         input: onInput,
       }"
     >
-      <option v-for="(option, idx) in selectOptions" :key="idx" :value="option.value" :selected="isSelected(option)">
+      <option
+        v-for="(option, idx) in selectOptions"
+        :key="idx"
+        :value="option.value"
+        :selected="isSelected(option)"
+      >
         {{ option.label }}
       </option>
     </select>
@@ -26,8 +31,8 @@
 </template>
 
 <script lang="ts">
-import { Validator } from 'vee-validate';
-import { IAutocompleteOption } from '@components/VueAutocomplete/IAutocompleteOption';
+import { Validator } from "vee-validate";
+import { IAutocompleteOption } from "@components/VueAutocomplete/IAutocompleteOption";
 
 export interface IVueSelectOption {
   label: string;
@@ -35,7 +40,7 @@ export interface IVueSelectOption {
 }
 
 export default {
-  name: 'VueSelect',
+  name: "VueSelect",
   inheritAttrs: false,
   inject: {
     $validator: {
@@ -57,7 +62,7 @@ export default {
     },
     value: {
       type: String,
-      default: '',
+      default: "",
     },
     multiple: {
       type: Boolean,
@@ -73,7 +78,7 @@ export default {
     },
     autocomplete: {
       type: String,
-      default: 'off',
+      default: "off",
     },
     placeholder: {
       type: String,
@@ -110,7 +115,7 @@ export default {
       return classes;
     },
     currentValueAsArray(): string[] {
-      return this.value.split('|');
+      return this.value.split("|");
     },
   },
   methods: {
@@ -129,7 +134,10 @@ export default {
         }
       }
 
-      this.$emit('input', selected.map((option: IVueSelectOption) => option.value).join('|'));
+      this.$emit(
+        "input",
+        selected.map((option: IVueSelectOption) => option.value).join("|")
+      );
     },
   },
   watch: {
@@ -139,7 +147,7 @@ export default {
         const selectOptions = [...options];
 
         if (this.multiple === false) {
-          selectOptions.unshift({ label: '', value: '' });
+          selectOptions.unshift({ label: "", value: "" });
         }
 
         this.selectOptions = selectOptions;
@@ -150,7 +158,7 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .vueSelect {
   background: $select-bg;
@@ -261,7 +269,7 @@ export default {
 
   &:before,
   &:after {
-    content: '';
+    content: "";
     transition: all 0.25s ease-in-out;
     position: absolute;
     background-color: $select-arrow-color;
@@ -318,7 +326,7 @@ export default {
 
   &:before,
   &:after {
-    content: '';
+    content: "";
     height: $input-bar-height;
     width: 0;
     bottom: 0;

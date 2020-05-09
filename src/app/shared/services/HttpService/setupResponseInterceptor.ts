@@ -1,5 +1,5 @@
-import { HttpService, replaceOldToken } from './HttpService';
-import { AxiosRequestConfig, AxiosError, AxiosResponse } from 'axios';
+import { HttpService, replaceOldToken } from "./HttpService";
+import { AxiosRequestConfig, AxiosError, AxiosResponse } from "axios";
 
 function flushPendingRequests(error: any, accessToken?: string) {
   HttpService.pendingRequests.forEach((promise: any) => {
@@ -37,12 +37,12 @@ export const setupResponseInterceptor = () => {
 
       HttpService.isReAuthenticating = true;
 
-      console.log('refreshing token ...'); // tslint:disable-line
+      console.log("refreshing token ..."); // tslint:disable-line
       return new Promise(async (resolve, reject) => {
         try {
-          await HttpService.store.dispatch('auth/refreshToken');
+          await HttpService.store.dispatch("auth/refreshToken");
 
-          console.log('refreshing token successful ...'); // tslint:disable-line
+          console.log("refreshing token successful ..."); // tslint:disable-line
           const {
             auth: { accessToken },
           } = HttpService.store.state;
@@ -50,12 +50,12 @@ export const setupResponseInterceptor = () => {
           flushPendingRequests(null, accessToken);
           resolve(HttpService(replaceOldToken(originalRequest, accessToken)));
         } catch (e) {
-          console.log('refreshing token failure ...'); // tslint:disable-line
+          console.log("refreshing token failure ..."); // tslint:disable-line
           e.status = 403;
 
           flushPendingRequests(e);
           reject(e);
-          HttpService.router.push('/');
+          HttpService.router.push("/");
         }
       });
     }
@@ -63,5 +63,8 @@ export const setupResponseInterceptor = () => {
     return Promise.reject(error);
   };
 
-  HttpService.interceptors.response.use((response: AxiosResponse) => response, onRejected);
+  HttpService.interceptors.response.use(
+    (response: AxiosResponse) => response,
+    onRejected
+  );
 };

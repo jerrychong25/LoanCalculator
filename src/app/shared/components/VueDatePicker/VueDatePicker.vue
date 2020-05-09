@@ -29,12 +29,12 @@
 </template>
 
 <script lang="ts">
-import VueInput from '../VueInput/VueInput.vue';
-import VueModal from '../VueModal/VueModal.vue';
-import VueCalendar from '../VueCalendar/VueCalendar.vue';
+import VueInput from "../VueInput/VueInput.vue";
+import VueModal from "../VueModal/VueModal.vue";
+import VueCalendar from "../VueCalendar/VueCalendar.vue";
 
 export default {
-  name: 'VueDatePicker',
+  name: "VueDatePicker",
   components: {
     VueInput,
     VueModal,
@@ -92,7 +92,7 @@ export default {
   },
   computed: {
     inputValue() {
-      return this.date === null ? '' : this.$d(this.date, 'datePicker');
+      return this.date === null ? "" : this.$d(this.date, "datePicker");
     },
     date() {
       if (this.currentDate) {
@@ -109,14 +109,14 @@ export default {
     },
     onChange(date: Date): void {
       this.selectedDate = date;
-      this.$emit('change', this.selectedDate);
+      this.$emit("change", this.selectedDate);
     },
   },
 };
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .vueDatePicker {
   display: block;

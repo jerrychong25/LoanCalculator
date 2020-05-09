@@ -1,7 +1,11 @@
 <template>
   <div :class="$style.vueNotificationStack">
     <transition-group name="list" tag="div">
-      <div v-for="n in orderedNotifications" :class="[$style.notification, $style[n.type]]" :key="n.id">
+      <div
+        v-for="n in orderedNotifications"
+        :class="[$style.notification, $style[n.type]]"
+        :key="n.id"
+      >
         <div :class="$style.title">{{ n.title }}</div>
         <div :class="$style.text">{{ n.text }}</div>
         <div :class="$style.close" @click="removeNotification(n)"></div>
@@ -11,13 +15,13 @@
 </template>
 
 <script lang="ts">
-import { INotification } from './utils';
-import { EventBus } from '../../services/EventBus';
+import { INotification } from "./utils";
+import { EventBus } from "../../services/EventBus";
 
 let id: number = 0;
 
 export default {
-  name: 'VueNotificationStack',
+  name: "VueNotificationStack",
   props: {
     duration: {
       type: Number,
@@ -37,24 +41,26 @@ export default {
   methods: {
     addNotification(n: INotification): void {
       n.id = id++;
-      n.type = n.type || 'default';
+      n.type = n.type || "default";
 
       this.notifications.push(n);
 
       setTimeout(() => this.removeNotification(n), this.duration);
     },
     removeNotification(n: INotification): void {
-      this.notifications = this.notifications.filter((notification: INotification) => notification.id !== n.id);
+      this.notifications = this.notifications.filter(
+        (notification: INotification) => notification.id !== n.id
+      );
     },
   },
   mounted() {
-    EventBus.$on('notification.add', this.addNotification);
+    EventBus.$on("notification.add", this.addNotification);
   },
 };
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .vueNotificationStack {
   position: fixed;
@@ -135,7 +141,7 @@ export default {
 
   &:before,
   &:after {
-    content: '';
+    content: "";
     transition: all 0.25s ease-in-out;
     position: absolute;
     background-color: $notification-close-cross-color;

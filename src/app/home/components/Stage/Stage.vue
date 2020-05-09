@@ -10,7 +10,7 @@
           <div :class="$style.subTitle">
             {{
               $t(
-                'App.core.description' /* The most complete boilerplate for production-ready PWAs. With focus on performance, development speed, and best practices */,
+                "App.core.description" /* The most complete boilerplate for production-ready PWAs. With focus on performance, development speed, and best practices */
               )
             }}
           </div>
@@ -33,12 +33,12 @@
 </template>
 
 <script lang="ts">
-import { CircleAnimation } from '../../../shared/animations/CircleAnimation';
-import VueGrid from '@components/VueGrid/VueGrid.vue';
-import VueGridRow from '@components/VueGridRow/VueGridRow.vue';
-import VueGridItem from '@components/VueGridItem/VueGridItem.vue';
-import VueIconGithub from '@components/icons/VueIconGithub/VueIconGithub.vue';
-import VueHeadline from '@components/VueHeadline/VueHeadline.vue';
+import { CircleAnimation } from "../../../shared/animations/CircleAnimation";
+import VueGrid from "@components/VueGrid/VueGrid.vue";
+import VueGridRow from "@components/VueGridRow/VueGridRow.vue";
+import VueGridItem from "@components/VueGridItem/VueGridItem.vue";
+import VueIconGithub from "@components/icons/VueIconGithub/VueIconGithub.vue";
+import VueHeadline from "@components/VueHeadline/VueHeadline.vue";
 
 export default {
   components: { VueHeadline, VueIconGithub, VueGridItem, VueGridRow, VueGrid },
@@ -69,7 +69,7 @@ export default {
     },
   },
   beforeMount() {
-    window.addEventListener('resize', this.handleResize);
+    window.addEventListener("resize", this.handleResize);
   },
   mounted() {
     this.handleResize();
@@ -79,13 +79,13 @@ export default {
     }
   },
   beforeDestroy() {
-    window.removeEventListener('resize', this.handleResize);
+    window.removeEventListener("resize", this.handleResize);
   },
 };
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .stage {
   min-height: 100vh;

@@ -12,10 +12,10 @@
 </template>
 
 <script lang="ts">
-import VueHeadline from '@components/VueHeadline/VueHeadline.vue';
+import VueHeadline from "@components/VueHeadline/VueHeadline.vue";
 
 export default {
-  name: 'BrandColors',
+  name: "BrandColors",
   components: { VueHeadline },
   computed: {
     colorSections() {
@@ -23,9 +23,9 @@ export default {
       const arr: any[] = [];
 
       Object.keys(this.$style).forEach((key: string) => {
-        const split = key.split('-');
+        const split = key.split("-");
         const section = split.shift();
-        const name = split.join('-');
+        const name = split.join("-");
         const hex = this.$style[key];
 
         if (!sections[section]) {
@@ -36,7 +36,7 @@ export default {
       });
 
       Object.keys(sections).forEach((key: string) => {
-        if (['section'].indexOf(key) === -1) {
+        if (["section"].indexOf(key) === -1) {
           arr.push({ name: key, colors: sections[key] });
         }
       });
@@ -48,7 +48,7 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '~@/app/shared/design-system';
+@import "~@/app/shared/design-system";
 
 .section {
   display: grid;
@@ -69,7 +69,7 @@ export default {
       background: inherit;
       background-clip: text;
       color: transparent;
-      filter: invert(1) grayscale(1) unquote('contrast(100)');
+      filter: invert(1) grayscale(1) unquote("contrast(100)");
     }
   }
 }
